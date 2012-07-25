@@ -4,7 +4,6 @@
  */
 
 var express = require('express'),
-	routes = require('./routes'),
 	http = require('http'),
 	connectassets = require('connect-assets'),
 	path = require('path');
@@ -41,7 +40,18 @@ app.configure('development', function(){
 /**
  * Routes go here.
  */
-app.get('/', routes.index);
+app.get('/', function(req, res){
+	  res.render('index', { title: 'Express' });
+	}
+);
+
+app.post('/', function(req, res){
+		// Store the username as a session variable
+		console.log(req.body.username);
+		res.redirect('/');
+	}
+)
+		
 
 /**
  * Finally, start the server.
