@@ -1,7 +1,44 @@
-doctype 5
-html
-	head
-		title= title
-		link(rel='stylesheet', href='/stylesheets/style.css')
-	body
-		block content
+!!!
+html(ng-app="gov")
+  head
+    title Gathering Our Voices --  #{title}
+    meta(http-equiv="Content-Type",content="text/html; charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="description", content="TODO")
+    meta(name="author", content="Andrew Hobden")
+    // HTML5 shim, because IE6-8 are horrible.
+    //if lt IE 9
+      script(src=''http://html5shim.googlecode.com/svn/trunk/html5.js')
+
+    // Get the CSS.
+    != css('bootstrap/bootstrap')
+    != css('layout')
+    != css('bootstrap/responsive')
+
+  body(data-offset="50",data-spy="scroll",data-target="#subnav")
+    // The main content of the app.
+    .container.well
+      section#article
+        block article 
+
+  // Load the javascript at the end of the page, it's faster apparently (twitter says)
+  != js('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+  // Bootstrap only
+  != js('bootstrap/bootstrap-alert')
+  != js('bootstrap/bootstrap-button')
+  != js('bootstrap/bootstrap-carousel')
+  != js('bootstrap/bootstrap-collapse')
+  != js('bootstrap/bootstrap-dropdown')
+  != js('bootstrap/bootstrap-modal')
+  != js('bootstrap/bootstrap-scrollspy')
+  != js('bootstrap/bootstrap-tab')
+  != js('bootstrap/bootstrap-tooltip')
+  != js('bootstrap/bootstrap-popover')
+  != js('bootstrap/bootstrap-transition')
+  != js('bootstrap/bootstrap-typeahead')
+  // Random stuff
+  != js('common')
+  // Angular JS specific
+  != js('angular/angular')
+  != js('app')
+  != js('controllers')

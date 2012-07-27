@@ -1,0 +1,11 @@
+extends layout
+
+block article
+  form(method='post', action='/do-register')
+    label First Name:
+    input(type='text', name='firstname', placeholder='First name')
+      
+    label Last Name:
+    input(type='text', name='lastname', placeholder='Last Name')
+    br  
+    input.btn(type='submit', value='Submit')

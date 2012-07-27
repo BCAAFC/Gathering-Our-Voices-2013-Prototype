@@ -5,7 +5,7 @@
 
 var express = require('express'),
 	http = require('http'),
-	connectassets = require('connect-assets'),
+	assets = require('connect-assets'),
 	path = require('path');
 
 /**
@@ -24,6 +24,7 @@ app.configure(function(){
 	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
+	app.use(assets());
 	app.use(express.cookieParser('Hoverbear was here.'));
 	app.use(express.session());
 	app.use(app.router);
@@ -45,13 +46,12 @@ app.get('/', function(req, res){
 	}
 );
 
-app.post('/', function(req, res){
-		// Store the username as a session variable
-		console.log(req.body.username);
-		res.redirect('/');
+// All partials are accessed via this.
+app.get('/partials:name', function(req, res){
+		var name = req.params.name;
+		res.render('partials/' + name)
 	}
-)
-		
+);
 
 /**
  * Finally, start the server.
