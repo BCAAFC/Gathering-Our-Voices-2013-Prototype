@@ -47,9 +47,14 @@ app.get('/', function(req, res){
 );
 
 // All partials are accessed via this.
-app.get('/partials:name', function(req, res){
+app.get('/partials/:name', function(req, res){
 		var name = req.params.name;
 		res.render('partials/' + name)
+	}
+);
+
+app.get('*', function(req, res){
+		res.render('index');
 	}
 );
 
