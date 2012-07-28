@@ -53,8 +53,15 @@ app.get('/partials/:name', function(req, res){
 	}
 );
 
-app.get('*', function(req, res){
-		res.render('index');
+// Set up register.
+app.get('/register', function(req, res){
+		res.render('index'); // Angular JS handles this, we just need to provide the route.
+	}
+);
+
+//Form Stuff
+app.post('/register', function(req, res){
+		console.log(req.body);
 	}
 );
 

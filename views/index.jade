@@ -16,8 +16,13 @@ html(ng-app="gov")
     != css('bootstrap/responsive')
 
   body(data-offset="50",data-spy="scroll",data-target="#subnav")
-    a(href='home') Home
-    a(href='register') Register
+    .container
+      ul.nav.nav-pills
+        li
+          a(href='home') Home
+        li
+          a(href='register') Register
+    br
     // The main content of the app.
     div#article(ng-view)
 

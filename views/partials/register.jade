@@ -1,2 +1,24 @@
-.well.container(ng-controller='regCtl')
-  p This is registration!
+.container-fluid(ng-controller='regCtl')
+  .row-fluid
+    .span3.well
+      ul.nav.nav-list
+        li.nav-header Getting Started
+        li 
+          a(href='#step-1')
+            i.icon-search
+            | Basics
+        li 
+          a(href='#step-2')
+            i.icon-book
+            | Contact Info
+    .span9
+      form(ng-submit='submit()')
+        .well
+          p This is registration!
+          input.focused(type='text', name='firstName', ng-model='Name', placeholder='Enter your name')
+          br  
+        .well 
+          p Your name is: <b>{{Name}}</b>
+
+          input.btn-large.btn-primary(type='submit', value='Register')
+
