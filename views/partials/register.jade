@@ -4,21 +4,41 @@
       ul.nav.nav-list
         li.nav-header Getting Started
         li 
-          a(href='#step-1')
+          a(ng-click="scrollto(step-1)")
             i.icon-search
             | Basics
         li 
-          a(href='#step-2')
+          a(ng-click="scrollto(step-2)")
             i.icon-book
             | Contact Info
     .span9
       form(ng-submit='submit()')
         .well
-          p This is registration!
-          input.focused(type='text', name='firstName', ng-model='Name', placeholder='Enter your name')
+          .page-header
+            h1#step-1 The Basics
+          p To get started, we need some basic contact information from you.
+          input.focused(type='text', name='primaryName', ng-model='primaryName', placeholder='Enter your name')
+          br
+          input.focused(type='text', name='primaryAddress', ng-model='primaryAddress', placeholder='Enter your mailing address')
           br  
+          input.focused(type='text', name='primaryLocation', ng-model='primaryLocation', placeholder='Enter your city')
+          br  
+          input.focused(type='text', name='primaryPhone', ng-model='primaryPhone', placeholder='Enter your phone number')
+          br  
+          input.focused(type='text', name='primaryEmail', ng-model='primaryEmail', placeholder='Enter your Email')
         .well 
-          p Your name is: <b>{{Name}}</b>
+          address
+            strong {{primaryName}}
+            br
+            | {{primaryAddress}}
+            br
+            | {{primaryLocation}}
+            br
+            abbr(title="Phone") P:
+            | {{primaryPhone}}
+            br
+            abbr(title="Email") E:
+            | {{primaryEmail}}
 
           input.btn-large.btn-primary(type='submit', value='Register')
 
