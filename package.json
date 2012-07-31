@@ -11,6 +11,7 @@
 		"coffee-script": "*",
     "jade": "*",
 		"less": "*",
-		"mongodb": "*"
+		"mongodb": "*",
+		"mongojs": "*"
 	}
 }

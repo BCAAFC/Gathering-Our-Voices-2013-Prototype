@@ -14,6 +14,13 @@ var express = require('express'),
 var app = express();
 
 /**
+ * Set up our database.
+ */
+var database = 'govtest',
+		collections = ["gov"],
+		db = require("mongojs").connect(database, collections);
+
+/**
  * Persistant configuration goes here.
  */
 app.configure(function(){
@@ -61,7 +68,7 @@ app.get('/register', function(req, res){
 
 //Form Stuff
 app.post('/register', function(req, res){
-		console.log(req.body);
+		db.gov.save(req.body);
 	}
 );
 
