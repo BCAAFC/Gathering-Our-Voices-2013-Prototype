@@ -1,0 +1,20 @@
+.container-fluid(ng-controller='manCtl')
+  .row-fluid
+    .well
+      input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query')
+      table
+        thead
+          tr
+            th Name
+            th Address
+            th City
+            th Phone
+            th Email
+          tbody
+            tr(ng-repeat="attendee in attendees.data | filter:searchQuery | orderBy:'name'")
+              td {{ attendee.Name }}
+              td {{ attendee.Address }}
+              td {{ attendee.Location }}
+              td {{ attendee.Phone }}
+              td {{ attendee.Email }}
+

@@ -17,28 +17,28 @@
           .page-header
             h1#step-1 The Basics
           p To get started, we need some basic contact information from you.
-          input.focused(type='text', name='primaryName', ng-model='primaryName', placeholder='Enter your name')
+          input.focused(type='text', name='Name', ng-model='Name', placeholder='Enter your name')
           br
-          input.focused(type='text', name='primaryAddress', ng-model='primaryAddress', placeholder='Enter your mailing address')
+          input.focused(type='text', name='Address', ng-model='Address', placeholder='Enter your mailing address')
           br  
-          input.focused(type='text', name='primaryLocation', ng-model='primaryLocation', placeholder='Enter your city')
+          input.focused(type='text', name='Location', ng-model='Location', placeholder='Enter your city')
           br  
-          input.focused(type='text', name='primaryPhone', ng-model='primaryPhone', placeholder='Enter your phone number')
+          input.focused(type='text', name='Phone', ng-model='Phone', placeholder='Enter your phone number')
           br  
-          input.focused(type='text', name='primaryEmail', ng-model='primaryEmail', placeholder='Enter your Email')
+          input.focused(type='text', name='Email', ng-model='Email', placeholder='Enter your Email')
         .well 
           address
-            strong {{primaryName}}
+            strong {{Name}}
             br
-            | {{primaryAddress}}
+            | {{Address}}
             br
-            | {{primaryLocation}}
+            | {{Location}}
             br
-            abbr(title="Phone") P:
-            | {{primaryPhone}}
+            abbr(title="Phone") P: 
+            | {{Phone}}
             br
-            abbr(title="Email") E:
-            | {{primaryEmail}}
+            abbr(title="Email") E: 
+            | {{Email}}
 
           input.btn-large.btn-primary(type='submit', value='Register')
 

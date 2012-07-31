@@ -66,6 +66,21 @@ app.get('/register', function(req, res){
 	}
 );
 
+// See the backend database.
+app.get('/management', function(req, res){
+		res.render('index'); // Angular takes care of this.
+	}
+);
+
+// Get a list of attendees.
+app.get('/attendees', function(req, res){
+		db.gov.find(function(err, attendees){
+			if( err || !attendees) console.log("No attendees found");
+			else
+					res.send(attendees); 				
+			});	
+		});
+
 //Form Stuff
 app.post('/register', function(req, res){
 		db.gov.save(req.body);
