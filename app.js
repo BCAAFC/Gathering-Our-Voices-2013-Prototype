@@ -3,10 +3,12 @@
  * Module dependencies.
  */
 
-var express = require('express'),
-	http = require('http'),
-	assets = require('connect-assets'),
-	path = require('path');
+var express 	= require('express'),
+		http 			= require('http'),
+		assets 		= require('connect-assets'),
+		mongojs		= require('mongojs'),
+		pass			= require('pwd'),
+		path 			= require('path');
 
 /**
  * Declare our app.
@@ -17,8 +19,8 @@ var app = express();
  * Set up our database.
  */
 var database = 'govtest',
-		collections = ["gov"],
-		db = require("mongojs").connect(database, collections);
+		collections = ["attendees", "workshops"],
+		db = mongojs.connect(database, collections);
 
 /**
  * Persistant configuration goes here.
@@ -60,9 +62,14 @@ app.get('/partials/:name', function(req, res){
 	}
 );
 
+// Set up Login.
+app.get('/login', function(req,res){
+	res.render('index'); // Angular does this.
+});
+
 // Set up register.
 app.get('/register', function(req, res){
-		res.render('index'); // Angular JS handles this, we just need to provide the route.
+	res.render('index'); // Angular JS handles this, we just need to provide the route.
 	}
 );
 
@@ -74,18 +81,90 @@ app.get('/management', function(req, res){
 
 // Get a list of attendees.
 app.get('/attendees', function(req, res){
-		db.gov.find(function(err, attendees){
-			if( err || !attendees) console.log("No attendees found");
-			else
-					res.send(attendees); 				
-			});	
-		});
+		db.attendees.find(function(err, attendees){
+		if( err || !attendees) console.log("No attendees found");
+		else
+			res.send(attendees); 				
+	});	
+});
 
-//Form Stuff
+// Get a list of workshops
+app.get('/workshops', function(req, res){
+	db.workshops.find(function(err, attendees) {
+		if ( err || !workshops ) console.log("No workshops found");
+		else
+			res.send(workshops);
+	});
+});
+
+function authenticate(name, password, fn){
+  if (!module.parent) console.log('authenticating %s:%s', name, password);
+  db.attendees.find({Name: name}, function (err, users){
+		// query the db for the given username
+		if (!users[0]) return fn(new Error('cannot find user'));
+		// apply the same algorithm to the POSTed password, applying
+		// the hash against the pass / salt, if there is a match we
+		// found the user
+		pass.hash(password, users[0].salt, function(err, hash){
+			if (err) return fn(err);
+			if (hash == users[0].hash) return fn(null, user);
+			fn(new Error('invalid password'));
+		})
+	})
+}
+// Login Form Post
+app.post('/login', function(req,res){
+/*	db.attendees.find({Name: req.body.username}, function(err, users){
+		pass.hash(req.body.password, users[0].Salt, function(err, hash){
+			if (users[0].Hash == hash) {
+				console.log('Yay!');
+  		}
+		});
+	})
+*/
+	authenticate(req.body.username, req.body.password, function(err, user){
+		console.log(user);
+		if (user) {
+      // Regenerate session when signing in
+      // to prevent fixation 
+      req.session.regenerate(function(){
+        // Store the user's primary key 
+        // in the session store to be retrieved,
+        // or in this case the entire user object
+        req.session.user = user;
+        res.redirect('back');
+      });
+    } else {
+      req.session.error = 'Authentication failed, please check your '
+        + ' username and password.'
+        + ' (use "tj" and "foobar")';
+      res.redirect('login');
+    }
+  });
+
+});
+
+// Registration Form Post
 app.post('/register', function(req, res){
-		db.gov.save(req.body);
+		pass.hash(req.body.Password, function(err, salt, hash){
+			db.attendees.save(
+			{
+				Name			: req.body.Name,
+				Salt			:	salt,
+				Hash			: hash,
+				Info			: 
+					{
+						Address 	: req.body.Address,
+						Location 	: req.body.Location,
+						Phone			: req.body.Phone,
+						Email			: req.body.Email
+					},
+				Attendees			:	{}
+			});
+		});
 	}
 );
+
 
 /**
  * Finally, start the server.
