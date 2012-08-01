@@ -3,12 +3,12 @@
  * Module dependencies.
  */
 
-var express 	= require('express'),
-		http 			= require('http'),
-		assets 		= require('connect-assets'),
+var express		= require('express'),
+		http			= require('http'),
+		assets		= require('connect-assets'),
 		mongojs		= require('mongojs'),
 		pass			= require('pwd'),
-		path 			= require('path');
+		path			= require('path');
 
 /**
  * Declare our app.
@@ -51,7 +51,7 @@ app.configure('development', function(){
  * Routes go here.
  */
 app.get('/', function(req, res){
-	  res.render('index', { title: 'Express' });
+		res.render('index', { title: 'Express' });
 	}
 );
 
@@ -84,7 +84,7 @@ app.get('/attendees', function(req, res){
 		db.attendees.find(function(err, attendees){
 		if( err || !attendees) console.log("No attendees found");
 		else
-			res.send(attendees); 				
+			res.send(attendees);				
 	});	
 });
 
@@ -105,9 +105,9 @@ function authenticate(name, password, fn){
 		// apply the same algorithm to the POSTed password, applying
 		// the hash against the pass / salt, if there is a match we
 		// found the user
-		pass.hash(password, user.salt, function(err, hash){
+		pass.hash(password, user.Salt, function(err, hash){
 			if (err) return fn(err);
-			if (hash == user.hash) return fn(null, user);
+			if (hash == user.Hash) return fn(null, user);
 			fn(new Error('invalid password'));
 		})
 	})
@@ -118,7 +118,7 @@ app.post('/login', function(req,res){
 		pass.hash(req.body.password, users[0].Salt, function(err, hash){
 			if (users[0].Hash == hash) {
 				console.log('Yay!');
-  		}
+			}
 		});
 	})
 */
@@ -154,8 +154,8 @@ app.post('/register', function(req, res){
 				Hash			: hash,
 				Info			: 
 					{
-						Address 	: req.body.Address,
-						Location 	: req.body.Location,
+						Address		: req.body.Address,
+						Location	: req.body.Location,
 						Phone			: req.body.Phone,
 						Email			: req.body.Email
 					},
