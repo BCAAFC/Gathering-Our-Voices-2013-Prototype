@@ -99,15 +99,15 @@ app.get('/workshops', function(req, res){
 
 function authenticate(name, password, fn){
   if (!module.parent) console.log('authenticating %s:%s', name, password);
-  db.attendees.findOne({Name: name}, function (err, user){
+  db.attendees.findOne({name: name}, function (err, user){
 		// query the db for the given username
 		if (!user) return fn(new Error('cannot find user'));
 		// apply the same algorithm to the POSTed password, applying
 		// the hash against the pass / salt, if there is a match we
 		// found the user
-		pass.hash(password, user.Salt, function(err, hash){
+		pass.hash(password, user.salt, function(err, hash){
 			if (err) return fn(err);
-			if (hash == user.Hash) return fn(null, user);
+			if (hash == user.hash) return fn(null, user);
 			fn(new Error('invalid password'));
 		})
 	})
@@ -146,20 +146,20 @@ app.post('/login', function(req,res){
 
 // Registration Form Post
 app.post('/register', function(req, res){
-		pass.hash(req.body.Password, function(err, salt, hash){
+		pass.hash(req.body.password, function(err, returnedSalt, returnedHash){
 			db.attendees.save(
 			{
-				Name			: req.body.Name,
-				Salt			:	salt,
-				Hash			: hash,
-				Info			: 
+				name			: req.body.name,
+				salt			:	returnedSalt,
+				hash			: returnedHash,
+				info			: 
 					{
-						Address		: req.body.Address,
-						Location	: req.body.Location,
-						Phone			: req.body.Phone,
-						Email			: req.body.Email
+						address		: req.body.address,
+						city			: req.body.city,
+						phone			: req.body.phone,
+						email			: req.body.email
 					},
-				Attendees			:	{}
+				attendees			:	{}
 			});
 		});
 	}

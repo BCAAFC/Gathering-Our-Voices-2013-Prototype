@@ -30,12 +30,12 @@ function regCtl($scope, $http, $anchorScroll) {
 	$scope.submit = function (){
 		$http.post('/register', 
 				{ 
-					Name 		: $scope.Name,
-					Password: $scope.Password,
-					Address : $scope.Address,
-					Location: $scope.Location,
-					Phone		:	$scope.Phone,
-					Email		:	$scope.Email
+					name 		: $scope.name,
+					password: $scope.password,
+					address : $scope.address,
+					city		: $scope.city,
+					phone		:	$scope.phone,
+					email		:	$scope.email
 				});
 	};
 	$scope.scrollto = function goToByScroll(id){
