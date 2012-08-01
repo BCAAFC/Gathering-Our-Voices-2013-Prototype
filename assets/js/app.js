@@ -1,4 +1,4 @@
-'use strict';
+//'use strict';
 
 
 // Declare app level module which depends on filters, and services
@@ -7,6 +7,6 @@ angular.module('gov', []).
     $routeProvider.when('/register', {templateUrl: 'partials/register', controller: regCtl});
     $routeProvider.when('/management', {templateUrl: 'partials/management', controller: manCtl});
 		$routeProvider.when('/', {templateUrl: 'partials/home', controller: homeCtl});
-    $routeProvider.otherwise({redirectTo: '/'});
+		$routeProvider.otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(true);
   }]);
