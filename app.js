@@ -99,15 +99,15 @@ app.get('/workshops', function(req, res){
 
 function authenticate(name, password, fn){
   if (!module.parent) console.log('authenticating %s:%s', name, password);
-  db.attendees.find({Name: name}, function (err, users){
+  db.attendees.findOne({Name: name}, function (err, user){
 		// query the db for the given username
-		if (!users[0]) return fn(new Error('cannot find user'));
+		if (!user) return fn(new Error('cannot find user'));
 		// apply the same algorithm to the POSTed password, applying
 		// the hash against the pass / salt, if there is a match we
 		// found the user
-		pass.hash(password, users[0].salt, function(err, hash){
+		pass.hash(password, user.salt, function(err, hash){
 			if (err) return fn(err);
-			if (hash == users[0].hash) return fn(null, user);
+			if (hash == user.hash) return fn(null, user);
 			fn(new Error('invalid password'));
 		})
 	})
