@@ -114,14 +114,6 @@ function authenticate(name, password, fn){
 }
 // Login Form Post
 app.post('/login', function(req,res){
-/*	db.attendees.find({Name: req.body.username}, function(err, users){
-		pass.hash(req.body.password, users[0].Salt, function(err, hash){
-			if (users[0].Hash == hash) {
-				console.log('Yay!');
-			}
-		});
-	})
-*/
 	authenticate(req.body.username, req.body.password, function(err, user){
 		console.log(user);
 		if (user) {
