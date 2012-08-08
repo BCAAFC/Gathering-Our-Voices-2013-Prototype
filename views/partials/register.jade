@@ -97,8 +97,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Chaperones Attending
           .controls
-            input.focused(type='number', name='chaperonesAttending', ng-model='chaperonesAttending', placeholder='# of Chaperones', required, data-content="Chaperones are 21+ years of age and are responsible for caring for up to 5 youth each. <br> Our system will prevent you from selecting too few Chaperones, if you wish to have less Chaperones, please lower your number of youth.", min="{{youthAttending /5}}")
-
+            input.focused(type='number', name='chaperonesAttending', ng-model='chaperonesAttending', placeholder='# of Chaperones', required, data-content="Chaperones are 21+ years of age and are responsible for caring for up to 5 youth each. <br> Our system will prevent you from selecting too few Chaperones, if you wish to have less Chaperones, please lower your number of youth.", min="{{  youthAttending|chaperone  }}")
+        // Young Adults Attending field
+        .control-group
+          label.control-label Young Adults Attending
+          .controls
+            input.focused(type='number', name='youngAdultsAttending', ng-model='youngAdultsAttending', placeholder='# of Young Adults', required, data-content="Young Adults are 18-24 years old and do not count against either youth, or chaperones.", min="0")
   .row-fluid    
     .span1
     .well.span10 
