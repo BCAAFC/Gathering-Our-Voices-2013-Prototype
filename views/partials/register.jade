@@ -1,47 +1,117 @@
-.container-fluid(ng-controller='regCtl')
+form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete="off")
   .row-fluid
-    .span3.well
-      ul.nav.nav-list
-        li.nav-header Getting Started
-        li 
-          a(ng-click="scrollto(step-1)")
-            i.icon-search
-            | Basics
-        li 
-          a(ng-click="scrollto(step-2)")
-            i.icon-book
-            | Contact Info
-    .span9
-      form(ng-submit='submit()')
-        .well
-          .page-header
-            h1#step-1 The Basics
-          p To get started, we need some basic contact information from you.
-          br
-          input.focused(type='text', name='name', ng-model='name', placeholder='Enter your name')
-          br
-          input.focused(type='password', name='password', ng-model='password', placeholder='Enter your password')
-          br
-          input.focused(type='text', name='address', ng-model='address', placeholder='Enter your mailing address')
-          br  
-          input.focused(type='text', name='city', ng-model='city', placeholder='Enter your city')
-          br  
-          input.focused(type='text', name='phone', ng-model='phone', placeholder='Enter your phone number')
-          br  
-          input.focused(type='text', name='email', ng-model='email', placeholder='Enter your Email')
-        .well 
-          address
-            strong {{Name}}
-            br
-            | {{Address}}
-            br
-            | {{Location}}
-            br
-            abbr(title="Phone") P: 
-            | {{Phone}}
-            br
-            abbr(title="Email") E: 
-            | {{Email}}
+    .span1
+    .span8.form-horizontal.well
+      h1 Primary Contact  
+      p For each registered group there must be a primary contact. This person will be our main connection from the group.
+      fieldset
+        legend Basic Information
+        p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+        // Primary Name Field
+        .control-group
+          label.control-label Name*
+          .controls
+            input.focused(type='text', name='name', ng-model='name', required, placeholder='Enter your name', data-content="Just your name, nothing special here.")
+        // Primary Status Field
+        .control-group
+          label.control-label Status*
+          .controls
+            select(name='primaryStatus', ng-model='primaryStatus', required, data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important. <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!")
+              option Youth (14-17 yrs)
+              option Young Adult (18-24 yrs)
+              option Chaperone (21+ yrs)
+              option Not Attending
 
-          input.btn-large.btn-primary(type='submit', value='Register')
+        // Primary Gender Field
+        .control-group
+          label.control-label Gender*
+          .controls
+            select(required, ng-model="primaryGender", name="primaryGender")
+              option Male
+              option Female
+              option Other
+        
+        // Primary Birth Date Field
+        .control-group
+          label.control-label Birth Date*
+          .controls
+            input.focused(required, ng-model="primaryBirthDate", name="primaryBirthDate", placeholder='dd/mm/yyyy', data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
 
+         // Primary Phone Field
+        .control-group
+          label.control-label Phone #
+          .controls
+            input.focused(type='tel', name='phone', ng-model='phone', placeholder='Enter your phone number', required, data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
+
+        // Primary Email Field
+        .control-group
+          label.control-label Email
+          .controls
+            input.focused(type='email', name='email', ng-model='email', placeholder='Enter your Email', required)
+      fieldset
+        legend Extended Information
+        p This is stuff we only ask you, the primary contact. You won't need to fill this out for anyone else in the group.
+         // Primary Address Field
+        .control-group
+          label.control-label Address*
+          .controls
+            input.focused(type='text', name='address', ng-model='address', required, placeholder='Enter your mailing address')
+        // Primary City Field
+        .control-group
+          label.control-label City*
+          .controls
+            input#city.focused(type='text', name='city', ng-model='city', required, placeholder='Enter your city', ui-jq="typeahead", ui-options='{source: ["Abbotsford","Armstrong","Burnaby","Campbell River","Castlegar","Chilliwack","Colwood","Coquitlam","Courtenay","Cranbrook","Dawson Creek","Duncan","Enderby","Fernie","Fort St. John","Grand Forks","Greenwood","Kamloops","Kelowna","Kimberley","Kitimat","Langford","Langley","Merritt","Nanaimo","Nelson","New Westminster","North Vancouver","Parksville","Penticton","Pitt Meadows","Port Alberni","Port Coquitlam","Port Moody","Powell River","Prince George","Prince Rupert","Quesnel","Revelstoke","Richmond","Rossland","Salmon Arm","Surrey","Terrace","Trail","Vancouver","Vernon","Victoria","White Rock","Williams Lake"]}')
+        // Primary Province Field
+        .control-group
+          label.control-label Province*
+          .controls
+            input#province.focused(type='text', name='province', ng-model='province', required, placeholder='Enter your Province', ui-jq='typeahead', ui-options='{source:["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland & Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"]}')
+
+
+
+      fieldset
+        legend Group Information
+        p Next, lets get some information about your group.
+        // How Many Field
+        .control-group
+          label.control-label Group Size
+          .controls
+            input.focused(type='number', name='howMany', ng-model='howMany', placeholder='Group Size', required, data-content="", min="0")
+  .row-fluid    
+    .span1
+    .well.span10 
+      address
+        strong {{name}}
+        br
+        | {{address}}
+        br
+        | {{city}}
+        br
+        abbr(title="Phone") P: 
+        | {{phone}}
+        br
+        abbr(title="Email") E: 
+        | {{email}}
+
+      input.btn-large.btn-primary(type='submit', value='Register',ng-disabled="isClean() || myForm.$invalid")
+script(type='text/javascript')
+  $(function () {
+    $("input").popover(
+      {
+        offset: 5,
+        placement: 'right',
+        trigger: 'focus',
+        title: 'Information'
+      }
+    );
+    $("select").popover(
+    {
+      offset: 5,
+      placement: 'right',
+      trigger: 'focus',
+      title: 'Information'
+    });
+    $("#city").change(function() {
+      
+    });
+  });
