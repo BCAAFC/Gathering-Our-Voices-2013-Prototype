@@ -83,6 +83,38 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             input.focused(type='tel', name='faxNumber', ng-model='faxNumber', placeholder="Enter your fax number.", maxlength=10, data-content="(123) 123-1234 -> 1231231234")
 
       fieldset
+        legend Emergency Information
+        p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+        // Emergency Contact Name
+        .control-group
+          label.control-label Emergency Contact name*
+          .controls
+            input.focused(type='text', name='emergencyName', required, ng-model='emergencyName', placeholder="Enter your emergency contact's name.", data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
+        // Emergency Contact Relation      
+        .control-group
+          label.control-label Emergency Contact Relation
+          .controls
+            input.focused(type='text', name='emergencyRelation', ng-model='emergencyRelation', placeholder="Enter your Emergency Contact's relationship with you.", data-content="For example, 'Mother' or 'Babysitter'")
+        // Emergency Contact Phone #
+        .control-group
+          label.control-label Emergency Contact Phone #*
+          .controls
+            input.focused(type='tel', name='emergencyPhone', ng-model='emergencyPhone', required, placeholder="Enter your emergency contact's phone number.", data-content="Generally it's a good idea to choose a cell phone number.")
+        // Registrant Medical number
+        .control-group
+          label.control-label Registrant Medical number*
+          .controls
+            input.focused(type='number', name='medicalNumber', ng-model='medicalNumber', required, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
+        // Allergies
+        .control-group
+          label.control-label Allergies
+          .controls
+            input.focused(type='text', name='allergies', ng-model='allergies', required, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+
+  .row-fluid
+    .span1
+    .span8.form-horizontal.well
+      fieldset
         legend Group Information
         p Next, lets get some information about your group. But first, some things to note:
         ul
@@ -103,6 +135,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           label.control-label Young Adults Attending
           .controls
             input.focused(type='number', name='youngAdultsAttending', ng-model='youngAdultsAttending', placeholder='# of Young Adults', required, data-content="Young Adults are 18-24 years old and do not count against either youth, or chaperones.", min="0")
+            
   .row-fluid    
     .span1
     .well.span10 
