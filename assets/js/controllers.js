@@ -40,16 +40,47 @@ function regCtl($scope, $http, $anchorScroll) {
 	};
 	
 	$scope.primaryContact = {
-		name: '',
-		status: '',
-		gender: '',
-		birthDate: ''
+		name			: '',
+		status		: '',
+		gender		: '',
+		birthDate	: '',
+		phone			:	'',
+		email			: '',
+		extendedInfo :
+			{
+				affiliation	: '',
+				address			:	'',
+				city				:	'',
+				province		:	'',
+				postalCode	:	'',
+				fax					:	''
+			},
+		emergencyInfo	:
+			{
+				name			:	'',
+				relation	: '',
+				phone			: '',
+				medicalNum: '',
+				allergies	:	''
+			}
 	};
 
-	$scope.youthList = [{name: "Cara Barter", number: 1}];
-	
+	// Youth list
+	$scope.youthList = [];
 	$scope.addYouth = function (){
-		$scope.youthList.push({name: 'Youth' + ($scope.youthList.length+1), number: ($scope.youthList.length+1) });
+		$scope.youthList.push({name: 'Youth ' + ($scope.youthList.length+1), number: ($scope.youthList.length+1) });
+	};
+	
+	// Chaperone list
+	$scope.chaperoneList = [];
+	$scope.addChaperone = function (){
+		$scope.chaperoneList.push({name: 'Chaperone ' + ($scope.chaperoneList.length+1), number: ($scope.chaperoneList.length+1) });
+	};
+	
+	// Young Adult list
+	$scope.youngAdultList = [];
+	$scope.addYoungAdult = function (){
+		$scope.youngAdultList.push({name: 'Young Adult ' + ($scope.youngAdultList.length+1), number: ($scope.youngAdultList.length+1) });
 	};
 
 };
