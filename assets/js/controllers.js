@@ -38,9 +38,20 @@ function regCtl($scope, $http, $anchorScroll) {
 					email		:	$scope.email
 				});
 	};
-	$scope.scrollto = function goToByScroll(id){
-		$anchorScroll(id);
+	
+	$scope.primaryContact = {
+		name: '',
+		status: '',
+		gender: '',
+		birthDate: ''
 	};
+
+	$scope.youthList = [{name: "Cara Barter", number: 1}];
+	
+	$scope.addYouth = function (){
+		$scope.youthList.push({name: 'Youth' + ($scope.youthList.length+1), number: ($scope.youthList.length+1) });
+	};
+
 };
 regCtl.$inject = ['$scope','$http', '$anchorScroll'];
 

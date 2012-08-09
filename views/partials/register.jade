@@ -110,48 +110,22 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           label.control-label Allergies
           .controls
             input.focused(type='text', name='allergies', ng-model='allergies', required, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+       
+  .row-fluid    
+    .span1
+    .well.span8.form-horizontal
+      .tabbable.tabs-left
+        .tab-pane(ng-repeat="youth in youthList", id="youth{{youth.number}}", title="{{youth.name}}", value="{{youth.name}}")
+          fieldset
+            legend Info for {{youth.name}}
+            input(type='text', ng-model='youth.name')
+      .btn.btn-info(ng-click="addYouth()") Add a Youth
+      p You have <strong>{{ youthList.length }}</strong> youth attending.
+
 
   .row-fluid
     .span1
-    .span8.form-horizontal.well
-      fieldset
-        legend Group Information
-        p Next, lets get some information about your group. But first, some things to note:
-        ul
-          li There must be one Chaperon for every 5 participants pages 14-17 (Youth).
-          li All Chaperons must be 21 years of age or older.
-        // Youth Attending Field
-        .control-group
-          label.control-label Youth Attending
-          .controls
-            input.focused(type='number', name='youthAttending', ng-model='youthAttending', placeholder='# of 14-17 year olds.', required, data-content="14-17 year olds fall into the 'Youth' category. Please be aware there must be 1 chaperone per 5 youth.", min="0")
-        // Chaperones Attending field
-        .control-group
-          label.control-label Chaperones Attending
-          .controls
-            input.focused(type='number', name='chaperonesAttending', ng-model='chaperonesAttending', placeholder='# of Chaperones', required, data-content="Chaperones are 21+ years of age and are responsible for caring for up to 5 youth each. <br> Our system will prevent you from selecting too few Chaperones, if you wish to have less Chaperones, please lower your number of youth.", min="{{  youthAttending|chaperone  }}")
-        // Young Adults Attending field
-        .control-group
-          label.control-label Young Adults Attending
-          .controls
-            input.focused(type='number', name='youngAdultsAttending', ng-model='youngAdultsAttending', placeholder='# of Young Adults', required, data-content="Young Adults are 18-24 years old and do not count against either youth, or chaperones.", min="0")
-            
-  .row-fluid    
-    .span1
-    .well.span10 
-      address
-        strong {{name}}
-        br
-        | {{address}}
-        br
-        | {{city}}
-        br
-        abbr(title="Phone") P: 
-        | {{phone}}
-        br
-        abbr(title="Email") E: 
-        | {{email}}
-
+    .well.span8.form-horizontal
       input.btn-large.btn-primary(type='submit', value='Register',ng-disabled="isClean() || myForm.$invalid")
 script(type='text/javascript')
   $(function () {
