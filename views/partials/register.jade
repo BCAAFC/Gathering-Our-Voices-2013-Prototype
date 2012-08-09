@@ -4,7 +4,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     .span8.form-horizontal.well
       h1 Primary Contact  
       p For each registered group there must be a primary contact. This person will be our main connection from the group.
-      fieldset
+       fieldset
         legend Basic Information
         p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
         // Primary Name Field
@@ -48,7 +48,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           label.control-label Email
           .controls
             input.focused(type='email', name='primaryContact.email', ng-model='primaryContact.email', placeholder='Enter your Email', required)
-              
+             
       // Extended Information        
       fieldset
         legend Extended Information
@@ -84,7 +84,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           .controls
             input.focused(type='tel', name='primaryContact.extendedInfo.fax', ng-model='primaryContact.extendedInfo.faxNumber', placeholder="Enter your fax number.", maxlength=10, data-content="(123) 123-1234 -> 1231231234")
 
-      fieldset
+       fieldset
         legend Emergency Information
         p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
         // Emergency Contact Name
@@ -112,46 +112,112 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           label.control-label Allergies
           .controls
             input.focused(type='text', name='primaryContact.emergencyInfo.allergies', ng-model='primaryContact.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
-              
+             
               
   // Youth Controllers     
   .row-fluid    
     .span1
     .well.span8.form-horizontal
       h1 Youth Attendees
+      .pull-right
+        .btn.btn-info(ng-click="addYouth()") Add a Youth
+        p You have <strong>{{ youthList.length }}</strong> youth attending.
+       
       .tabbable.tabs-left
         .tab-pane(ng-repeat="youth in youthList", id="youth{{youth.number}}", title="{{youth.name}}", value="{{youth.name}}")
           fieldset
-            legend Info for {{youth.name}}
-            input(type='text', ng-model='youth.name')
-      .btn.btn-info(ng-click="addYouth()") Add a Youth
-      p You have <strong>{{ youthList.length }}</strong> youth attending.
- 
+            legend Basic Information for {{youth.name}}
+            p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+            // Name Field
+            .control-group
+              label.control-label Name*
+              .controls
+                input.focused(type='text', name='youth.name', ng-model='youth.name', required, placeholder='Enter your name', data-content="Just your name, nothing special here.")
+            // Gender Field
+            .control-group
+              label.control-label Gender*
+              .controls
+                select(required, ng-model="youth.gender", name="youth.gender")
+                  option Male
+                  option Female
+                  option Other
+            
+            // Birth Date Field
+            .control-group
+              label.control-label Birth Date*
+              .controls
+                input.focused(required, ng-model="youth.birthDate", name="youth.birthDate", placeholder='dd/mm/yyyy', data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
+
+             // Phone Field
+            .control-group
+              label.control-label Phone #
+              .controls
+                input.focused(type='tel', name='youth.phone', ng-model='youth.phone', maxlength='10', placeholder='Enter your phone number', required, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
+
+            // Email Field
+            .control-group
+              label.control-label Email
+              .controls
+                input.focused(type='email', name='youth.email', ng-model='youth.email', placeholder='Enter your Email', required)
+     
+           // Emergency Info        
+          fieldset
+            legend Emergency Information for {{youth.name}}
+            p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+            // Emergency Contact Name
+            .control-group
+              label.control-label Emergency Contact name*
+              .controls
+                input.focused(type='text', name='youth.emergencyInfo.name', required, ng-model='youth.emergencyInfo.name', placeholder="Enter your emergency contact's name.", data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
+            // Emergency Contact Relation      
+            .control-group
+              label.control-label Emergency Contact Relation
+              .controls
+                input.focused(type='text', name='youth.emergencyInfo.relation', ng-model='youth.emergencyInfo.relation', placeholder="Enter your Emergency Contact's relationship with you.", data-content="For example, 'Mother' or 'Babysitter'")
+            // Emergency Contact Phone #
+            .control-group
+              label.control-label Emergency Contact Phone #*
+              .controls
+                input.focused(type='tel', name='youth.emergencyInfo.phone', ng-model='youth.emergencyInfo.phone', required, placeholder="Enter your emergency contact's phone number.", data-content="Generally it's a good idea to choose a cell phone number.")
+            // Registrant Medical number
+            .control-group
+              label.control-label Registrant Medical number*
+              .controls
+                input.focused(type='number', name='youth.emergencyInfo.medNum', ng-model='youth.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
+            // Allergies
+            .control-group
+              label.control-label Allergies
+              .controls
+                input.focused(type='text', name='youth.emergencyInfo.allergies', ng-model='youth.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+                
   // Chaperone Controllers     
   .row-fluid    
     .span1
     .well.span8.form-horizontal
       h1 Chaperone Attendees
+      .pull-right
+        .btn.btn-info(ng-click="addChaperone()") Add a Chaperone
+        p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
       .tabbable.tabs-left
         .tab-pane(ng-repeat="chaperone in chaperoneList", id="chaperone{{chaperone.number}}", title="{{chaperone.name}}", value="{{chaperone.name}}")
           fieldset
             legend Info for {{chaperone.name}}
             input(type='text', ng-model='chaperone.name')
-      .btn.btn-info(ng-click="addChaperone()") Add a Chaperone
-      p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
 
   // Young Adult Controllers     
   .row-fluid    
     .span1
     .well.span8.form-horizontal
       h1 Young Adult Attendees
+      .pull-right
+        .btn.btn-info(ng-click="addYoungAdult()") Add a Young Adult
+        p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
       .tabbable.tabs-left
         .tab-pane(ng-repeat="youngAdult in youngAdultList", id="youngAdult{{youngAdult.number}}", title="{{youngAdult.name}}", value="{{youngAdult.name}}")
           fieldset
             legend Info for {{youngAdult.name}}
             input(type='text', ng-model='youngAdult.name')
-      .btn.btn-info(ng-click="addYoungAdult()") Add a Young Adult
-      p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
+
 
 
 
