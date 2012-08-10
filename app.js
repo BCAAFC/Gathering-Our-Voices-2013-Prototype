@@ -155,9 +155,19 @@ app.post('/register', function(req, res){
 			});
 		});
 */
-	db.attendees.save(req.primaryContact);
-	}
-);
+	// Save the primary contact.
+	db.attendees.save(req.body.primaryContact);
+	// Save the youth, not the whales!
+	for (var i=0; i < req.body.youthList.length; i++) {
+		db.attendees.save(req.body.youthList[i]);
+	};
+	for (var i=0; i < req.body.chaperoneList.length; i++) {
+		db.attendees.save(req.body.chaperoneList[i]);
+	};
+	for (var i=0; i < req.body.youngAdultList.length; i++) {
+		db.attendees.save(req.body.youngAdultList[i]);
+	};
+});
 
 
 /**

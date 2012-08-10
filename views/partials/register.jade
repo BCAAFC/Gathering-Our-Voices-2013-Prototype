@@ -3,10 +3,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     .span1
     .span8.form-horizontal.well
       h1 Primary Contact  
-      p For each registered group there must be a primary contact. This person will be our main connection from the group.
+      p For each registered group there must be a primary contact. This person will be our main connection for your group.
        fieldset
         legend Basic Information
-        p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+        p Please enter your information  you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
         // Primary Name Field
         .control-group
           label.control-label Name*
@@ -16,7 +16,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Status*
           .controls
-            select(name='primaryContact.status', ng-model='primaryContact.status', required, regpopover, data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important. <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!")
+            select(name='primaryContact.status', ng-model='primaryContact.status', required, reg-popover, data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important. <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!")
               option Youth (14-17 yrs)
               option Young Adult (18-24 yrs)
               option Chaperone (21+ yrs)
@@ -106,13 +106,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Registrant Medical number*
           .controls
-            input.focused(type='number', name='primaryContact.emergencyInfo.medNum', ng-model='primaryContact.emergencyInfo.medNum', required, reg-popover, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
+            input.focused(type='number', name='primaryContact.emergencyInfo.medicalNum', ng-model='primaryContact.emergencyInfo.medicalNum', required, reg-popover, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
         // Allergies
         .control-group
           label.control-label Allergies
           .controls
-            input.focused(type='text', name='primaryContact.emergencyInfo.allergies', ng-model='primaryContact.emergencyInfo.allergies', required, reg-popover, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
-             
+            input.focused(type='text', name='primaryContact.emergencyInfo.allergies', ng-model='primaryContact.emergencyInfo.allergies', reg-popover, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+        // Illnesses
+        .control-group
+          label.control-label Illnesses
+          .controls
+            input.focused(type'text', name='primaryContact.emergencyInfo.illnesses', ng-model='primaryContact.emergencyInfo.illnesses', reg-popover, placeholder='Enter your illnesses here, comma seperated.', data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia.")
               
   // Youth Controllers     
   .row-fluid    
@@ -182,12 +186,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .control-group
               label.control-label Registrant Medical number*
               .controls
-                input.focused(type='number', name='youth.emergencyInfo.medNum', ng-model='youth.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover, data-content="This should be your 10-digit CareCard number.")
+                input.focused(type='number', name='youth.emergencyInfo.medicalNum', ng-model='youth.emergencyInfo.medicalNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover, data-content="This should be your 10-digit CareCard number.")
             // Allergies
             .control-group
               label.control-label Allergies
               .controls
                 input.focused(type='text', name='youth.emergencyInfo.allergies', ng-model='youth.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', reg-popover, data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+            // Illnesses
+            .control-group
+              label.control-label Illnesses
+              .controls
+                input.focused(type'text', name='youth.emergencyInfo.illnesses', ng-model='youth.emergencyInfo.illnesses', reg-popover, placeholder='Enter your illnesses here, comma seperated.', data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia.")
                 
                   
   // Chaperone Controllers     
@@ -258,12 +267,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               .control-group
                 label.control-label Registrant Medical number*
                 .controls
-                  input.focused(type='number', name='chaperone.emergencyInfo.medNum', ng-model='chaperone.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover,  data-content="This should be your 10-digit CareCard number.")
+                  input.focused(type='number', name='chaperone.emergencyInfo.medicalNum', ng-model='chaperone.emergencyInfo.medicalNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover,  data-content="This should be your 10-digit CareCard number.")
               // Allergies
               .control-group
                 label.control-label Allergies
                 .controls
                   input.focused(type='text', name='chaperone.emergencyInfo.allergies', ng-model='chaperone.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', reg-popover, data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+              // Illnesses
+              .control-group
+                label.control-label Illnesses
+                .controls
+                  input.focused(type'text', name='chaperone.emergencyInfo.illnesses', ng-model='chaperone.emergencyInfo.illnesses', reg-popover, placeholder='Enter your illnesses here, comma seperated.', data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia.")
 
   // Young Adult Controllers     
   .row-fluid    
@@ -333,13 +347,20 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .control-group
               label.control-label Registrant Medical number*
               .controls
-                input.focused(type='number', name='youngAdult.emergencyInfo.medNum', ng-model='youngAdult.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover, data-content="This should be your 10-digit CareCard number.")
+                input.focused(type='number', name='youngAdult.emergencyInfo.medicalNum', ng-model='youngAdult.emergencyInfo.medicalNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover, data-content="This should be your 10-digit CareCard number.")
             // Allergies
             .control-group
               label.control-label Allergies
               .controls
                 input.focused(type='text', name='youngAdult.emergencyInfo.allergies', ng-model='youngAdult.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', reg-popover, data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+            // Illnesses
+            .control-group
+              label.control-label Illnesses
+              .controls
+                input.focused(type'text', name='youngAdult.emergencyInfo.illnesses', ng-model='youngAdult.emergencyInfo.illnesses', reg-popover, placeholder='Enter your illnesses here, comma seperated.', data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia.")
   .row-fluid
     .span1
     .well.span8.form-horizontal
       input.btn-large.btn-primary(type='submit', value='Register',ng-disabled="isClean() || myForm.$invalid")
+      .pull-right
+        p (We'll be putting alerts here ~eventually~)

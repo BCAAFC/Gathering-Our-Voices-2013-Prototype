@@ -28,6 +28,7 @@ function loginCtl($scope, $http) {
  */
 function regCtl($scope, $http, $anchorScroll) {
 	$scope.submit = function (){
+		console.log($scope.youthList)
 		$http.post('/register', 
 				{ 
 					primaryContact	: $scope.primaryContact,
@@ -60,7 +61,8 @@ function regCtl($scope, $http, $anchorScroll) {
 				relation	: '',
 				phone			: '',
 				medicalNum: '',
-				allergies	:	''
+				allergies	:	'',
+				illnesses	:	''
 			}
 	};
 	
@@ -81,9 +83,11 @@ function regCtl($scope, $http, $anchorScroll) {
 						relation	: '',
 						phone			: '',
 						medicalNum: '',
-						allergies	:	''
+						allergies	:	'',
+						illnesses :	''
 					},
-			  number		: ($scope.youthList.length+1)
+			  number		: ($scope.youthList.length+1),
+				primaryContact	:	$scope.primaryContact
 			}
 		);
 	};
@@ -104,9 +108,11 @@ function regCtl($scope, $http, $anchorScroll) {
 						relation	: '',
 						phone			: '',
 						medicalNum: '',
-						allergies	:	''
+						allergies	:	'',
+						illnesses : ''
 					},
-			number			: ($scope.chaperoneList.length+1)
+			number			: ($scope.chaperoneList.length+1),
+			primaryContact	:	$scope.primaryContact
 			}
 		);
 	};
@@ -128,7 +134,8 @@ function regCtl($scope, $http, $anchorScroll) {
 						relation	: '',
 						phone			: '',
 						medicalNum: '',
-						allergies	:	''
+						allergies	:	'',
+						illnesses	:	''
 					},
 			number			: ($scope.youngAdultList.length+1)
 			}
