@@ -11,12 +11,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Name*
           .controls
-            input.focused(type='text', name='primaryContact.name', ng-model='primaryContact.name', required, placeholder='Enter your name', data-content="Just your name, nothing special here.")
+            input.focused(type='text', name='primaryContact.name', ng-model='primaryContact.name', reg-popover, required, placeholder='Enter your name', data-content="Just your name, nothing special here.")
         // Primary Status Field
         .control-group
           label.control-label Status*
           .controls
-            select(name='primaryContact.status', ng-model='primaryContact.status', required, data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important. <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!")
+            select(name='primaryContact.status', ng-model='primaryContact.status', required, regpopover, data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important. <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!")
               option Youth (14-17 yrs)
               option Young Adult (18-24 yrs)
               option Chaperone (21+ yrs)
@@ -35,13 +35,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Birth Date*
           .controls
-            input.focused(required, ng-model="primaryContact.birthDate", name="primaryContact.birthDate", placeholder='dd/mm/yyyy', data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
+            input.focused(required, ng-model="primaryContact.birthDate", name="primaryContact.birthDate", reg-popover, placeholder='dd/mm/yyyy', data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
 
          // Primary Phone Field
         .control-group
           label.control-label Phone #
           .controls
-            input.focused(type='tel', name='primaryContact.phone', ng-model='primaryContact.phone', maxlength='10', placeholder='Enter your phone number', required, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
+            input.focused(type='tel', name='primaryContact.phone', ng-model='primaryContact.phone', maxlength='10', reg-popover, placeholder='Enter your phone number', required, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
 
         // Primary Email Field
         .control-group
@@ -77,12 +77,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Postal Code*
           .controls
-            input.focused(type='text', name='primaryContact.extendedInfo.postalCode', ng-model='primaryContact.extendedInfo.postalCode', required, placeholder='Enter your Postal Code', maxlength=6, data-content="Please input your postal code in the format A1B2C3, no spaces.")
+            input.focused(type='text', name='primaryContact.extendedInfo.postalCode', ng-model='primaryContact.extendedInfo.postalCode', reg-popover, required, placeholder='Enter your Postal Code', maxlength=6, data-content="Please input your postal code in the format A1B2C3, no spaces.")
         // Fax Number Field
         .control-group
           label.control-label Fax
           .controls
-            input.focused(type='tel', name='primaryContact.extendedInfo.fax', ng-model='primaryContact.extendedInfo.faxNumber', placeholder="Enter your fax number.", maxlength=10, data-content="(123) 123-1234 -> 1231231234")
+            input.focused(type='tel', name='primaryContact.extendedInfo.fax', ng-model='primaryContact.extendedInfo.faxNumber', placeholder="Enter your fax number.", reg-popover, maxlength=10, data-content="(123) 123-1234 -> 1231231234")
 
        fieldset
         legend Emergency Information
@@ -91,27 +91,27 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .control-group
           label.control-label Emergency Contact name*
           .controls
-            input.focused(type='text', name='primaryContact.emergencyInfo.name', required, ng-model='primaryContact.emergencyInfo.name', placeholder="Enter your emergency contact's name.", data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
+            input.focused(type='text', name='primaryContact.emergencyInfo.name', required, ng-model='primaryContact.emergencyInfo.name', reg-popover, placeholder="Enter your emergency contact's name.", data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
         // Emergency Contact Relation      
         .control-group
           label.control-label Emergency Contact Relation
           .controls
-            input.focused(type='text', name='primaryContact.emergencyInfo.relation', ng-model='primaryContact.emergencyInfo.relation', placeholder="Enter your Emergency Contact's relationship with you.", data-content="For example, 'Mother' or 'Babysitter'")
+            input.focused(type='text', name='primaryContact.emergencyInfo.relation', ng-model='primaryContact.emergencyInfo.relation', reg-popover, placeholder="Enter your Emergency Contact's relationship with you.", data-content="For example, 'Mother' or 'Babysitter'")
         // Emergency Contact Phone #
         .control-group
           label.control-label Emergency Contact Phone #*
           .controls
-            input.focused(type='tel', name='primaryContact.emergencyInfo.phone', ng-model='primaryContact.emergencyInfo.phone', required, placeholder="Enter your emergency contact's phone number.", data-content="Generally it's a good idea to choose a cell phone number.")
+            input.focused(type='tel', name='primaryContact.emergencyInfo.phone', ng-model='primaryContact.emergencyInfo.phone', required, reg-popover, placeholder="Enter your emergency contact's phone number.", data-content="Generally it's a good idea to choose a cell phone number.")
         // Registrant Medical number
         .control-group
           label.control-label Registrant Medical number*
           .controls
-            input.focused(type='number', name='primaryContact.emergencyInfo.medNum', ng-model='primaryContact.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
+            input.focused(type='number', name='primaryContact.emergencyInfo.medNum', ng-model='primaryContact.emergencyInfo.medNum', required, reg-popover, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
         // Allergies
         .control-group
           label.control-label Allergies
           .controls
-            input.focused(type='text', name='primaryContact.emergencyInfo.allergies', ng-model='primaryContact.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+            input.focused(type='text', name='primaryContact.emergencyInfo.allergies', ng-model='primaryContact.emergencyInfo.allergies', required, reg-popover, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
              
               
   // Youth Controllers     
@@ -119,10 +119,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     .span1
     .well.span8.form-horizontal
       h1 Youth Attendees
-      .pull-right
-        .btn.btn-info(ng-click="addYouth()") Add a Youth
-        p You have <strong>{{ youthList.length }}</strong> youth attending.
-       
+      .btn.btn-info(ng-click="addYouth()") Add a Youth
+      p You have <strong>{{ youthList.length }}</strong> youth attending.
+      hr 
       .tabbable.tabs-left
         .tab-pane(ng-repeat="youth in youthList", id="youth{{youth.number}}", title="{{youth.name}}", value="{{youth.name}}")
           fieldset
@@ -132,7 +131,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .control-group
               label.control-label Name*
               .controls
-                input.focused(type='text', name='youth.name', ng-model='youth.name', required, placeholder='Enter your name', data-content="Just your name, nothing special here.")
+                input.focused(type='text', name='youth.name', ng-model='youth.name', required, placeholder='Enter your name', reg-popover, data-content="Just your name, nothing special here.")
             // Gender Field
             .control-group
               label.control-label Gender*
@@ -146,13 +145,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .control-group
               label.control-label Birth Date*
               .controls
-                input.focused(required, ng-model="youth.birthDate", name="youth.birthDate", placeholder='dd/mm/yyyy', data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
+                input.focused(required, ng-model="youth.birthDate", name="youth.birthDate", placeholder='dd/mm/yyyy', reg-popover, data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
 
              // Phone Field
             .control-group
               label.control-label Phone #
               .controls
-                input.focused(type='tel', name='youth.phone', ng-model='youth.phone', maxlength='10', placeholder='Enter your phone number', required, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
+                input.focused(type='tel', name='youth.phone', ng-model='youth.phone', maxlength='10', placeholder='Enter your phone number', required, reg-popover, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
 
             // Email Field
             .control-group
@@ -168,81 +167,179 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .control-group
               label.control-label Emergency Contact name*
               .controls
-                input.focused(type='text', name='youth.emergencyInfo.name', required, ng-model='youth.emergencyInfo.name', placeholder="Enter your emergency contact's name.", data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
+                input.focused(type='text', name='youth.emergencyInfo.name', required, ng-model='youth.emergencyInfo.name', placeholder="Enter your emergency contact's name.", reg-popover, data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
             // Emergency Contact Relation      
             .control-group
               label.control-label Emergency Contact Relation
               .controls
-                input.focused(type='text', name='youth.emergencyInfo.relation', ng-model='youth.emergencyInfo.relation', placeholder="Enter your Emergency Contact's relationship with you.", data-content="For example, 'Mother' or 'Babysitter'")
+                input.focused(type='text', name='youth.emergencyInfo.relation', ng-model='youth.emergencyInfo.relation', placeholder="Enter your Emergency Contact's relationship with you.", reg-popover, data-content="For example, 'Mother' or 'Babysitter'")
             // Emergency Contact Phone #
             .control-group
               label.control-label Emergency Contact Phone #*
               .controls
-                input.focused(type='tel', name='youth.emergencyInfo.phone', ng-model='youth.emergencyInfo.phone', required, placeholder="Enter your emergency contact's phone number.", data-content="Generally it's a good idea to choose a cell phone number.")
+                input.focused(type='tel', name='youth.emergencyInfo.phone', ng-model='youth.emergencyInfo.phone', required, placeholder="Enter your emergency contact's phone number.", reg-popover, data-content="Generally it's a good idea to choose a cell phone number.")
             // Registrant Medical number
             .control-group
               label.control-label Registrant Medical number*
               .controls
-                input.focused(type='number', name='youth.emergencyInfo.medNum', ng-model='youth.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, data-content="This should be your 10-digit CareCard number.")
+                input.focused(type='number', name='youth.emergencyInfo.medNum', ng-model='youth.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover, data-content="This should be your 10-digit CareCard number.")
             // Allergies
             .control-group
               label.control-label Allergies
               .controls
-                input.focused(type='text', name='youth.emergencyInfo.allergies', ng-model='youth.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
+                input.focused(type='text', name='youth.emergencyInfo.allergies', ng-model='youth.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', reg-popover, data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
                 
+                  
   // Chaperone Controllers     
   .row-fluid    
     .span1
     .well.span8.form-horizontal
       h1 Chaperone Attendees
-      .pull-right
-        .btn.btn-info(ng-click="addChaperone()") Add a Chaperone
-        p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
+      .btn.btn-info(ng-click="addChaperone()") Add a Chaperone
+      p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
+      hr
       .tabbable.tabs-left
         .tab-pane(ng-repeat="chaperone in chaperoneList", id="chaperone{{chaperone.number}}", title="{{chaperone.name}}", value="{{chaperone.name}}")
-          fieldset
-            legend Info for {{chaperone.name}}
-            input(type='text', ng-model='chaperone.name')
+           fieldset
+            legend Basic Information for {{chaperone.name}}
+            p This is information you'll need to fill out.
+            // Name Field
+            .control-group
+              label.control-label Name*
+              .controls
+                input.focused(type='text', name='chaperone.name', ng-model='chaperone.name', required, placeholder='Enter your name', reg-popover, data-content="Just your name, nothing special here.")
+            // Gender Field
+            .control-group
+              label.control-label Gender*
+              .controls
+                select(required, ng-model="chaperone.gender", name="chaperone.gender")
+                  option Male
+                  option Female
+                  option Other
+            
+            // Birth Date Field
+            .control-group
+              label.control-label Birth Date*
+              .controls
+                input.focused(required, ng-model="chaperone.birthDate", name="chaperone.birthDate", placeholder='dd/mm/yyyy', reg-popover, data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
+
+             // Phone Field
+            .control-group
+              label.control-label Phone #
+              .controls
+                input.focused(type='tel', name='chaperone.phone', ng-model='chaperone.phone', maxlength='10', placeholder='Enter your phone number', required, reg-popover, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
+
+            // Email Field
+            .control-group
+              label.control-label Email
+              .controls
+                input.focused(type='email', name='chaperone.email', ng-model='chaperone.email', placeholder='Enter your Email', required)
+     
+            // Emergency Info        
+            fieldset
+              legend Emergency Information for {{chaperone.name}}
+              p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+              // Emergency Contact Name
+              .control-group
+                label.control-label Emergency Contact name*
+                .controls
+                  input.focused(type='text', name='chaperone.emergencyInfo.name', required, ng-model='chaperone.emergencyInfo.name', placeholder="Enter your emergency contact's name.", reg-popover, data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
+              // Emergency Contact Relation      
+              .control-group
+                label.control-label Emergency Contact Relation
+                .controls
+                  input.focused(type='text', name='chaperone.emergencyInfo.relation', ng-model='chaperone.emergencyInfo.relation', placeholder="Enter your Emergency Contact's relationship with you.", reg-popover, data-content="For example, 'Mother' or 'Babysitter'")
+              // Emergency Contact Phone #
+              .control-group
+                label.control-label Emergency Contact Phone #*
+                .controls
+                  input.focused(type='tel', name='chaperone.emergencyInfo.phone', ng-model='chaperone.emergencyInfo.phone', required, placeholder="Enter your emergency contact's phone number.", reg-popover, data-content="Generally it's a good idea to choose a cell phone number.")
+              // Registrant Medical number
+              .control-group
+                label.control-label Registrant Medical number*
+                .controls
+                  input.focused(type='number', name='chaperone.emergencyInfo.medNum', ng-model='chaperone.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover,  data-content="This should be your 10-digit CareCard number.")
+              // Allergies
+              .control-group
+                label.control-label Allergies
+                .controls
+                  input.focused(type='text', name='chaperone.emergencyInfo.allergies', ng-model='chaperone.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', reg-popover, data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
 
   // Young Adult Controllers     
   .row-fluid    
     .span1
     .well.span8.form-horizontal
       h1 Young Adult Attendees
-      .pull-right
-        .btn.btn-info(ng-click="addYoungAdult()") Add a Young Adult
-        p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
+      .btn.btn-info(ng-click="addYoungAdult()") Add a Young Adult
+      p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
+      hr
       .tabbable.tabs-left
         .tab-pane(ng-repeat="youngAdult in youngAdultList", id="youngAdult{{youngAdult.number}}", title="{{youngAdult.name}}", value="{{youngAdult.name}}")
           fieldset
-            legend Info for {{youngAdult.name}}
-            input(type='text', ng-model='youngAdult.name')
+            legend Basic Information for {{youngAdult.name}}
+            p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+            // Name Field
+            .control-group
+              label.control-label Name*
+              .controls
+                input.focused(type='text', name='youngAdult.name', ng-model='youngAdult.name', reg-popover, required, placeholder='Enter your name', reg-popover, data-content="Just your name, nothing special here.")
+            // Gender Field
+            .control-group
+              label.control-label Gender*
+              .controls
+                select(required, ng-model="youngAdult.gender", name="youngAdult.gender")
+                  option Male
+                  option Female
+                  option Other
+            
+            // Birth Date Field
+            .control-group
+              label.control-label Birth Date*
+              .controls
+                input.focused(required, ng-model="youngAdult.birthDate", name="youngAdult.birthDate", placeholder='dd/mm/yyyy', reg-popover, data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.", type='date')
 
+             // Phone Field
+            .control-group
+              label.control-label Phone #
+              .controls
+                input.focused(type='tel', name='youngAdult.phone', ng-model='youngAdult.phone', maxlength='10', placeholder='Enter your phone number', required, reg-popover, data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event.")
 
-
-
+            // Email Field
+            .control-group
+              label.control-label Email
+              .controls
+                input.focused(type='email', name='youngAdult.email', ng-model='youngAdult.email', placeholder='Enter your Email', required)
+     
+           // Emergency Info        
+          fieldset
+            legend Emergency Information for {{youngAdult.name}}
+            p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+            // Emergency Contact Name
+            .control-group
+              label.control-label Emergency Contact name*
+              .controls
+                input.focused(type='text', name='youngAdult.emergencyInfo.name', required, ng-model='youngAdult.emergencyInfo.name', placeholder="Enter your emergency contact's name.", reg-popover, data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information.")
+            // Emergency Contact Relation      
+            .control-group
+              label.control-label Emergency Contact Relation
+              .controls
+                input.focused(type='text', name='youngAdult.emergencyInfo.relation', ng-model='youngAdult.emergencyInfo.relation', placeholder="Enter your Emergency Contact's relationship with you.", reg-popover, data-content="For example, 'Mother' or 'Babysitter'")
+            // Emergency Contact Phone #
+            .control-group
+              label.control-label Emergency Contact Phone #*
+              .controls
+                input.focused(type='tel', name='youngAdult.emergencyInfo.phone', ng-model='youngAdult.emergencyInfo.phone', required, placeholder="Enter your emergency contact's phone number.", reg-popover,data-content="Generally it's a good idea to choose a cell phone number.")
+            // Registrant Medical number
+            .control-group
+              label.control-label Registrant Medical number*
+              .controls
+                input.focused(type='number', name='youngAdult.emergencyInfo.medNum', ng-model='youngAdult.emergencyInfo.medNum', required, placeholder="Enter your Medical number.", maxlength=10, reg-popover, data-content="This should be your 10-digit CareCard number.")
+            // Allergies
+            .control-group
+              label.control-label Allergies
+              .controls
+                input.focused(type='text', name='youngAdult.emergencyInfo.allergies', ng-model='youngAdult.emergencyInfo.allergies', required, placeholder='Enter your allergies here, comma seperated.', reg-popover, data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut")
   .row-fluid
     .span1
     .well.span8.form-horizontal
       input.btn-large.btn-primary(type='submit', value='Register',ng-disabled="isClean() || myForm.$invalid")
-script(type='text/javascript')
-  $(function () {
-    $("input").popover(
-      {
-        offset: 5,
-        placement: 'right',
-        trigger: 'focus',
-        title: 'Information'
-      }
-    );
-    $("select").popover(
-    {
-      offset: 5,
-      placement: 'right',
-      trigger: 'focus',
-      title: 'Information'
-    });
-    $("#city").change(function() {
-      
-    });
-  });

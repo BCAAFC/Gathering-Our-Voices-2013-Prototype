@@ -10,7 +10,12 @@ angular.module('gov', ['ui','govmath', 'bootstrap']).
 		$routeProvider.when('/', {templateUrl: 'partials/home', controller: homeCtl});
 		$routeProvider.otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(true);
-  }]);
+  }]).directive('regPopover', function(){
+	return {
+		link: function(scope, element, attrs) {
+			element.bind('mouseenter', function() { $(this).popover({trigger: 'focus'}); } );
+		}
+	}});
 
 angular.module('govmath', []).
 	filter('chaperone', function() {
@@ -18,3 +23,4 @@ angular.module('govmath', []).
 			return Math.ceil(num / 5);
 		};
 	});
+

@@ -138,7 +138,7 @@ app.post('/login', function(req,res){
 
 // Registration Form Post
 app.post('/register', function(req, res){
-		pass.hash(req.body.password, function(err, returnedSalt, returnedHash){
+/*		pass.hash(req.body.password, function(err, returnedSalt, returnedHash){
 			db.attendees.save(
 			{
 				name			: req.body.name,
@@ -154,6 +154,8 @@ app.post('/register', function(req, res){
 				attendees			:	{}
 			});
 		});
+*/
+	db.attendees.save(req.primaryContact);
 	}
 );
 

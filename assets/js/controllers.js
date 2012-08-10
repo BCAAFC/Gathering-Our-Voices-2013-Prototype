@@ -30,15 +30,14 @@ function regCtl($scope, $http, $anchorScroll) {
 	$scope.submit = function (){
 		$http.post('/register', 
 				{ 
-					name 		: $scope.name,
-					password: $scope.password,
-					address : $scope.address,
-					city		: $scope.city,
-					phone		:	$scope.phone,
-					email		:	$scope.email
+					primaryContact	: $scope.primaryContact,
+					youthList				: $scope.youthList,
+					chaperoneList		:	$scope.chaperoneList,
+					youngAdultList	:	$scope.youngAdultList
 				});
 	};
 	
+
 	$scope.primaryContact = {
 		name			: '',
 		status		: '',
@@ -64,23 +63,76 @@ function regCtl($scope, $http, $anchorScroll) {
 				allergies	:	''
 			}
 	};
-
+	
 	// Youth list
 	$scope.youthList = [];
 	$scope.addYouth = function (){
-		$scope.youthList.push({name: 'Youth ' + ($scope.youthList.length+1), number: ($scope.youthList.length+1) });
+		$scope.youthList.push(
+			{
+				name			: 'Youth ' + ($scope.youthList.length+1),
+				status		: '',
+				gender		: '',
+				birthDate	: '',
+				phone			:	'',
+				email			: '',
+				emergencyInfo	:
+					{
+						name			:	'',
+						relation	: '',
+						phone			: '',
+						medicalNum: '',
+						allergies	:	''
+					},
+			  number		: ($scope.youthList.length+1)
+			}
+		);
 	};
-	
 	// Chaperone list
 	$scope.chaperoneList = [];
 	$scope.addChaperone = function (){
-		$scope.chaperoneList.push({name: 'Chaperone ' + ($scope.chaperoneList.length+1), number: ($scope.chaperoneList.length+1) });
+		$scope.chaperoneList.push(
+			{
+				name			: 'Chaperone ' + ($scope.chaperoneList.length+1),
+				status		: '',
+				gender		: '',
+				birthDate	: '',
+				phone			:	'',
+				email			: '',
+				emergencyInfo	:
+					{
+						name			:	'',
+						relation	: '',
+						phone			: '',
+						medicalNum: '',
+						allergies	:	''
+					},
+			number			: ($scope.chaperoneList.length+1)
+			}
+		);
 	};
 	
 	// Young Adult list
 	$scope.youngAdultList = [];
 	$scope.addYoungAdult = function (){
-		$scope.youngAdultList.push({name: 'Young Adult ' + ($scope.youngAdultList.length+1), number: ($scope.youngAdultList.length+1) });
+		$scope.youngAdultList.push(
+			{
+				name			: 'Young Adult ' + ($scope.youngAdultList.length+1),
+				status		: '',
+				gender		: '',
+				birthDate	: '',
+				phone			:	'',
+				email			: '',
+				emergencyInfo	:
+					{
+						name			:	'',
+						relation	: '',
+						phone			: '',
+						medicalNum: '',
+						allergies	:	''
+					},
+			number			: ($scope.youngAdultList.length+1)
+			}
+		);
 	};
 
 };

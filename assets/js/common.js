@@ -1,2 +1,4 @@
-$("#Rawr").popover();  
- 
+$(function () {
+	$('input').popover();
+	$('select').popover();
+});
