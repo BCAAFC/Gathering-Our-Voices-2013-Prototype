@@ -8,7 +8,8 @@ var express		= require('express'),
 		assets		= require('connect-assets'),
 		mongojs		= require('mongojs'),
 		pass			= require('pwd'),
-		path			= require('path');
+		path			= require('path'),
+		config		=	require('./config');
 
 /**
  * Declare our app.
@@ -34,7 +35,7 @@ app.configure(function(){
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(assets());
-	app.use(express.cookieParser('Hoverbear was here.'));
+	app.use(express.cookieParser(config.cookieSecret));
 	app.use(express.session());
 	app.use(app.router);
 	app.use(express.static(path.join(__dirname, 'public')));
@@ -79,24 +80,6 @@ app.get('/management', function(req, res){
 	}
 );
 
-// Get a list of attendees.
-app.get('/attendees', function(req, res){
-		db.attendees.find(function(err, attendees){
-		if( err || !attendees) console.log("No attendees found");
-		else
-			res.send(attendees);				
-	});	
-});
-
-// Get a list of workshops
-app.get('/workshops', function(req, res){
-	db.workshops.find(function(err, attendees) {
-		if ( err || !workshops ) console.log("No workshops found");
-		else
-			res.send(workshops);
-	});
-});
-
 function authenticate(name, password, fn){
   if (!module.parent) console.log('authenticating %s:%s', name, password);
   db.attendees.findOne({name: name}, function (err, user){
@@ -136,6 +119,15 @@ app.post('/login', function(req,res){
 
 });
 
+// Management list (User must provide password)
+app.post('/attendee-list', function(req, res){
+	if (req.body.secret == config.secret){
+		db.attendees.find({}, function(err, attendees){
+			res.send(attendees);
+		});
+	};
+});
+
 // Registration Form Post
 app.post('/register', function(req, res){
 /*		pass.hash(req.body.password, function(err, returnedSalt, returnedHash){
@@ -156,17 +148,7 @@ app.post('/register', function(req, res){
 		});
 */
 	// Save the primary contact.
-	db.attendees.save(req.body.primaryContact);
-	// Save the youth, not the whales!
-	for (var i=0; i < req.body.youthList.length; i++) {
-		db.attendees.save(req.body.youthList[i]);
-	};
-	for (var i=0; i < req.body.chaperoneList.length; i++) {
-		db.attendees.save(req.body.chaperoneList[i]);
-	};
-	for (var i=0; i < req.body.youngAdultList.length; i++) {
-		db.attendees.save(req.body.youngAdultList[i]);
-	};
+	db.attendees.save(req.body);
 });
 
 

@@ -11,10 +11,24 @@
             th Phone
             th Email
           tbody
-            tr(ng-repeat="attendee in attendees.data | filter:searchQuery | orderBy:'name'")
-              td {{ attendee.Name }}
+            tr(ng-repeat="attendee in attendees | filter:searchQuery | orderBy:'name'")
+              td {{ attendee.primaryContact.name }}
               td {{ attendee.Address }}
               td {{ attendee.Location }}
               td {{ attendee.Phone }}
               td {{ attendee.Email }}
-
+.modal.hide.fade#secretModal
+  .modal-header
+    button.close(type="button", data-dismiss='modal') x
+    h3 Escalated Privilages Needed!
+  .modal-body
+    p Unfortunately, us allowing you to see all of the attendees (and their respective information!) would be a huge security concern!
+    br
+    i So, please enter the secret key: 
+    input.focused(type='password', ng-model='secret', name='secret', placeholder='Secret Key goes here')
+  .modal-footer
+    a.btn(data-dismiss='modal', href='/home') Cancel
+    a.btn.btn-primary(ng-click='auth()', data-dismiss='modal') Authenticate
+  
+  script(type='text/javascript')
+    $('#secretModal').modal();

@@ -27,6 +27,8 @@ html(ng-app="gov")
     br
     // The main content of the app.
     div#article(ng-view)
+      .well
+        p Please give us a moment while the data loads!
 
   // Load the javascript at the end of the page, it's faster apparently (twitter says)
   != js('https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')

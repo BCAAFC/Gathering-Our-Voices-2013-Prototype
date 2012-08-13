@@ -6,7 +6,13 @@
  *
  */
 function manCtl($scope, $http) {
-	$scope.attendees = $http.get('/attendees');
+	$scope.auth = function(){
+		$http.post('/attendee-list', { secret : $scope.secret })
+			.success(function(data,status,headers,config){
+				$scope.attendees = data;
+				console.log($scope.attendees);
+			});
+	};
 };
 
 /**
@@ -86,8 +92,7 @@ function regCtl($scope, $http, $anchorScroll) {
 						allergies	:	'',
 						illnesses :	''
 					},
-			  number		: ($scope.youthList.length+1),
-				primaryContact	:	$scope.primaryContact
+				number		: ($scope.youthList.length+1),
 			}
 		);
 	};
@@ -112,7 +117,6 @@ function regCtl($scope, $http, $anchorScroll) {
 						illnesses : ''
 					},
 			number			: ($scope.chaperoneList.length+1),
-			primaryContact	:	$scope.primaryContact
 			}
 		);
 	};
