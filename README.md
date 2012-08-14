@@ -27,14 +27,18 @@ Everything else is bundled with the application itself, or pulled in via npm.
 
 ## Getting the Repository
 If you have git:
-    git clone https://github.com/BCAAFC/Gathering-Our-Voices.git
+
+		git clone https://github.com/BCAAFC/Gathering-Our-Voices.git
+
 Then lets nagivate into the repo:
+
 		cd Gathering-Our-Voices
 
 ## Pulling in Dependencies
 Since we're in the root directory of the repo, we can simply run `npm install` and npm will read our `package.json` file to fetch everything we need.
 
 For convienence, you should also install [coffee-script][] globally:
+
 		sudo npm install -g coffee-script
 
 ## Make a config
@@ -42,6 +46,7 @@ Due to security concerns, we don't include a configuration file, which contains 
 Thankfully, it's easy to make your own!
 
 In `config.js`:
+
 		module.exports = {
 			secret: $yourSecretHere,
 			cookieSecret: $yourCookieSecretHere
