@@ -1,5 +1,5 @@
 ###
-Module dependencies.
+# Module dependencies.
 ###
 express = require("express")
 http = require("http")
@@ -11,12 +11,12 @@ coffee = require("coffee-script")
 config = require("./config")
 
 ###
-Declare our app.
+# Declare our app.
 ###
 app = express()
 
 ###
-Set up our database.
+# Set up our database.
 ###
 database = "govtest"
 collections = ["attendees", "workshops"]
@@ -42,7 +42,7 @@ authenticate = (name, password, fn) ->
 
 
 ###
-Persistant configuration goes here.
+# Persistant configuration goes here.
 ###
 app.configure ->
   app.set "port", process.env.PORT or 8080
@@ -59,52 +59,51 @@ app.configure ->
   app.use express.static(path.join(__dirname, "public"))
 
 ###
-Configuration changes go here,
+# Configuration changes go here,
 ###
 app.configure "development", ->
   app.use express.errorHandler()
 
 ###
-Routes go here.
+# Routes go here.
 ###
+# Index GET.
 app.get "/", (req, res) ->
   res.render "index"
 
+# This handles all the partials for Angular, don't break this!
 app.get "/partials/:name", (req, res) ->
   name = req.params.name
   res.render "partials/" + name
 
+# Login GET. Angular Handles the templating.
 app.get "/login", (req, res) ->
   res.render "index"
 
+# Register GET. Angular Handles the templating.
 app.get "/register", (req, res) ->
   res.render "index"
 
+# Management GET. Angular Handles the templating.
 app.get "/management", (req, res) ->
   res.render "index"
-
 
 # Login Form Post
 app.post "/login", (req, res) ->
   authenticate req.body.username, req.body.password, (err, user) ->
     console.log user
     if user
-      
       # Regenerate session when signing in
       # to prevent fixation 
       req.session.regenerate ->
-        
         # Store the user's primary key 
         # in the session store to be retrieved,
         # or in this case the entire user object
         req.session.user = user
         res.redirect "back"
-
     else
       req.session.error = "Authentication failed, please check your " + " username and password." + " (use \"tj\" and \"foobar\")"
       res.redirect "login"
-
-
 
 # Management list (User must provide password)
 app.post "/attendee-list", (req, res) ->
@@ -112,15 +111,12 @@ app.post "/attendee-list", (req, res) ->
     db.attendees.find {}, (err, attendees) ->
       res.send attendees
 
-
-
 # Registration Form Post
 app.post "/register", (req, res) ->
   db.attendees.save req.body
 
-
 ###
-Finally, start the server.
+# Finally, start the server.
 ###
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
