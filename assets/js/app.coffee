@@ -24,15 +24,16 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
 ]).directive("managementCollapse", ->
   link: (scope, element, attrs) ->
     element.bind "click", ->
-      $(this).collapse 'toggle'
+      console.log($(element).parent().next('.accordian-body'))
+      $(element).parent().next('.accordian-body').collapse 'toggle'
 ).directive("carouselNext", ->
   link: (scope, element, attrs) ->
     element.bind "click", ->
       $("#intro-carousel").carousel "next"
 ).directive("carouselPrev", ->
-	link: (scope, element, attrs) ->
-		element.bind "click", ->
-			$("#intro-carousel").carousel "prev"
+  link: (scope, element, attrs) ->
+    element.bind "click", ->
+      $("#intro-carousel").carousel "prev"
 )
 angular.module("govmath", []).filter "chaperone", ->
   (num) ->
