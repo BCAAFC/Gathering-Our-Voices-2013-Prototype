@@ -21,11 +21,10 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
 
   $routeProvider.otherwise redirectTo: "/"
   $locationProvider.html5Mode true
-]).directive("regPopover", ->
+]).directive("managementCollapse", ->
   link: (scope, element, attrs) ->
-    element.bind "mouseenter", ->
-      $(this).popover trigger: "focus"
-
+    element.bind "click", ->
+      $(this).collapse 'toggle'
 ).directive("carouselNext", ->
   link: (scope, element, attrs) ->
     element.bind "click", ->

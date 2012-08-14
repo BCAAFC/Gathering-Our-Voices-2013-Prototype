@@ -1,5 +1,4 @@
 "use strict"
-
 # Controllers 
 
 ###
@@ -12,7 +11,6 @@
     ).success (data, status, headers, config) ->
       $scope.attendees = data
 
-
 ###
 # Login Controller. Handles logins, so it's sort of a big deal.
 ###
@@ -22,11 +20,10 @@
       username: $scope.username
       password: $scope.password
 
-
 ###
 # Register Controller. This handles the entire registration form.
 # It may be wise to find a cleaner format for this.
-### 
+###
 @regCtl = ($scope, $http, $anchorScroll) ->
   $scope.submit = ->
     console.log $scope.youthList
@@ -35,7 +32,6 @@
       youthList: $scope.youthList
       chaperoneList: $scope.chaperoneList
       youngAdultList: $scope.youngAdultList
-
 
   $scope.primaryContact =
     name: ""
@@ -51,7 +47,6 @@
       province: ""
       postalCode: ""
       fax: ""
-
     emergencyInfo:
       name: ""
       relation: ""
@@ -59,7 +54,6 @@
       medicalNum: ""
       allergies: ""
       illnesses: ""
-
   
   # Youth list
   $scope.youthList = []
@@ -78,10 +72,7 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-
       number: ($scope.youthList.length + 1)
-
-
   
   # Chaperone list
   $scope.chaperoneList = []
@@ -100,10 +91,7 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-
       number: ($scope.chaperoneList.length + 1)
-
-
   
   # Young Adult list
   $scope.youngAdultList = []
@@ -122,7 +110,6 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-
       number: ($scope.youngAdultList.length + 1)
 
 regCtl.$inject = ["$scope", "$http", "$anchorScroll"]

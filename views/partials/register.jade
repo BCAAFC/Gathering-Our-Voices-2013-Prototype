@@ -9,7 +9,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         // Begin Basic Info
         fieldset
         legend Basic Information
-        p Please enter your information  you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+        p Please enter your information as the primary contact for your group. Even if you are not attending, we need this from you for our records.
         
         // Primary Name Field
         .control-group
@@ -23,6 +23,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               placeholder='Enter your name',
               data-content="Just your name, nothing special here."
             )
+
         // Primary Status Field
         .control-group
           label.control-label Status*
