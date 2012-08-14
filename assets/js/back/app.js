@@ -10,12 +10,18 @@ angular.module('gov', ['ui','govmath', 'bootstrap']).
 		$routeProvider.when('/', {templateUrl: 'partials/home', controller: homeCtl});
 		$routeProvider.otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(true);
-  }]).directive('regPopover', function(){
-	return {
-		link: function(scope, element, attrs) {
-			element.bind('mouseenter', function() { $(this).popover({trigger: 'focus'}); } );
+  }]).
+	directive('regPopover', function(){
+		return {
+			link: function(scope, element, attrs) {
+				element.bind('mouseenter', function() { $(this).popover({trigger: 'focus'}); } );
 		}
-	}});
+	}}).
+	directive('carouselNext', function(){
+		return {
+			link: function(scope,element,attrs) {
+				element.bind('click', function() { $('#intro-carousel').carousel('next') });
+			}}});
 
 angular.module('govmath', []).
 	filter('chaperone', function() {

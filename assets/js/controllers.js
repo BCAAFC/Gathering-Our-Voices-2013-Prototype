@@ -10,7 +10,6 @@ function manCtl($scope, $http) {
 		$http.post('/attendee-list', { secret : $scope.secret })
 			.success(function(data,status,headers,config){
 				$scope.attendees = data;
-				console.log($scope.attendees);
 			});
 	};
 };

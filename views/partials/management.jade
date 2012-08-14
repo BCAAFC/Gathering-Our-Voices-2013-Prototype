@@ -5,18 +5,23 @@
       table
         thead
           tr
-            th Name
-            th Address
-            th City
-            th Phone
-            th Email
+            th(style='width:15%') Contact Name
+            th(style='width:10%') Youth
+            th(style='width:10%') Chaperones
+            th(style='width:10%') Young Adults
+            th(style='width:15%') Affiliation
           tbody
-            tr(ng-repeat="attendee in attendees | filter:searchQuery | orderBy:'name'")
-              td {{ attendee.primaryContact.name }}
-              td {{ attendee.Address }}
-              td {{ attendee.Location }}
-              td {{ attendee.Phone }}
-              td {{ attendee.Email }}
+            tr(ng-repeat="group in attendees | filter:searchQuery | orderBy:'name'")
+              td 
+                a(ui-jq='popover', data-content="{{group.primaryContact.City}}") {{ group.primaryContact.name }}
+              td 
+                a {{ group.youthList.length }}
+              td 
+                a {{ group.chaperoneList.length }}
+              td 
+                a {{ group.youngAdultList.length }}
+              td 
+                p {{ group.primaryContact.extendedInfo.affiliation }}
 .modal.hide.fade#secretModal
   .modal-header
     button.close(type="button", data-dismiss='modal') x
@@ -31,4 +36,4 @@
     a.btn.btn-primary(ng-click='auth()', data-dismiss='modal') Authenticate
   
   script(type='text/javascript')
-    $('#secretModal').modal();
+    $('#secretModal').modal({backdrop: 'static'});

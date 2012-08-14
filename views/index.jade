@@ -16,15 +16,32 @@ html(ng-app="gov")
     != css('bootstrap/responsive')
 
   body(data-offset="50",data-spy="scroll",data-target="#subnav")
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          .pull-right
+            a.brand Gathering Our Voices
+          ul.nav
+            li
+              a(href='home') Home
+            li
+              a(href='register') Register
+            li
+              a(href='management') Management
+
     .container
-      ul.nav.nav-pills
-        li
-          a(href='home') Home
-        li
-          a(href='register') Register
-        li
-          a(href='management') Management
-    br
+      img.pull-left(src="/img/gov_logo.png")
+      .carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
+        .carousel-inner
+          .active.item
+            img(src="http://i.imgur.com/rZRoZ.png")
+          .item
+            img(src="http://i.imgur.com/rZRoZ.png")
+          .item
+            img(src="http://i.imgur.com/rZRoZ.png")
+        a.carousel-control.left(carousel-prev) &lsaquo;
+        a.carousel-control.right(carousel-next) &rsaquo;
+
     // The main content of the app.
     div#article(ng-view)
       .well
