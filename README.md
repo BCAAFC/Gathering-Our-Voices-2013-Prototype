@@ -18,10 +18,10 @@ Setup is a fairly straightforward task if you've ever used our particular blend 
 
 ## Fulfilling Installation requirements
 You will need the following set up:
-* [node.js][]
-* [git][]
-* [mongo][]
-* [npm][]
+* node.js
+* git
+* mongo
+* npm
 
 Everything else is bundled with the application itself, or pulled in via npm.
 
@@ -41,7 +41,7 @@ Since we're in the root directory of the repo, we can tell npm to install all of
 
 npm will read our `package.json` file to fetch everything we need.
 
-For convienence, you should also install [coffee-script][] globally:
+For convienence, you should also install `coffee-script` globally:
 
     sudo npm install -g coffee-script
 
