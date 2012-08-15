@@ -1,41 +1,41 @@
 .container-fluid(ng-controller='manCtl')
   .row-fluid
-    .well
-      input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query')
-      table
-        thead
-          tr
-            th(style='width:15%') Contact Name
-            th(style='width:10%') Youth
-            th(style='width:10%') Chaperones
-            th(style='width:10%') Young Adults
-            th(style='width:15%') Affiliation
-          tbody
-            tr(ng-repeat="group in attendees | filter:searchQuery | orderBy:'name'")
-              td 
-                a(ui-jq='popover', data-content="{{group.primaryContact.City}}") {{ group.primaryContact.name }}
-              td 
-                a {{ group.youthList.length }}
-              td 
-                a {{ group.chaperoneList.length }}
-              td 
-                a {{ group.youngAdultList.length }}
-              td 
-                p {{ group.primaryContact.extendedInfo.affiliation }}
-      
-      .accordian#listing
-        .accordian-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'name'")
-          .accordian-heading
+    input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query')
+    .well.accordian#listing
+      .container
+        .span2
+          h6 Primary Contact name
+        .span2
+          h6 affiliation
+        .span2
+          h6 Youth
+        .span2
+          h6 Chaperones
+        .span2
+          h6 Young Adult
+      .accordian-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'name'")
+        .container.accordian-heading
+          .span2
             a.accordian-toggle(
               ui-jq='collapse',
-              data-toggle='collapse',
-              data-parent='#listing',
               management-collapse
-            )
-              p bear {{group.primaryContact.name}}
-          .accordian-body.collapse
-            .accordian-inner
-              p Bears and such not.
+            )  {{group.primaryContact.name}}
+          .span2
+            p {{group.primaryContact.extendedInfo.affiliation}}
+          .span2
+            p {{group.youthList.length}}
+          .span2
+            p {{group.chaperoneList.length}}
+          .span2
+            p {{group.youngAdultList.length}}
+        .accordian-body.collapse
+          .accordian-inner
+            .container
+              .span3
+                h6 Youth
+                ul
+                  li(ng-repeat="youth in group.youthList")
+                    p {{youth.name}}
 
 
 .modal.hide.fade#secretModal
