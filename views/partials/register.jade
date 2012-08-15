@@ -1,8 +1,8 @@
 form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete="off")
   // Begin Primary Contact
-  .row-fluid
-    .span1
-    .span8.form-horizontal.well
+  .span1
+  .span10
+    .form-horizontal.well
       h1 Primary Contact  
       p For each registered group there must be a primary contact. This person will be our main connection for your group.
         
@@ -263,10 +263,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
             )
        //End Emegency Information
-  // Youth Controllers     
-  .row-fluid    
-    .span1
-    .well.span8.form-horizontal
+    // Youth Controllers     
+    .well.form-horizontal
       h1 Youth Attendees
       .btn.btn-info(ng-click="addYouth()") Add a Youth
       p You have <strong>{{ youthList.length }}</strong> youth attending.
@@ -440,10 +438,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 )
           // End Emergency Info      
                   
-  // Chaperone Controllers     
-  .row-fluid    
-    .span1
-    .well.span8.form-horizontal
+    // Chaperone Controllers     
+    .well.form-horizontal
       h1 Chaperone Attendees
       .btn.btn-info(ng-click="addChaperone()") Add a Chaperone
       p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
@@ -614,10 +610,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   )
             // End Emergency Info
 
-  // Young Adult Controllers     
-  .row-fluid    
-    .span1
-    .well.span8.form-horizontal
+    // Young Adult Controllers     
+    .well.form-horizontal
       h1 Young Adult Attendees
       .btn.btn-info(ng-click="addYoungAdult()") Add a Young Adult
       p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
@@ -786,7 +780,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                 )
           // End Emergency Information
-  
+
   // Submit Button
   .row-fluid
     .span1
