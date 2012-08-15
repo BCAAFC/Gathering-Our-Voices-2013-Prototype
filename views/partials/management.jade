@@ -1,35 +1,32 @@
 .container-fluid(ng-controller='manCtl')
   .row-fluid
     input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query')
-    .well.accordian#listing
+    .span8.well.accordion#listing
       .container
         .span2
           h6 Primary Contact name
         .span2
-          h6 affiliation
-        .span2
+          h6 Affiliation
+        .span1
           h6 Youth
-        .span2
+        .span1
           h6 Chaperones
-        .span2
-          h6 Young Adult
-      .accordian-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'name'")
-        .container.accordian-heading
+        .span1
+          h6 Y. Adults
+      .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'name'")
+        .container.accordion-heading
           .span2
-            a.accordian-toggle(
-              ui-jq='collapse',
-              management-collapse
-            )  {{group.primaryContact.name}}
+            a.accordion-toggle(management-collapse)  {{group.primaryContact.name}}
           .span2
             p {{group.primaryContact.extendedInfo.affiliation}}
-          .span2
+          .span1
             p {{group.youthList.length}}
-          .span2
+          .span1
             p {{group.chaperoneList.length}}
-          .span2
+          .span1
             p {{group.youngAdultList.length}}
-        .accordian-body.collapse
-          .accordian-inner
+        .accordion-body.collapse
+          .accordion-inner(ui-jq='collapse')
             .container
               .span3
                 h6 Youth
