@@ -35,7 +35,7 @@
                 h6 Mailing Information
                 address(style='text-align: center')
                   p
-                    b {{ group.primaryContact.name }}
+                    a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
                     br
                     i {{ group.primaryContact.extendedInfo.affiliation }}
                     br
@@ -62,7 +62,7 @@
                   li(ng-repeat="youngAdult in group.youngAdultList")
                     a(ng-click='select(youngAdult)') {{youngAdult.name}}
     .span4
-      .container-fluid
+      .container-fluid.float
         .well
           .input-prepend
             span.add-on
@@ -88,6 +88,7 @@
             br
             h6 Email
             | {{ currentUser.email }}
+            br
             br
             h5 Emergency Information
             h6 Name
