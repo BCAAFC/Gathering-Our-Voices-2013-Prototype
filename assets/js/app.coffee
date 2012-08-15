@@ -24,7 +24,7 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
 ]).directive("managementCollapse", ->
   link: (scope, element, attrs) ->
     element.bind "click", ->
-      $(element).parent().parent().next('.accordion-body').collapse 'toggle'
+      $(element).parent().next('.accordion-body').collapse 'toggle'
 ).directive("carouselNext", ->
   link: (scope, element, attrs) ->
     element.bind "click", ->
