@@ -1,50 +1,66 @@
 .container-fluid(ng-controller='manCtl')
   .row-fluid
     .span8.well.accordion#listing
-      .container
+      .container-fluid
         .span2
           h6 Primary Contact
         .span2
           h6 Affiliation
-        .span1
+        .span2
           h6 Youth
-        .span1
+        .span2
           h6 Chaperones
-        .span1
+        .span2
           h6 Y. Adults
+        .span2
+          h6 Edit
       .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
-        .container.accordion-heading
+        .container-fluid.accordion-heading
           .span2(ng-click='group.expanded=!group.expanded')
             a.accordion-toggle  {{group.primaryContact.name}}
           .span2(management-collapse)
             p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
-          .span1(management-collapse)
+          .span2(management-collapse)
             p.accordion-toggle {{group.youthList.length}}
-          .span1(management-collapse)
+          .span2(management-collapse)
             p.accordion-toggle {{group.chaperoneList.length}}
-          .span1(management-collapse)
+          .span2(management-collapse)
             p.accordion-toggle {{group.youngAdultList.length}}
-          .span1
-            button.accordion-toggle.btn.btn-warning(ng-click='edituser()') Edit &raquo;
+          .span2
+            button.accordion-toggle.btn.btn-small.btn-warning(ng-click='edituser()') Edit &raquo;
         .accordion-body(ui-toggle='group.expanded')
           .accordion-inner
-            .container
+            .container-fluid
               .span2
                 h6 Mailing Information
                 address(style='text-align: center')
                   p
                     b {{ group.primaryContact.name }}
-                  p
+                    br
                     i {{ group.primaryContact.extendedInfo.affiliation }}
-                  p {{ group.primaryContact.phone }}
-                  p {{ group.primaryContact.extendedInfo.address }}
-                  p {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
-                  p {{ group.primaryContact.extendedInfo.postalCode }}
+                    br
+                    | {{ group.primaryContact.phone }}
+                    br
+                    | {{ group.primaryContact.extendedInfo.address }}
+                    br
+                    | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+                    br
+                    | {{ group.primaryContact.extendedInfo.postalCode }}
               .span2
                 h6 Youth
                 ul.nav.nav-list
                   li(ng-repeat="youth in group.youthList")
                     a(ng-click='select(youth)') {{youth.name}}
+              .span2
+                h6 Chaperones
+                ul.nav.nav-list
+                  li(ng-repeat="chaperone in group.chaperoneList")
+                    a(ng-click='select(chaperone)') {{chaperone.name}}
+              .span2
+                h6 Y. Adults
+                ul.nav.nav-list
+                  li(ng-repeat="youngAdult in group.youngAdultList")
+                    a(ng-click='select(youngAdult)') {{youngAdult.name}}
     .span4
       .container-fluid
         .well
@@ -53,8 +69,44 @@
               i.icon-search
             input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query')
         .well
-          p Bears!
-
+          p
+            h5 Basic Information
+            h6 Name
+            | {{ currentUser.name }}
+            br
+            h6 Status
+            | {{ currentUser.status }}
+            br
+            h6 Gender
+            | {{ currentUser.gender }}
+            br
+            h6 Birth Date
+            | {{ currentUser.birthDate }}
+            br
+            h6 Phone
+            | {{ currentUser.phone }}
+            br
+            h6 Email
+            | {{ currentUser.email }}
+            br
+            h5 Emergency Information
+            h6 Name
+            | {{ currentUser.emergencyInfo.name }}
+            br
+            h6 Relation
+            | {{ currentUser.emergencyInfo.relation }}
+            br
+            h6 Phone
+            | {{ currentUser.emergencyInfo.phone }}
+            br
+            h6 Medical Number
+            | {{ currentUser.emergencyInfo.medicalNum }}
+            br
+            h6 Allergies
+            | {{ currentUser.emergencyInfo.allergies }}
+            br
+            h6 Illnesses
+            | {{ currentUser.emergencyInfo.illnesses }}
 
 .modal.hide.fade#secretModal
   .modal-header

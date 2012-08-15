@@ -11,6 +11,9 @@
     ).success (data, status, headers, config) ->
       $scope.attendees = data
 
+  $scope.select = (attendee) ->
+    $scope.currentUser = attendee
+
 ###
 # Login Controller. Handles logins, so it's sort of a big deal.
 ###
