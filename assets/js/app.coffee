@@ -21,11 +21,7 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
 
   $routeProvider.otherwise redirectTo: "/"
   $locationProvider.html5Mode true
-]).directive("managementCollapse", ->
-  link: (scope, element, attrs) ->
-    element.bind "click", ->
-      $(element).parent().next('.accordion-body').collapse 'toggle'
-).directive("carouselNext", ->
+]).directive("carouselNext", ->
   link: (scope, element, attrs) ->
     element.bind "click", ->
       $("#intro-carousel").carousel "next"

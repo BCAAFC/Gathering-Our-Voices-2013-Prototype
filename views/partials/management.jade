@@ -14,7 +14,7 @@
           h6 Y. Adults
       .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
         .container.accordion-heading
-          .span2(management-collapse)
+          .span2(ng-click='group.expanded=!group.expanded')
             a.accordion-toggle  {{group.primaryContact.name}}
           .span2(management-collapse)
             p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
@@ -26,22 +26,20 @@
             p.accordion-toggle {{group.youngAdultList.length}}
           .span1
             button.accordion-toggle.btn.btn-warning(ng-click='edituser()') Edit &raquo;
-        .accordion-body.collapse
-          .accordion-inner(ui-jq='collapse')
+        .accordion-body(ui-toggle='group.expanded')
+          .accordion-inner
             .container
               .span2
-                p
-                  b {{ group.primaryContact.name }}
-                  br
-                  i {{ group.primaryContact.extendedInfo.affiliation }}
-                  br
-                  | {{ group.primaryContact.phone }}
-                  br
-                  | {{ group.primaryContact.extendedInfo.address }}
-                  br
-                  | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
-                  br
-                  | {{ group.primaryContact.extendedInfo.postalCode }}
+                h6 Mailing Information
+                address(style='text-align: center')
+                  p
+                    b {{ group.primaryContact.name }}
+                  p
+                    i {{ group.primaryContact.extendedInfo.affiliation }}
+                  p {{ group.primaryContact.phone }}
+                  p {{ group.primaryContact.extendedInfo.address }}
+                  p {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+                  p {{ group.primaryContact.extendedInfo.postalCode }}
               .span2
                 h6 Youth
                 ul.nav.nav-list
