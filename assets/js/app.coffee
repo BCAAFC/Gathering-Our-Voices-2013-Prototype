@@ -23,15 +23,18 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
   $locationProvider.html5Mode true
 ]).directive("carouselNext", ->
   link: (scope, element, attrs) ->
-    element.bind "click", ->
+    element.bind "click", (event) ->
+      event.preventDefault()
       $("#intro-carousel").carousel "next"
 ).directive("carouselPrev", ->
   link: (scope, element, attrs) ->
-    element.bind "click", ->
+    element.bind "click", (event) ->
+      event.preventDefault()
       $("#intro-carousel").carousel "prev"
 ).directive('uiScroll', ->
   link: (scope, element, attrs) ->
-    element.bind "click", ->
+    element.bind "click", (event) ->
+      event.preventDefault()
       goTo = $(attrs.uiScroll).offset().top - 40
       $(window).scrollTop goTo
 )
