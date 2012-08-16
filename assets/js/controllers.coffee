@@ -27,7 +27,11 @@
 # Register Controller. This handles the entire registration form.
 # It may be wise to find a cleaner format for this.
 ###
-@regCtl = ($scope, $http, $anchorScroll) ->
+@regCtl = ($scope, $http, $anchorScroll, $location) ->
+  $scope.scrollTo = (anchor) ->
+    $location.hash(anchor)
+    $anchorScroll()
+
   $scope.submit = ->
     console.log $scope.youthList
     $http.post "/register",
@@ -115,7 +119,7 @@
         illnesses: ""
       number: ($scope.youngAdultList.length + 1)
 
-regCtl.$inject = ["$scope", "$http", "$anchorScroll"]
+regCtl.$inject = ["$scope", "$http", "$anchorScroll", "$location"]
 
 ###
 # Home, does nothing yet.
