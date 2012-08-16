@@ -32,7 +32,7 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
 ).directive('uiScroll', ->
   link: (scope, element, attrs) ->
     element.bind "click", ->
-      goTo = $('#youth').offset().top - 40
+      goTo = $(attrs.uiScroll).offset().top - 40
       $('body').animate({ scrollTop: goTo }, 400)
 )
 angular.module("govmath", []).filter "chaperone", ->

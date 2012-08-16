@@ -6,7 +6,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         ul.nav.nav-list
           li.nav-header Quick Scroll
           li
-            a(ui-scroll) Bears
+            a(ui-scroll='#youth') Youth
+          li
+            a(ui-scroll='#chaperones') Chaperones
     // Begin Primary Contact
     .span9
       .form-horizontal.well
@@ -446,7 +448,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             // End Emergency Info      
                     
       // Chaperone Controllers     
-      .well.form-horizontal
+      .well.form-horizontal#chaperones
         h1 Chaperone Attendees
         .btn.btn-info(ng-click="addChaperone()") Add a Chaperone
         p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
