@@ -33,7 +33,6 @@
     $anchorScroll()
 
   $scope.submit = ->
-    console.log $scope.youthList
     $http.post "/register",
       primaryContact: $scope.primaryContact
       youthList: $scope.youthList
