@@ -31,7 +31,7 @@ html(ng-app="gov")
 
     .container-fluid
       .span3(style="position: fixed;")
-        img(src="/img/gov_logo.png")
+        img.hidden-phone(src="/img/gov_logo.png")
       .span3
       .pull-right
         .visible-desktop.carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
@@ -76,3 +76,4 @@ html(ng-app="gov")
   != js('angular-bootstrap-1.0.1')
   != js('app')
   != js('controllers')
+  script(src='http://angular-ui.github.com/lib/maskedinput/src/jquery.maskedinput.js')

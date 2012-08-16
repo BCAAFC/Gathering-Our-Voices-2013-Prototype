@@ -28,16 +28,13 @@
 # It may be wise to find a cleaner format for this.
 ###
 @regCtl = ($scope, $http, $anchorScroll, $location) ->
-  $scope.scrollTo = (anchor) ->
-    $location.hash(anchor)
-    $anchorScroll()
-
   $scope.submit = ->
     $http.post "/register",
       primaryContact: $scope.primaryContact
       youthList: $scope.youthList
       chaperoneList: $scope.chaperoneList
       youngAdultList: $scope.youngAdultList
+    console.log($scope.submitButton)
 
   $scope.primaryContact =
     name: ""

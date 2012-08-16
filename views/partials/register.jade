@@ -2,16 +2,28 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
   .row-fluid
     // Nagivation List
     .span3
-      .well(style="position: fixed;")
+      .visible-desktop.well(style="position: fixed;")
         ul.nav.nav-list
           li.nav-header Quick Scroll
+          li
+            a(href='javascript:void(0)', ui-scroll='#primary') Primary Contact
           li
             a(href='javascript:void(0)', ui-scroll='#youth') Youth
           li
             a(href='javascript:void(0)', ui-scroll='#chaperones') Chaperones
+          li
+            a(href='javascript:void(0)', ui-scroll='#youngAdults') Young Adults
+        br
+        input.btn-large.btn-primary(
+          type='submit',
+          value='Register',
+          ng-model='submitButton',
+          ng-disabled="isClean() || myForm.$invalid"
+        )
+
     // Begin Primary Contact
     .span9
-      .form-horizontal.well
+      .form-horizontal.well#primary
         h1 Primary Contact  
         p For each registered group there must be a primary contact. This person will be our main connection for your group.
           
@@ -85,6 +97,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 maxlength='10',
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
+                ui-mask="'999-999-9999'",
                 placeholder='Enter your phone number',
                 required,
                 data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
@@ -227,6 +240,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 required,
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
+                ui-mask="'999-999-9999'",
                 placeholder="Enter your emergency contact's phone number.",
                 data-content="Generally it's a good idea to choose a cell phone number."
               )
@@ -259,17 +273,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
               )
 
-          // Illnesses
+          //medical conditions 
           .control-group
-            label.control-label Illnesses
+            label.control-label Medical Conditions
             .controls
               input.focused(
                 type='text',
                 ng-model='primaryContact.emergencyInfo.illnesses',
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                placeholder='Enter your illnesses here, comma seperated.',
-                data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                placeholder='Enter your medical conditions here, comma seperated.',
+                data-content="Please enter a list of medical conditions, if you have multiple conditions you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
               )
          //End Emegency Information
       // Youth Controllers     
@@ -343,6 +357,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
+                    ui-mask="'999-999-9999'",
                     data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
@@ -401,6 +416,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     placeholder="Enter your emergency contact's phone number.",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
+                    ui-mask="'999-999-9999'",
                     data-content="Generally it's a good idea to choose a cell phone number."
                   )
 
@@ -515,6 +531,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
+                    ui-mask="'999-999-9999'",
                     data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
@@ -572,6 +589,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                       placeholder="Enter your emergency contact's phone number.",
                       ui-jq='popover',
                       ui-options="{trigger: 'focus'}",
+                      ui-mask="'999-999-9999'",
                       data-content="Generally it's a good idea to choose a cell phone number."
                     )
                       
@@ -620,7 +638,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               // End Emergency Info
 
       // Young Adult Controllers     
-      .well.form-horizontal
+      .well.form-horizontal#youngAdults
         h1 Young Adult Attendees
         .btn.btn-info(ng-click="addYoungAdult()") Add a Young Adult
         p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
@@ -686,6 +704,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
+                    ui-mask="'999-999-9999'",
                     data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
@@ -744,6 +763,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     placeholder="Enter your emergency contact's phone number.",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
+                    ui-mask="'999-999-9999'",
                     data-content="Generally it's a good idea to choose a cell phone number."
                   )
 
@@ -789,15 +809,3 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                   )
             // End Emergency Information
-
-  // Submit Button
-  .row-fluid
-    .span1
-    .well.span8.form-horizontal
-      input.btn-large.btn-primary(
-        type='submit',
-        value='Register',
-        ng-disabled="isClean() || myForm.$invalid"
-      )
-      .pull-right
-        p (We'll be putting alerts here ~eventually~)
