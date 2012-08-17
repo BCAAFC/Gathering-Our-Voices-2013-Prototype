@@ -1,4 +1,4 @@
-form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete="off")
+form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete="off", name='regForm')
   .row-fluid
     // Nagivation List
     .span3
@@ -13,13 +13,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             a(href='javascript:void(0)', ui-scroll='#chaperones') Chaperones
           li
             a(href='javascript:void(0)', ui-scroll='#youngAdults') Young Adults
-        br
-        input.btn-large.btn-primary(
-          type='submit',
-          value='Register',
-          ng-model='submitButton',
-          ng-disabled="isClean() || myForm.$invalid"
-        )
 
     // Begin Primary Contact
     .span9
@@ -45,7 +38,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 placeholder='Enter your name',
                 data-content="Just your name, nothing special here."
               )
-
+              
           // Primary Status Field
           .control-group
             label.control-label Status*
@@ -97,7 +90,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 maxlength='10',
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                ui-mask="'999-999-9999'",
                 placeholder='Enter your phone number',
                 required,
                 data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
@@ -179,7 +171,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 ng-model='primaryContact.extendedInfo.postalCode',
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                ui-mask="'a9a 9a9'",
                 required,
                 placeholder='Enter your Postal Code',
                 data-content="Please input your postal code in the format A1B2C3, no spaces."
@@ -195,7 +186,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 placeholder="Enter your fax number.",
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                ui-mask="'999 999-9999'",
                 data-content="(123) 123-1234"
               )
         // End Basic Information
@@ -240,7 +230,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 required,
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                ui-mask="'999-999-9999'",
                 placeholder="Enter your emergency contact's phone number.",
                 data-content="Generally it's a good idea to choose a cell phone number."
               )
@@ -357,7 +346,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    ui-mask="'999-999-9999'",
                     data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
@@ -416,7 +404,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     placeholder="Enter your emergency contact's phone number.",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    ui-mask="'999-999-9999'",
                     data-content="Generally it's a good idea to choose a cell phone number."
                   )
 
@@ -531,7 +518,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    ui-mask="'999-999-9999'",
                     data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
@@ -589,7 +575,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                       placeholder="Enter your emergency contact's phone number.",
                       ui-jq='popover',
                       ui-options="{trigger: 'focus'}",
-                      ui-mask="'999-999-9999'",
                       data-content="Generally it's a good idea to choose a cell phone number."
                     )
                       
@@ -704,7 +689,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    ui-mask="'999-999-9999'",
                     data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
@@ -763,7 +747,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     placeholder="Enter your emergency contact's phone number.",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    ui-mask="'999-999-9999'",
                     data-content="Generally it's a good idea to choose a cell phone number."
                   )
 
@@ -809,3 +792,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                   )
             // End Emergency Information
+            
+      .well
+        .alert.alert-warning(ui-toggle='regForm.$invalid') You don't have everything filled out! Please fill everything out then try again!
+        .alert.alert-success(ui-toggle='!regForm.$invalid') Looks like you are good to go! Hit submit and we'll get you processed!
+        input.btn-large.btn-primary(
+          type='submit',
+          value='Register',
+          ng-model='submitButton',
+          ng-disabled="isClean() || regForm.$invalid"
+        )
