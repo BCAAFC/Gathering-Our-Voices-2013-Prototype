@@ -30,7 +30,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           // Begin Basic Info
           fieldset
           legend Basic Information
-          p Please enter your information as the primary contact for your group. Even if you are not attending, we need this from you for our records.
+          p Please enter your information as the primary contact for your group. Even if you are not attending, we need this information for our records.
           
           // Primary Name Field
           .control-group
@@ -55,7 +55,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 required,
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important. <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!"
+                data-content="<strong>Youth:</strong> Special Restrictions. <br> <strong>Young Adult:</strong> No Special Restrictions <br> <strong>Chaperone:</strong> Super Important! <br> <strong>Not Attending:</strong> Sad to hear it! Thanks for helping the kids!"
               )
                 option Youth (14-17 yrs)
                 option Young Adult (18-24 yrs)
@@ -118,7 +118,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         // Begin Extended Information        
         fieldset
           legend Extended Information
-          p This is stuff we only ask you, the primary contact. You won't need to fill this out for anyone else in the group.
+          p This is stuff we only ask you, the primary contact. You will not need to fill this out for anyone else in the group.
 
           // Affiliation Field
           .control-group
@@ -182,7 +182,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 required,
                 placeholder='Enter your Postal Code',
                 maxlength=6,
-                data-content="Please input your postal code in the format A1B2C3, no spaces."
+                data-content="Please input your postal code in the format A1B2C3, no spaces"
               )
 
           // Fax Number Field
@@ -202,11 +202,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         // Begin Extended Information        
         fieldset
           legend Emergency Information
-          p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+          p In the event of an unfortunate happenstance, we will use this information to help us provide the best assistance possible.
 
           // Emergency Contact Name
           .control-group
-            label.control-label Emergency Contact name*
+            label.control-label Emergency Contact Name*
             .controls
               input.focused(
                 type='text',
@@ -247,7 +247,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 
           // Registrant Medical number
           .control-group
-            label.control-label Registrant Medical number*
+            label.control-label Registrant Medical Number*
             .controls
               input.focused(
                 type='text',
@@ -270,7 +270,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
                 placeholder='Enter your allergies here, comma seperated.',
-                data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                data-content="Please enter a list of allergies, if you have multiple allergies please use a comma to seperate them <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
               )
 
           //medical conditions 
@@ -283,7 +283,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
                 placeholder='Enter your medical conditions here, comma seperated.',
-                data-content="Please enter a list of medical conditions, if you have multiple conditions you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                data-content="please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-ophobia."
               )
          //End Emegency Information
       // Youth Controllers     
@@ -303,7 +303,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             // Begin Basic Information
             fieldset
               legend Basic Information for {{youth.name}}
-              p This is information you'll need to fill out for every guest (there is more  space below) Even if you are not attending, we need this from you for our records.
+              p Please fill in this is information for every youth attending.
               
               // Name Field
               .control-group
@@ -358,7 +358,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
                     ui-mask="'999-999-9999'",
-                    data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                    data-content="(123) 123-1234 -> 1231231234 <br> If possible,  you might want to consider using a cell number, that way we can get in touch with you during the event."
                   )
 
               // Email Field
@@ -375,7 +375,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             // Begin Emergency Info        
             fieldset
               legend Emergency Information for {{youth.name}}
-              p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+              p In the event of an unfortunate happenstance, we will use this information to help us provide the best assistance possible.
               
               // Emergency Contact Name
               .control-group
@@ -388,7 +388,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     placeholder="Enter your emergency contact's name.",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
+                    data-content="It is advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
                   )
 
               // Emergency Contact Relation      
@@ -422,13 +422,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
 
               // Registrant Medical number
               .control-group
-                label.control-label Registrant Medical number*
+                label.control-label Registrant Medical Number*
                 .controls
                   input.focused(
                     type='number',
                     ng-model='youth.emergencyInfo.medicalNum',
                     required,
-                    placeholder="Enter your Medical number.",
+                    placeholder="Enter your Medical Number.",
                     maxlength=10,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
@@ -445,12 +445,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     placeholder='Enter your allergies here, comma seperated.',
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                    data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                   )
 
-              // Illnesses
+              // Medical Conditions
               .control-group
-                label.control-label Illnesses
+                label.control-label Medical Conditions
                 .controls
                   input.focused(
                     type='text',
@@ -458,8 +458,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ng-model='youth.emergencyInfo.illnesses',
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
-                    placeholder='Enter your illnesses here, comma seperated.',
-                    data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                    placeholder='Enter your  here, comma seperated.',
+                    data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them.  <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                   )
             // End Emergency Info      
                     
