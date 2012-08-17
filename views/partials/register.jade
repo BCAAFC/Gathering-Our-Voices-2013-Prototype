@@ -84,7 +84,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 ui-options="{trigger: 'focus'}",
                 placeholder='dd/mm/yyyy',
                 data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                type='date'
+                type='text'
               )
 
            // Primary Phone Field
@@ -92,7 +92,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             label.control-label Phone #
             .controls
               input.focused(
-                type='tel',
+                type='text',
                 ng-model='primaryContact.phone',
                 maxlength='10',
                 ui-jq='popover',
@@ -179,9 +179,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 ng-model='primaryContact.extendedInfo.postalCode',
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
+                ui-mask="'a9a 9a9'",
                 required,
                 placeholder='Enter your Postal Code',
-                maxlength=6,
                 data-content="Please input your postal code in the format A1B2C3, no spaces."
               )
 
@@ -190,13 +190,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             label.control-label Fax
             .controls
               input.focused(
-                type='tel',
+                type='text',
                 ng-model='primaryContact.extendedInfo.faxNumber',
                 placeholder="Enter your fax number.",
                 ui-jq='popover',
                 ui-options="{trigger: 'focus'}",
-                maxlength=10,
-                data-content="(123) 123-1234 -> 1231231234"
+                ui-mask="'999 999-9999'",
+                data-content="(123) 123-1234"
               )
         // End Basic Information
         // Begin Extended Information        
@@ -235,7 +235,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             label.control-label Emergency Contact Phone #*
             .controls
               input.focused(
-                type='tel',
+                type='text',
                 ng-model='primaryContact.emergencyInfo.phone',
                 required,
                 ui-jq='popover',
@@ -342,7 +342,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
                     data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                    type='date'
+                    type='text'
                   )
 
                // Phone Field
@@ -350,7 +350,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 label.control-label Phone #
                 .controls
                   input.focused(
-                    type='tel',
+                    type='text',
                     ng-model='youth.phone',
                     maxlength='10',
                     placeholder='Enter your phone number',
@@ -410,7 +410,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 label.control-label Emergency Contact Phone #*
                 .controls
                   input.focused(
-                    type='tel', name='youth.emergencyInfo.phone',
+                    type='text', name='youth.emergencyInfo.phone',
                     ng-model='youth.emergencyInfo.phone',
                     required,
                     placeholder="Enter your emergency contact's phone number.",
@@ -516,7 +516,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
                     data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                    type='date'
+                    type='text'
                   )
 
                // Phone Field
@@ -524,7 +524,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 label.control-label Phone #
                 .controls
                   input.focused(
-                    type='tel',
+                    type='text',
                     ng-model='chaperone.phone',
                     maxlength='10',
                     placeholder='Enter your phone number',
@@ -583,7 +583,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   label.control-label Emergency Contact Phone #*
                   .controls
                     input.focused(
-                      type='tel',
+                      type='text',
                       ng-model='chaperone.emergencyInfo.phone',
                       required,
                       placeholder="Enter your emergency contact's phone number.",
@@ -689,7 +689,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ui-jq='popover',
                     ui-options="{trigger: 'focus'}",
                     data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                    type='date'
+                    type='text'
                  )
 
                // Phone Field
@@ -697,7 +697,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 label.control-label Phone #
                 .controls
                   input.focused(
-                    type='tel',
+                    type='text',
                     ng-model='youngAdult.phone',
                     maxlength='10',
                     placeholder='Enter your phone number',
@@ -757,7 +757,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 label.control-label Emergency Contact Phone #*
                 .controls
                   input.focused(
-                    type='tel',
+                    type='text',
                     ng-model='youngAdult.emergencyInfo.phone',
                     required,
                     placeholder="Enter your emergency contact's phone number.",
