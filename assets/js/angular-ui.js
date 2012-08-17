@@ -601,7 +601,6 @@ angular.module('ui.directives').directive('uiMask', [
         };
         /* Add a parser that extracts the masked value into the model but only if the mask is valid
         */
-
         controller.$parsers.push(function(value) {
           var isValid;
           isValid = element.data('mask-isvalid');
