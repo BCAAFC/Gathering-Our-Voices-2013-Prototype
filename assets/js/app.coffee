@@ -1,7 +1,7 @@
 #'use strict';
 
 # Declare app level module which depends on filters, and services
-angular.module("gov", ["ui", "govmath"])
+angular.module("gov", ["gov.directives", "ui", "govmath"])
 .config(["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
   $routeProvider.when "/register",
     templateUrl: "partials/register"
@@ -21,29 +21,7 @@ angular.module("gov", ["ui", "govmath"])
 
   $routeProvider.otherwise redirectTo: "/"
   $locationProvider.html5Mode true
-]).directive("carouselNext", ->
-  link: (scope, element, attrs) ->
-    element.bind "click", (event) ->
-      event.preventDefault()
-      $("#intro-carousel").carousel "next"
-).directive("carouselPrev", ->
-  link: (scope, element, attrs) ->
-    element.bind "click", (event) ->
-      event.preventDefault()
-      $("#intro-carousel").carousel "prev"
-).directive('uiScroll', ->
-  link: (scope, element, attrs) ->
-    element.bind "click", (event) ->
-      event.preventDefault()
-      goTo = $("#" + attrs.uiScroll).offset().top - 40
-      console.log(goTo)
-      $(window).scrollTop goTo
-).directive('selectYoungAdult', ->
-  link: (scope, element, attrs) ->
-    element.bind "click", (event) ->
-      select = attrs.selectYoungAdult
-      console.log(select)
-)
+])
 angular.module("govmath", []).filter "chaperone", ->
   (num) ->
     Math.ceil num / 5
