@@ -28,13 +28,15 @@
 # It may be wise to find a cleaner format for this.
 ###
 @regCtl = ($scope, $http, $anchorScroll, $location) ->
+  $scope.youngAdultNumber = 0
+  $scope.youthNumber = 0
+  $scope.chaperoneNumber = 0
   $scope.submit = ->
     $http.post "/register",
       primaryContact: $scope.primaryContact
       youthList: $scope.youthList
       chaperoneList: $scope.chaperoneList
       youngAdultList: $scope.youngAdultList
-    console.log($scope.submitButton)
 
   $scope.primaryContact =
     name: ""
@@ -61,8 +63,9 @@
   # Youth list
   $scope.youthList = []
   $scope.addYouth = ->
+    $scope.youthNumber +=1
     $scope.youthList.push
-      name: "Youth " + ($scope.youthList.length + 1)
+      name: "Youth " + $scope.youthNumber
       status: "Youth (14-17 yrs)"
       gender: ""
       birthDate: ""
@@ -75,13 +78,14 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-      number: ($scope.youthList.length + 1)
+      number: $scope.youthNumber
   
   # Chaperone list
   $scope.chaperoneList = []
   $scope.addChaperone = ->
+    $scope.chaperoneNumber += 1
     $scope.chaperoneList.push
-      name: "Chaperone " + ($scope.chaperoneList.length + 1)
+      name: "Chaperone " + $scope.chaperoneNumber
       status: "Chaperone (21+ yrs)"
       gender: ""
       birthDate: ""
@@ -94,13 +98,14 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-      number: ($scope.chaperoneList.length + 1)
+      number: $scope.chaperoneNumber
   
   # Young Adult list
   $scope.youngAdultList = []
   $scope.addYoungAdult = ->
+    $scope.youngAdultNumber += 1
     $scope.youngAdultList.push
-      name: "Young Adult " + ($scope.youngAdultList.length + 1)
+      name: "Young Adult " + ($scope.youngAdultNumber)
       status: "Young Adult (18-24 yrs)"
       gender: ""
       birthDate: ""
@@ -113,7 +118,10 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-      number: ($scope.youngAdultList.length + 1)
+      number: $scope.youngAdultNumber
+  
+  $scope.removeYoungAdult = ->
+    $scope.youngAdultList.pop()
 
 regCtl.$inject = ["$scope", "$http", "$anchorScroll", "$location"]
 

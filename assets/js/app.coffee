@@ -1,7 +1,7 @@
 #'use strict';
 
 # Declare app level module which depends on filters, and services
-angular.module("gov", ["ui", "govmath", "bootstrap"])
+angular.module("gov", ["ui", "govmath"])
 .config(["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
   $routeProvider.when "/register",
     templateUrl: "partials/register"
@@ -35,8 +35,14 @@ angular.module("gov", ["ui", "govmath", "bootstrap"])
   link: (scope, element, attrs) ->
     element.bind "click", (event) ->
       event.preventDefault()
-      goTo = $(attrs.uiScroll).offset().top - 40
+      goTo = $("#" + attrs.uiScroll).offset().top - 40
+      console.log(goTo)
       $(window).scrollTop goTo
+).directive('selectYoungAdult', ->
+  link: (scope, element, attrs) ->
+    element.bind "click", (event) ->
+      select = attrs.selectYoungAdult
+      console.log(select)
 )
 angular.module("govmath", []).filter "chaperone", ->
   (num) ->
