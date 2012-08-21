@@ -291,11 +291,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .btn.btn-info(ng-click="addYouth()") Add a Youth
         p You have <strong>{{ youthList.length }}</strong> youth attending.
         hr
-        .container-fluid
-          .accordion-group(ng-repeat="youth in youthList", id="youthAccordion")
+        .container-fluid(id="youthAccordion")
+          .accordion-group(ng-repeat="youth in youthList")
             .accordion-heading
                 h4
-                  a.accordion-toggle(accordion="youth{{youth.number}}") {{ youth.name }}
+                  a.accordion-toggle(accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
             .accordion-body.collapse(id="youth{{youth.number}}")
               .accordion-inner
                 .row-fluid

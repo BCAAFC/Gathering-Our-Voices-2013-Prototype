@@ -21,9 +21,10 @@ angular.module("gov.directives", [])
       link: (scope, element, attrs) ->
         element.bind "click", (event) ->
           event.preventDefault()
-          $(".in").collapse "hide"
+          # Get the accordion group we want, hide the ones we don't want.
+          group = attrs.accordionGroup
+          $(group).find(".in").collapse "hide"
+          # Get the accordion we want, open the one we want.
           select = "#" + attrs.accordion
           $(select).collapse "toggle"
-          console.log select
     )
-          
