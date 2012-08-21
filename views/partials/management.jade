@@ -1,113 +1,112 @@
 .container-fluid(ng-controller='manCtl')
-  .row-fluid
-    .span8.well.accordion#listing
-      .container-fluid
-        .span2
-          h6 Primary Contact
-        .span2
-          h6 Affiliation
-        .span2
-          h6 Youth
-        .span2
-          h6 Chaperones
-        .span2
-          h6 Y. Adults
-        .span2
-          h6 Edit
-      .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
-        .container-fluid.accordion-heading
-          .span2(ng-click='group.expanded=!group.expanded')
-            a.accordion-toggle  {{group.primaryContact.name}}
-          .span2(management-collapse)
-            p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
-          .span2(management-collapse)
-            p.accordion-toggle {{group.youthList.length}}
-          .span2(management-collapse)
-            p.accordion-toggle {{group.chaperoneList.length}}
-          .span2(management-collapse)
-            p.accordion-toggle {{group.youngAdultList.length}}
-          .span2
-            button.accordion-toggle.btn.btn-small.btn-warning(ng-click='edituser()') Edit &raquo;
-        .accordion-body(ui-toggle='group.expanded')
-          .accordion-inner
-            .container-fluid
-              .span2
-                h6 Mailing Information
-                address(style='text-align: center')
-                  p
-                    a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
-                    br
-                    i {{ group.primaryContact.extendedInfo.affiliation }}
-                    br
-                    | {{ group.primaryContact.phone }}
-                    br
-                    | {{ group.primaryContact.extendedInfo.address }}
-                    br
-                    | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
-                    br
-                    | {{ group.primaryContact.extendedInfo.postalCode }}
-              .span2
-                h6 Youth
-                ul.nav.nav-list
-                  li(ng-repeat="youth in group.youthList")
-                    a(ng-click='select(youth)') {{youth.name}}
-              .span2
-                h6 Chaperones
-                ul.nav.nav-list
-                  li(ng-repeat="chaperone in group.chaperoneList")
-                    a(ng-click='select(chaperone)') {{chaperone.name}}
-              .span2
-                h6 Y. Adults
-                ul.nav.nav-list
-                  li(ng-repeat="youngAdult in group.youngAdultList")
-                    a(ng-click='select(youngAdult)') {{youngAdult.name}}
-    .span4
-      .container-fluid.float
-        .well
-          .input-prepend
-            span.add-on
-              i.icon-search
-            input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query')
-        .well
-          p
-            h5 Basic Information
-            h6 Name
-            | {{ currentUser.name }}
-            br
-            h6 Status
-            | {{ currentUser.status }}
-            br
-            h6 Gender
-            | {{ currentUser.gender }}
-            br
-            h6 Birth Date
-            | {{ currentUser.birthDate }}
-            br
-            h6 Phone
-            | {{ currentUser.phone }}
-            br
-            h6 Email
-            | {{ currentUser.email }}
-            br
-            br
-            h5 Emergency Information
-            h6 Name
-            | {{ currentUser.emergencyInfo.name }}
-            br
-            h6 Relation
-            | {{ currentUser.emergencyInfo.relation }}
-            br
-            h6 Phone
-            | {{ currentUser.emergencyInfo.phone }}
-            br
-            h6 Medical Number
-            | {{ currentUser.emergencyInfo.medicalNum }}
-            br
-            h6 Allergies
-            | {{ currentUser.emergencyInfo.allergies }}
-            br
-            h6 Illnesses
-            | {{ currentUser.emergencyInfo.illnesses }}
+  .span3(style="position: fixed; top: 50px;")
+    .container-fluid
+      .well
+        .input-prepend
+          span.add-on
+            i.icon-search
+          input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
+      .well
+        p
+          h5 Basic Information
+          h6 Name
+          | {{ currentUser.name }}
+          br
+          h6 Status
+          | {{ currentUser.status }}
+          br
+          h6 Gender
+          | {{ currentUser.gender }}
+          br
+          h6 Birth Date
+          | {{ currentUser.birthDate }}
+          br
+          h6 Phone
+          | {{ currentUser.phone }}
+          br
+          h6 Email
+          | {{ currentUser.email }}
+          br
+          br
+          h5 Emergency Information
+          h6 Name
+          | {{ currentUser.emergencyInfo.name }}
+          br
+          h6 Relation
+          | {{ currentUser.emergencyInfo.relation }}
+          br
+          h6 Phone
+          | {{ currentUser.emergencyInfo.phone }}
+          br
+          h6 Medical Number
+          | {{ currentUser.emergencyInfo.medicalNum }}
+          br
+          h6 Allergies
+          | {{ currentUser.emergencyInfo.allergies }}
+          br
+          h6 Illnesses
+          | {{ currentUser.emergencyInfo.illnesses }}
+  .span10.offset3.well.accordion#listing
+    .container-fluid
+      .span2
+        h6 Primary Contact
+      .span2
+        h6 Affiliation
+      .span1
+        h6 Youth
+      .span1
+        h6 Chaperones
+      .span1
+        h6 Y. Adults
+      .span1
+        h6 Edit
+    .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
+      .container-fluid.accordion-heading
+        .span2(ng-click='group.expanded=!group.expanded')
+          a.accordion-toggle  {{group.primaryContact.name}}
+        .span2(management-collapse)
+          p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
+        .span1(management-collapse)
+          p.accordion-toggle {{group.youthList.length}}
+        .span1(management-collapse)
+          p.accordion-toggle {{group.chaperoneList.length}}
+        .span1(management-collapse)
+          p.accordion-toggle {{group.youngAdultList.length}}
+        .span1
+          button.accordion-toggle.btn.btn-small.btn-warning(ng-click='edituser()') Edit &raquo;
+      .accordion-body(ui-toggle='group.expanded')
+        .accordion-inner
+          .container-fluid
+            .span2
+              h6 Mailing Information
+              address(style='text-align: center')
+                p
+                  a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
+                  br
+                  i {{ group.primaryContact.extendedInfo.affiliation }}
+                  br
+                  | {{ group.primaryContact.phone }}
+                  br
+                  | {{ group.primaryContact.extendedInfo.address }}
+                  br
+                  | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+                  br
+                  | {{ group.primaryContact.extendedInfo.postalCode }}
+            .span2
+              h6 Youth
+              ul.nav.nav-list
+                li(ng-repeat="youth in group.youthList")
+                  a(ng-click='select(youth)') {{youth.name}}
+            .span2
+              h6 Chaperones
+              ul.nav.nav-list
+                li(ng-repeat="chaperone in group.chaperoneList")
+                  a(ng-click='select(chaperone)') {{chaperone.name}}
+            .span2
+              h6 Y. Adults
+              ul.nav.nav-list
+                li(ng-repeat="youngAdult in group.youngAdultList")
+                  a(ng-click='select(youngAdult)') {{youngAdult.name}}
 
 .modal.hide.fade#secretModal
   .modal-header
