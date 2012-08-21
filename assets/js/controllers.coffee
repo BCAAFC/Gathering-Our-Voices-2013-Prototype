@@ -32,6 +32,7 @@
   $scope.youthNumber = 0
   $scope.chaperoneNumber = 0
   $scope.submit = ->
+    $scope.submitted = true
     $http.post "/register",
       primaryContact: $scope.primaryContact
       youthList: $scope.youthList
@@ -40,9 +41,6 @@
 
   $scope.primaryContact =
     name: ""
-    status: ""
-    gender: ""
-    birthDate: ""
     phone: ""
     email: ""
     extendedInfo:
@@ -52,13 +50,6 @@
       province: ""
       postalCode: ""
       fax: ""
-    emergencyInfo:
-      name: ""
-      relation: ""
-      phone: ""
-      medicalNum: ""
-      allergies: ""
-      illnesses: ""
   
   # Youth list
   $scope.youthList = []

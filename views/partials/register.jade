@@ -2,7 +2,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
   .row-fluid
     // Nagivation List
     .span3
-      .visible-desktop.well(style="position: fixed;")
+      .visible-desktop.well(style="position: fixed; top: 50px;")
         ul.nav.nav-list
           li.nav-header Quick Scroll
           li
@@ -320,6 +320,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               placeholder='Enter your allergies here, comma seperated.',
                               ui-jq='popover',
                               ui-options="{trigger: 'focus', placement: 'bottom'}",
+                              ng-list=",",
                               data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                             )
 
@@ -333,6 +334,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               ng-model='youth.emergencyInfo.illnesses',
                               ui-jq='popover',
                               ui-options="{trigger: 'focus', placement: 'bottom'}",
+                              ng-list=",",
                               placeholder='Enter your  here, comma seperated.',
                               data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them.  <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                             )
@@ -504,6 +506,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               placeholder='Enter your allergies here, comma seperated.',
                               ui-jq='popover',
                               ui-options="{trigger: 'focus', placement: 'bottom'}",
+                              ng-list=",",
                               data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                             )
 
@@ -517,6 +520,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               ng-model='chaperone.emergencyInfo.illnesses',
                               ui-jq='popover',
                               ui-options="{trigger: 'focus', placement: 'bottom'}",
+                              ng-list=",",
                               placeholder='Enter your illnesses here, comma seperated.',
                               data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                             )
@@ -691,6 +695,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                             placeholder='Enter your allergies here, comma seperated.',
                             ui-jq='popover',
                             ui-options="{trigger: 'focus', placement: 'bottom'}",
+                            ng-list=",",
                             data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                           )
 
@@ -704,6 +709,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                             ui-jq='popover',
                             ui-options="{trigger: 'focus', placement: 'bottom'}",
                             placeholder='Enter your illnesses here, comma seperated.',
+                            ng-list=",",
                             data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
                           )
                     // End Emergency Information
@@ -719,11 +725,19 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   li Youth: {{ youthList.length }}
                   li Chaperones: {{ chaperoneList.length }}
                   li Young Adults: {{ youngAdultList.length }}
-        .alert.alert-warning(ui-toggle='regForm.$invalid') Looks like you don't have all the required fields (Those marked by a helpful *), could you please go back and make sure none of these are empty?
+              .span3
+                ul
+              .span3
+                h6 Unofficial Invoice
+                ul.nav.nav-list
+                  li T
+        .alert.alert-warning(ui-toggle='regForm.$invalid')
+          p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
+          p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
         .alert.alert-success(ui-toggle='!regForm.$invalid') Looks like you are good to go! Take a final look over everything and then hit submit, then you're done!
         input.btn-large.btn-primary(
           type='submit',
           value='Register',
           ng-model='submitButton',
-          ng-disabled="isClean() || regForm.$invalid"
+          ng-disabled="isClean() || submitted"
         )
