@@ -16,6 +16,14 @@ angular.module("gov.directives", [])
         element.bind "click", (event) ->
           event.preventDefault()
           goTo = $("#" + attrs.uiScroll).offset().top - 40
-          console.log(goTo)
           $(window).scrollTop goTo
+    ).directive('accordion', ->
+      link: (scope, element, attrs) ->
+        element.bind "click", (event) ->
+          event.preventDefault()
+          $(".in").collapse "hide"
+          select = "#" + attrs.accordion
+          $(select).collapse "toggle"
+          console.log select
     )
+          
