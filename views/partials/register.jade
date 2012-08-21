@@ -294,13 +294,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .container-fluid(id="youthAccordion")
           .accordion-group(ng-repeat="youth in youthList")
             .accordion-heading
-                h4
+              .row-fluid
+                .pull-left
                   a.accordion-toggle(accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
+                .pull-right
+                  a.accordion-toggle(ng-click="removeYouth(youth)") 
+                    i.icon-trash
+                    | Remove {{ youth.name }}
             .accordion-body.collapse(id="youth{{youth.number}}")
               .accordion-inner
                 .row-fluid
                     .span6
-                      .btn.btn-info(ng-click="removeYouth(youth)") Remove {{ youth.name }}
                       // Begin Basic Info
                       fieldset
                         legend Basic Information
@@ -473,8 +477,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .container-fluid(id="chaperoneAccordion")
           .accordion-group(ng-repeat="chaperone in chaperoneList")
             .accordion-heading
-                h4
+              .row-fluid
+                .pull-left
                   a.accordion-toggle(accordion="chaperone{{chaperone.number}}", accordion-group="#chaperoneAccordion") {{ chaperone.name }}
+                .pull-right
+                  a.accordion-toggle(ng-click="removeChaperone(chaperone)") 
+                    i.icon-trash
+                    | Remove {{ chaperone.name }}
             .accordion-body.collapse(id="chaperone{{ chaperone.number }}")
               .accordion-inner
                 .row-fluid
@@ -651,8 +660,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .container-fluid(id="youngAdultAccordion")
           .accordion-group(ng-repeat="youngAdult in youngAdultList")
             .accordion-heading
-                h4
-                  a.accordion-toggle(accordion="youngAdult{{ youngAdult.number }}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
+              .row-fluid
+                .pull-left
+                  a.accordion-toggle(accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
+                .pull-right
+                  a.accordion-toggle(ng-click="removeYoungAdult(youngAdult)") 
+                    i.icon-trash
+                    | Remove {{ youngAdult.name }}
             .accordion-body.collapse(id="youngAdult{{ youngAdult.number }}")
               .accordion-inner
                 .row-fluid
