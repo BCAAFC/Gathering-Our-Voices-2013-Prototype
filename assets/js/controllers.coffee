@@ -120,8 +120,9 @@
         illnesses: ""
       number: $scope.youngAdultNumber
   
-  $scope.removeYoungAdult = ->
-    $scope.youngAdultList.pop()
+  $scope.removeYouth = (youth)->
+    removal = $scope.youthList.indexOf(youth)
+    $scope.youthList.splice(removal,1)
 
 regCtl.$inject = ["$scope", "$http", "$anchorScroll", "$location"]
 
