@@ -8,21 +8,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           li
             a(href='javascript:void(0)', ui-scroll='primary') Primary Contact
           li
-            a(href='javascript:void(0)', ui-scroll='youth') Youth
-            ul.nav.nav-list
-              li(ng-repeat="youth in youthList")
-                a(ui-scroll='youth{{youth.number}}') {{ youth.name }}
+            a(href='javascript:void(0)', ui-scroll='youth') Youth ({{ youthList.length }})
           li
-            a(href='javascript:void(0)', ui-scroll='chaperones') Chaperones
-            ul.nav.nav-list
-              li(ng-repeat="chaperone in chaperoneList")
-                a(ui-scroll='chaperone{{chaperone.number}}') {{ chaperone.name }}
+            a(href='javascript:void(0)', ui-scroll='chaperones') Chaperones ({{ chaperoneList.length }})
           li
-            a(href='javascript:void(0)', ui-scroll='youngAdults') Young Adults
-            ul.nav.nav-list
-              li(ng-repeat="youngAdult in youngAdultList")
-                a(ui-scroll='youngAdult{{youngAdult.number}}') {{ youngAdult.name }}
-
+            a(href='javascript:void(0)', ui-scroll='youngAdults') Young Adults ({{ youngAdultList.length}})
+            
     // Begin Primary Contact
     .span9
       .form-horizontal.well#primary
@@ -851,7 +842,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 h6 Group Information
                 ul.nav.nav-list
                   li Youth: {{ youthList.length }}
-                  li Chaperones: {{ chaperonList.length }}
+                  li Chaperones: {{ chaperoneList.length }}
                   li Young Adults: {{ youngAdultList.length }}
         .alert.alert-warning(ui-toggle='regForm.$invalid') Looks like you don't have all the required fields (Those marked by a helpful *), could you please go back and make sure none of these are empty?
         .alert.alert-success(ui-toggle='!regForm.$invalid') Looks like you are good to go! Take a final look over everything and then hit submit, then you're done!
