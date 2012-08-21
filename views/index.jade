@@ -18,7 +18,7 @@ html(ng-app="gov")
   body(data-offset="50",data-spy="scroll",data-target="#subnav")
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container-fluid
+        .offset3.container-fluid
           .pull-right
             a.brand Gathering Our Voices
           ul.nav
@@ -29,24 +29,26 @@ html(ng-app="gov")
             li
               a(href='management') Management
 
-    .container-fluid
-      .span3(style="position: fixed;")
-        img.hidden-phone(src="/img/gov_logo.png")
-      .span3
-      .pull-right
-        .visible-desktop.carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
-          .carousel-inner
-            .active.item
-              img(src="/img/index/carousel1.jpg")
-            .item
-              img(src="/img/index/carousel2.jpg")
-            .item
-              img(src="/img/index/carousel3.jpg")
-            .item
-              img(src="/img/index/carousel4.jpg")
-          a.carousel-control.left(href='javascript:void(0)', carousel-prev) &lsaquo;
-          a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
-
+    // Leaving out for now
+      .container-fluid
+        .span3.offset3
+        .pull-right
+          .visible-desktop.carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
+            .carousel-inner
+              .active.item
+                img(src="/img/index/carousel1.jpg")
+              .item
+                img(src="/img/index/carousel2.jpg")
+              .item
+                img(src="/img/index/carousel3.jpg")
+              .item
+                img(src="/img/index/carousel4.jpg")
+            a.carousel-control.left(href='javascript:void(0)', carousel-prev) &lsaquo;
+            a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
+    
+    .offset9.span3
+      img.hidden-phone(src="/img/gov_logo.png")
+    
     // The main content of the app.
     div#article(ng-view)
       .container-fluid
