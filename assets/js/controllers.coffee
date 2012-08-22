@@ -139,6 +139,9 @@
   $scope.totalCost = () ->
     $scope.paidTickets() * 175
 
+  $scope.enoughChaperones = () ->
+    $scope.chaperoneList.length >= Math.ceil($scope.youthList.length / 5)
+
 regCtl.$inject = ["$scope", "$http", "$anchorScroll", "$location"]
 
 ###

@@ -745,12 +745,14 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .alert.alert-warning(ui-toggle='regForm.$invalid')
               p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
               p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
+            .alert.alert-error(ui-toggle='!enoughChaperones()')
+              p You need 1 chaperone for every 5 youth, you currently are not fulfilling that requirement... So unfortunately we can't let you register yet! Could you please get more chaperones?
             .alert.alert-success(ui-toggle='!regForm.$invalid') Looks like you are good to go! Take a final look over everything and then hit submit, then you're done!
             input.btn-large.btn-primary(
               type='submit',
               value='Register',
               ng-model='submitButton',
-              ng-disabled="isClean() || submitted"
+              ng-disabled="isClean() || submitted || !enoughChaperones()"
             )
             .alert.alert-success(ui-toggle="submitted")
               p You're submitted! We've got your submitted! We'll send you a mail (TODO! Not yet!) in a few!
