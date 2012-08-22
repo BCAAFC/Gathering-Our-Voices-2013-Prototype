@@ -11,9 +11,9 @@ html(ng-app="gov")
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 
     // Get the CSS.
-    != css('bootstrap/bootstrap')
+    != css('bootstrap.min')
     != css('layout')
-    != css('bootstrap/responsive')
+    != css('responsive.min')
 
   body(data-offset="50",data-spy="scroll",data-target="#subnav")
     // Navbar. This does not need a container.
@@ -68,18 +68,7 @@ html(ng-app="gov")
   // Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
   != js('jquery.min')
   // Bootstrap only
-  != js('bootstrap/bootstrap-alert')
-  != js('bootstrap/bootstrap-button')
-  != js('bootstrap/bootstrap-carousel')
-  != js('bootstrap/bootstrap-collapse')
-  != js('bootstrap/bootstrap-dropdown')
-  != js('bootstrap/bootstrap-modal')
-  != js('bootstrap/bootstrap-scrollspy')
-  != js('bootstrap/bootstrap-tab')
-  != js('bootstrap/bootstrap-tooltip')
-  != js('bootstrap/bootstrap-popover')
-  != js('bootstrap/bootstrap-transition')
-  != js('bootstrap/bootstrap-typeahead')
+  != js('bootstrap.min')
   // Angular JS specific
   != js('angular/angular-1.0.1')
   != js('angular-ui')
