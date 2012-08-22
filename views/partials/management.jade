@@ -111,6 +111,15 @@
                   ul.nav.nav-list
                     li(ng-repeat="youngAdult in group.youngAdultList")
                       a(ng-click='select(youngAdult)') {{youngAdult.name}}
+                .span2
+                  h6 Costs
+                  ul.nav.nav-list
+                    b Paid: 
+                    | {{ group.costs.paid }}
+                    b Normal Tickets: 
+                    | {{ group.paidTickets }}
+                    b Free Tickets: 
+                    | {{ group.freeTickets }}
 
 .modal.hide.fade#secretModal
   .modal-header

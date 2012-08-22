@@ -31,6 +31,7 @@
   $scope.youngAdultNumber = 0
   $scope.youthNumber = 0
   $scope.chaperoneNumber = 0
+  
   $scope.submit = ->
     $scope.submitted = true
     $http.post "/register",
@@ -38,6 +39,10 @@
       youthList: $scope.youthList
       chaperoneList: $scope.chaperoneList
       youngAdultList: $scope.youngAdultList
+      costs:
+        paidTickets: $scope.paidTickets()
+        freeTickets: $scope.freeTickets()
+        paid: 0
 
   $scope.primaryContact =
     name: ""
@@ -122,6 +127,17 @@
   $scope.removeYoungAdult = (youngAdult) ->
     removal = $scope.youngAdultList.indexOf(youngAdult)
     $scope.youngAdultList.splice(removal,1)
+  
+  $scope.numberOfAttendees = () ->
+    $scope.youthList.length + $scope.chaperoneList.length + $scope.youngAdultList.length
+  
+  $scope.freeTickets = () ->
+    Math.floor( $scope.numberOfAttendees() / 6 )
+  $scope.paidTickets = () ->
+    $scope.numberOfAttendees() - $scope.freeTickets()
+    
+  $scope.totalCost = () ->
+    $scope.paidTickets() * 175
 
 regCtl.$inject = ["$scope", "$http", "$anchorScroll", "$location"]
 

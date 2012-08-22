@@ -739,8 +739,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   .span3
                     h6 Unofficial Invoice
                     ul.nav.nav-list
-                      li Paid Tickets: 
-                      li Free Tickets: 
+                      li Paid Tickets: {{ paidTickets() }} @ $175
+                      li Free Tickets: {{ freeTickets() }} @ $0
+                      li Total: ${{ totalCost() }}
             .alert.alert-warning(ui-toggle='regForm.$invalid')
               p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
               p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
