@@ -1,8 +1,10 @@
 form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete="off", name='regForm')
   .row-fluid
-    // Nagivation List
-    .span3
-      .visible-desktop.well(style="position: fixed; top: 50px;")
+    // Nagivation Columns.
+    // -- A nice navigation addon for our Desktop users.
+    // -- Don't put anything important here. Tablets and Phones can't see it.
+    .span2
+      .visible-desktop.well.regSidebar(ui-affix)
         ul.nav.nav-list
           li.nav-header Quick Scroll
           li
@@ -14,730 +16,740 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           li
             a(href='javascript:void(0)', ui-scroll='youngAdults') Young Adults ({{ youngAdultList.length}})
             
-    // Begin Primary Contact
-    .span9
-      .form-horizontal.well#primary
-        h1 Group Contact  
-        p For each registered group there must be a designated 'Group Contact', this is the person who will act as our primary point of contact for your entire group.
-        p It is <b>not</b> assumed that this person will be attending. If you are the group contact, and plan on attending, please add yourself to the relevant group below.
+    // Primary Registration Fields.
+    .span10
+      .container-fluid
+        .row-fluid
+          .form-horizontal.well#primary
+            h1 Group Contact  
+            p For each registered group there must be a designated 'Group Contact', this is the person who will act as our primary point of contact for your entire group.
+            p It is <b>not</b> assumed that this person will be attending. If you are the group contact, and plan on attending, please add yourself to the relevant group below.
           
-          // Begin Basic Info
-          fieldset
-          legend Basic Information
-          p Please enter your information as the primary contact for your group.
-          
-          // Primary Name Field
-          .control-group
-            label.control-label Name*
-            .controls
-              input.focused(
-                type='text',
-                ng-model='primaryContact.name',
-                required,
-                ui-jq='popover',
-                ui-options="{trigger: 'focus', placement: 'bottom'}",
-                placeholder='Enter your name',
-                data-content="Just your name, nothing special here."
-              )
+              // Begin Basic Info
+              fieldset
+              legend Basic Information
+              p Please enter your information as the primary contact for your group.
 
-           // Primary Phone Field
-          .control-group
-            label.control-label Phone #
-            .controls
-              input.focused(
-                type='text',
-                ng-model='primaryContact.phone',
-                maxlength='10',
-                ui-jq='popover',
-                ui-options="{trigger: 'focus', placement: 'bottom'}",
-                placeholder='Enter your phone number',
-                required,
-                data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
-              )
+              // Primary Name Field
+              .control-group
+                label.control-label Name*
+                .controls
+                  input.focused(
+                    type='text',
+                    ng-model='primaryContact.name',
+                    required,
+                    ui-jq='popover',
+                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    placeholder='Enter your name',
+                    data-content="Just your name, nothing special here."
+                  )
 
-          // Primary Email Field
-          .control-group
-            label.control-label Email
-            .controls
-              input.focused(
-                type='email',
-                name='primaryContact.email',
-                ng-model='primaryContact.email',
-                placeholder='Enter your Email',
-                required
-              )
-        // End Basic Information
+               // Primary Phone Field
+              .control-group
+                label.control-label Phone #
+                .controls
+                  input.focused(
+                    type='text',
+                    ng-model='primaryContact.phone',
+                    maxlength='10',
+                    ui-jq='popover',
+                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    placeholder='Enter your phone number',
+                    required,
+                    data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                  )
+
+              // Primary Email Field
+              .control-group
+                label.control-label Email
+                .controls
+                  input.focused(
+                    type='email',
+                    name='primaryContact.email',
+                    ng-model='primaryContact.email',
+                    placeholder='Enter your Email',
+                    required
+                  )
+            // End Basic Information
         
-        // Begin Extended Information        
-        fieldset
-          legend Extended Information
-          p Since you, the group contact, will be possibly recieving mail from us please fill this out. You won't need to fill this out for others in your group.
+            // Begin Extended Information        
+            fieldset
+              legend Extended Information
+              p Since you, the group contact, will be possibly recieving mail from us please fill this out. You won't need to fill this out for others in your group.
 
-          // Affiliation Field
-          .control-group
-            label.control-label Affiliation*
-            .controls
-              input.focused(
-                type='text',
-                ng-model='primaryContact.extendedInfo.affiliation',
-                required,
-                ui-jq='popover',
-                ui-options="{trigger: 'focus', placement: 'bottom'}",
-                data-content="Your affiliation is, for example, your Friendship Centre or other organization.",
-                placeholder='Enter your affiliation'
-              )
+              // Affiliation Field
+              .control-group
+                label.control-label Affiliation*
+                .controls
+                  input.focused(
+                    type='text',
+                    ng-model='primaryContact.extendedInfo.affiliation',
+                    required,
+                    ui-jq='popover',
+                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    data-content="Your affiliation is, for example, your Friendship Centre or other organization.",
+                    placeholder='Enter your affiliation'
+                  )
 
-          // Address Field
-          .control-group
-            label.control-label Address*
-            .controls
-              input.focused(
-                type='text',
-                ng-model='primaryContact.extendedInfo.address',
-                required, placeholder='Enter your mailing address'
-              )
+              // Address Field
+              .control-group
+                label.control-label Address*
+                .controls
+                  input.focused(
+                    type='text',
+                    ng-model='primaryContact.extendedInfo.address',
+                    required, placeholder='Enter your mailing address'
+                  )
 
-          // City Field
-          .control-group
-            label.control-label City*
-            .controls
-              input#city.focused(
-                type='text',
-                ng-model='primaryContact.extendedInfo.city',
-                required,
-                placeholder='Enter your city',
-                ui-jq="typeahead",
-                ui-options='{source: ["Abbotsford","Armstrong","Burnaby","Campbell River","Castlegar","Chilliwack","Colwood","Coquitlam","Courtenay","Cranbrook","Dawson Creek","Duncan","Enderby","Fernie","Fort St. John","Grand Forks","Greenwood","Kamloops","Kelowna","Kimberley","Kitimat","Langford","Langley","Merritt","Nanaimo","Nelson","New Westminster","North Vancouver","Parksville","Penticton","Pitt Meadows","Port Alberni","Port Coquitlam","Port Moody","Powell River","Prince George","Prince Rupert","Quesnel","Revelstoke","Richmond","Rossland","Salmon Arm","Surrey","Terrace","Trail","Vancouver","Vernon","Victoria","White Rock","Williams Lake"]}'
-              )
+              // City Field
+              .control-group
+                label.control-label City*
+                .controls
+                  input#city.focused(
+                    type='text',
+                    ng-model='primaryContact.extendedInfo.city',
+                    required,
+                    placeholder='Enter your city',
+                    ui-jq="typeahead",
+                    ui-options='{source: ["Abbotsford","Armstrong","Burnaby","Campbell River","Castlegar","Chilliwack","Colwood","Coquitlam","Courtenay","Cranbrook","Dawson Creek","Duncan","Enderby","Fernie","Fort St. John","Grand Forks","Greenwood","Kamloops","Kelowna","Kimberley","Kitimat","Langford","Langley","Merritt","Nanaimo","Nelson","New Westminster","North Vancouver","Parksville","Penticton","Pitt Meadows","Port Alberni","Port Coquitlam","Port Moody","Powell River","Prince George","Prince Rupert","Quesnel","Revelstoke","Richmond","Rossland","Salmon Arm","Surrey","Terrace","Trail","Vancouver","Vernon","Victoria","White Rock","Williams Lake"]}'
+                  )
 
-          // Province Field
-          .control-group
-            label.control-label Province*
-            .controls
-              input#province.focused(
-                type='text',
-                ng-model='primaryContact.extendedInfo.province',
-                required,
-                placeholder='Enter your Province',
-                ui-jq='typeahead',
-                ui-options='{source:["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland & Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"]}'
-              )
+              // Province Field
+              .control-group
+                label.control-label Province*
+                .controls
+                  input#province.focused(
+                    type='text',
+                    ng-model='primaryContact.extendedInfo.province',
+                    required,
+                    placeholder='Enter your Province',
+                    ui-jq='typeahead',
+                    ui-options='{source:["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland & Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"]}'
+                  )
 
-          // Postal Code field
-          .control-group
-            label.control-label Postal Code*
-            .controls
-              input.focused(
-                type='text',
-                ng-model='primaryContact.extendedInfo.postalCode',
-                ui-jq='popover',
-                ui-options="{trigger: 'focus', placement: 'bottom'}",
-                required,
-                placeholder='Enter your Postal Code',
-                maxlength=6,
-                data-content="Please input your postal code in the format A1B2C3, no spaces."
-              )
+              // Postal Code field
+              .control-group
+                label.control-label Postal Code*
+                .controls
+                  input.focused(
+                    type='text',
+                    ng-model='primaryContact.extendedInfo.postalCode',
+                    ui-jq='popover',
+                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    required,
+                    placeholder='Enter your Postal Code',
+                    maxlength=6,
+                    data-content="Please input your postal code in the format A1B2C3, no spaces."
+                  )
 
-          // Fax Number Field
-          .control-group
-            label.control-label Fax
-            .controls
-              input.focused(
-                type='text',
-                ng-model='primaryContact.extendedInfo.faxNumber',
-                placeholder="Enter your fax number.",
-                ui-jq='popover',
-                ui-options="{trigger: 'focus', placement: 'bottom'}",
-                data-content="(123) 123-1234"
-              )
-        // End Basic Information
+              // Fax Number Field
+              .control-group
+                label.control-label Fax
+                .controls
+                  input.focused(
+                    type='text',
+                    ng-model='primaryContact.extendedInfo.faxNumber',
+                    placeholder="Enter your fax number.",
+                    ui-jq='popover',
+                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    data-content="(123) 123-1234"
+                  )
+            // End Group Contact Information
 
-      // Youth Controllers     
-      .well.form-horizontal#youth
-        h1 Youth Attendees
-        p You have <strong>{{ youthList.length }}</strong> youth attending.
-        hr
-        .container-fluid(id="youthAccordion")
-          .accordion-group
-            .accordion-heading
-              a.accordion-toggle(ng-click="addYouth()")
-                i.icon-plus
-                | Add a Youth
-          .accordion-group(ng-repeat="youth in youthList")
-            .accordion-heading
-              .row-fluid
-                .pull-left
-                  a.accordion-toggle(accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
-                .pull-right
-                  a.accordion-toggle(ng-click="removeYouth(youth)") 
-                    i.icon-trash
-                    | Remove {{ youth.name }}
-            .accordion-body.collapse(id="youth{{youth.number}}")
-              .accordion-inner
-                .row-fluid
-                    .span6
-                      // Begin Basic Info
-                      fieldset
-                        legend Basic Information
-                        p Please fill in this is information for every youth attending.
+        // Youth Registration Fields.
+        .row-fluid
+          .form-horizontal.well#youth
+            h1 Youth Attendees
+            p You have <strong>{{ youthList.length }}</strong> youth attending.
+            hr
+            .container-fluid(id="youthAccordion")
+              .accordion-group
+                .accordion-heading
+                  a.accordion-toggle(ng-click="addYouth()")
+                    i.icon-plus
+                    | Add a Youth
+              .accordion-group(ng-repeat="youth in youthList")
+                .accordion-heading
+                  .row-fluid
+                    .pull-left
+                      a.accordion-toggle(accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
+                    .pull-right
+                      a.accordion-toggle(ng-click="removeYouth(youth)") 
+                        i.icon-trash
+                        | Remove {{ youth.name }}
+                .accordion-body.collapse(id="youth{{youth.number}}")
+                  .accordion-inner
+                    .row-fluid
+                        .span6
+                          // Begin Basic Info
+                          fieldset
+                            legend Basic Information
+                            p Please fill in this is information for every youth attending.
               
-                        // Name Field
-                        .control-group
-                          label.control-label Name*
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='youth.name',
-                              required,
-                              placeholder='Enter your name',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="Just your name, nothing special here."
-                            )
+                            // Name Field
+                            .control-group
+                              label.control-label Name*
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='youth.name',
+                                  required,
+                                  placeholder='Enter your name',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="Just your name, nothing special here."
+                                )
 
-                        // Gender Field
-                        .control-group
-                          label.control-label Gender*
-                          .controls
-                            select(
-                              required,
-                              ng-model="youth.gender",
-                            )
-                              option Male
-                              option Female
-                              option Other
+                            // Gender Field
+                            .control-group
+                              label.control-label Gender*
+                              .controls
+                                select(
+                                  required,
+                                  ng-model="youth.gender",
+                                )
+                                  option Male
+                                  option Female
+                                  option Other
               
-                        // Birth Date Field
-                        .control-group
-                          label.control-label Birth Date*
-                          .controls
-                            input.focused(
-                              required,
-                              ng-model="youth.birthDate",
-                              placeholder='dd/mm/yyyy',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                              type='text'
-                            )
+                            // Birth Date Field
+                            .control-group
+                              label.control-label Birth Date*
+                              .controls
+                                input.focused(
+                                  required,
+                                  ng-model="youth.birthDate",
+                                  placeholder='dd/mm/yyyy',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
+                                  type='text'
+                                )
 
-                         // Phone Field
-                        .control-group
-                          label.control-label Phone #
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='youth.phone',
-                              maxlength='10',
-                              placeholder='Enter your phone number',
-                              required,
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="(123) 123-1234 -> 1231231234 <br> If possible, you might want to consider using a cell number, that way we can get in touch with you during the event."
-                            )
+                             // Phone Field
+                            .control-group
+                              label.control-label Phone #
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='youth.phone',
+                                  maxlength='10',
+                                  placeholder='Enter your phone number',
+                                  required,
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="(123) 123-1234 -> 1231231234 <br> If possible, you might want to consider using a cell number, that way we can get in touch with you during the event."
+                                )
 
-                        // Email Field
-                        .control-group
-                          label.control-label Email
-                          .controls
-                            input.focused(
-                              type='email',
-                              ng-model='youth.email',
-                              placeholder='Enter your Email',
-                              required
-                            )
-                      // End Basic Info
-                    // Begin Emergency Info        
-                    .span6
-                      fieldset
-                        legend Emergency Information
-                        p In the event of an unfortunate happenstance, we will use this information to help us provide the best assistance possible.
+                            // Email Field
+                            .control-group
+                              label.control-label Email
+                              .controls
+                                input.focused(
+                                  type='email',
+                                  ng-model='youth.email',
+                                  placeholder='Enter your Email',
+                                  required
+                                )
+                          // End Basic Info
+                        // Begin Emergency Info        
+                        .span6
+                          fieldset
+                            legend Emergency Information
+                            p In the event of an unfortunate happenstance, we will use this information to help us provide the best assistance possible.
               
-                        // Emergency Contact Name
-                        .control-group
-                          label.control-label Emergency Contact name*
-                          .controls
-                            input.focused(
-                              type='text',
-                              required,
-                              ng-model='youth.emergencyInfo.name',
-                              placeholder="Enter your emergency contact's name.",
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="It is advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
-                            )
+                            // Emergency Contact Name
+                            .control-group
+                              label.control-label Emergency Contact name*
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  required,
+                                  ng-model='youth.emergencyInfo.name',
+                                  placeholder="Enter your emergency contact's name.",
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="It is advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
+                                )
 
-                        // Emergency Contact Relation      
-                        .control-group
-                          label.control-label Emergency Contact Relation
-                          .controls
-                            input.focused(
-                              type='text',
-                              name='youth.emergencyInfo.relation',
-                              ng-model='youth.emergencyInfo.relation',
-                              placeholder="Enter your Emergency Contact's relationship with you.",
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="For example, 'Mother' or 'Babysitter'"
-                            )
+                            // Emergency Contact Relation      
+                            .control-group
+                              label.control-label Emergency Contact Relation
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  name='youth.emergencyInfo.relation',
+                                  ng-model='youth.emergencyInfo.relation',
+                                  placeholder="Enter your Emergency Contact's relationship with you.",
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="For example, 'Mother' or 'Babysitter'"
+                                )
                     
-                        // Emergency Contact Phone #
-                        .control-group
-                          label.control-label Emergency Contact Phone #*
-                          .controls
-                            input.focused(
-                              type='text', name='youth.emergencyInfo.phone',
-                              ng-model='youth.emergencyInfo.phone',
-                              required,
-                              placeholder="Enter your emergency contact's phone number.",
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="Generally it's a good idea to choose a cell phone number."
-                            )
+                            // Emergency Contact Phone #
+                            .control-group
+                              label.control-label Emergency Contact Phone #*
+                              .controls
+                                input.focused(
+                                  type='text', name='youth.emergencyInfo.phone',
+                                  ng-model='youth.emergencyInfo.phone',
+                                  required,
+                                  placeholder="Enter your emergency contact's phone number.",
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="Generally it's a good idea to choose a cell phone number."
+                                )
 
-                        // Registrant Medical number
-                        .control-group
-                          label.control-label Registrant Medical Number*
-                          .controls
-                            input.focused(
-                              type='number',
-                              ng-model='youth.emergencyInfo.medicalNum',
-                              required,
-                              placeholder="Enter your Medical Number.",
-                              maxlength=10,
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="This should be your 10-digit CareCard number."
-                            )
+                            // Registrant Medical number
+                            .control-group
+                              label.control-label Registrant Medical Number*
+                              .controls
+                                input.focused(
+                                  type='number',
+                                  ng-model='youth.emergencyInfo.medicalNum',
+                                  required,
+                                  placeholder="Enter your Medical Number.",
+                                  maxlength=10,
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="This should be your 10-digit CareCard number."
+                                )
 
-                        // Allergies
-                        .control-group
-                          label.control-label Allergies
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='youth.emergencyInfo.allergies', required,
-                              placeholder='Enter your allergies here, comma seperated.',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              ng-list=",",
-                              data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
-                            )
+                            // Allergies
+                            .control-group
+                              label.control-label Allergies
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='youth.emergencyInfo.allergies', required,
+                                  placeholder='Enter your allergies here, comma seperated.',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ng-list=",",
+                                  data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                                )
 
-                        // Medical Conditions
-                        .control-group
-                          label.control-label Medical Conditions
-                          .controls
-                            input.focused(
-                              type='text',
-                              name='youth.emergencyInfo.illnesses',
-                              ng-model='youth.emergencyInfo.illnesses',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              ng-list=",",
-                              placeholder='Enter your  here, comma seperated.',
-                              data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them.  <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
-                            )
-                      // End Emergency Info      
+                            // Medical Conditions
+                            .control-group
+                              label.control-label Medical Conditions
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  name='youth.emergencyInfo.illnesses',
+                                  ng-model='youth.emergencyInfo.illnesses',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ng-list=",",
+                                  placeholder='Enter your  here, comma seperated.',
+                                  data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them.  <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                                )
+                          // End Emergency Info      
                     
-      // Chaperone Controllers     
-      .well.form-horizontal#chaperones
-        h1 Chaperone Attendees
-        p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
-        hr
-        .container-fluid(id="chaperoneAccordion")
-          .accordion-group
-            .accordion-heading
-              a.accordion-toggle(ng-click="addChaperone()")
-                i.icon-plus
-                | Add a Chaperone
-          .accordion-group(ng-repeat="chaperone in chaperoneList")
-            .accordion-heading
+        // Chaperone Registration Fields.
+        .row-fluid
+          .form-horizontal.well#chaperone
+            h1 Chaperone Attendees
+            p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
+            hr
+            .container-fluid(id="chaperoneAccordion")
+              .accordion-group
+                .accordion-heading
+                  a.accordion-toggle(ng-click="addChaperone()")
+                    i.icon-plus
+                    | Add a Chaperone
+              .accordion-group(ng-repeat="chaperone in chaperoneList")
+                .accordion-heading
+                  .row-fluid
+                    .pull-left
+                      a.accordion-toggle(accordion="chaperone{{chaperone.number}}", accordion-group="#chaperoneAccordion") {{ chaperone.name }}
+                    .pull-right
+                      a.accordion-toggle(ng-click="removeChaperone(chaperone)") 
+                        i.icon-trash
+                        | Remove {{ chaperone.name }}
+                .accordion-body.collapse(id="chaperone{{ chaperone.number }}")
+                  .accordion-inner
+                    .row-fluid
+                        .span6
+                          // Begin Basic Info
+                          fieldset(id="chaperone{{chaperone.number}}")
+                            legend Basic Information for {{chaperone.name}}
+                            p This is information you'll need to fill out.
+              
+                            // Name Field
+                            .control-group
+                              label.control-label Name*
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='chaperone.name',
+                                  required,
+                                  placeholder='Enter your name',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="Just your name, nothing special here."
+                                )
+
+                            // Gender Field
+                            .control-group
+                              label.control-label Gender*
+                              .controls
+                                select(required, ng-model="chaperone.gender")
+                                  option Male
+                                  option Female
+                                  option Other
+              
+                            // Birth Date Field
+                            .control-group
+                              label.control-label Birth Date*
+                              .controls
+                                input.focused(
+                                  required,
+                                  ng-model="chaperone.birthDate",
+                                  name="chaperone.birthDate",
+                                  placeholder='dd/mm/yyyy',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
+                                  type='text'
+                                )
+
+                             // Phone Field
+                            .control-group
+                              label.control-label Phone #
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='chaperone.phone',
+                                  maxlength='10',
+                                  placeholder='Enter your phone number',
+                                  required,
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                                )
+
+                            // Email Field
+                            .control-group
+                              label.control-label Email
+                              .controls
+                                input.focused(
+                                  type='email',
+                                  ng-model='chaperone.email',
+                                  placeholder='Enter your Email',
+                                  required
+                                )
+                            // End Basic Info
+                        // Begin Emergency Info   
+                        .span6     
+                          fieldset
+                            legend Emergency Information for {{chaperone.name}}
+                            p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
+
+                            // Emergency Contact Name
+                            .control-group
+                              label.control-label Emergency Contact name*
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  required,
+                                  ng-model='chaperone.emergencyInfo.name',
+                                  placeholder="Enter your emergency contact's name.",
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
+                                )
+
+                            // Emergency Contact Relation      
+                            .control-group
+                              label.control-label Emergency Contact Relation
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='chaperone.emergencyInfo.relation',
+                                  placeholder="Enter your Emergency Contact's relationship with you.",
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="For example, 'Mother' or 'Babysitter'"
+                                )
+                      
+                            // Emergency Contact Phone #
+                            .control-group
+                              label.control-label Emergency Contact Phone #*
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='chaperone.emergencyInfo.phone',
+                                  required,
+                                  placeholder="Enter your emergency contact's phone number.",
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="Generally it's a good idea to choose a cell phone number."
+                                )
+                      
+                            // Registrant Medical number
+                            .control-group
+                              label.control-label Registrant Medical number*
+                              .controls
+                                input.focused(
+                                  type='number',
+                                  ng-model='chaperone.emergencyInfo.medicalNum',
+                                  required,
+                                  placeholder="Enter your Medical number.",
+                                  maxlength=10,
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  data-content="This should be your 10-digit CareCard number."
+                                )
+
+                            // Allergies
+                            .control-group
+                              label.control-label Allergies
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  ng-model='chaperone.emergencyInfo.allergies',
+                                  required,
+                                  placeholder='Enter your allergies here, comma seperated.',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ng-list=",",
+                                  data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                                )
+
+                            // Illnesses
+                            .control-group
+                              label.control-label Illnesses
+                              .controls
+                                input.focused(
+                                  type='text',
+                                  name='chaperone.emergencyInfo.illnesses',
+                                  ng-model='chaperone.emergencyInfo.illnesses',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ng-list=",",
+                                  placeholder='Enter your illnesses here, comma seperated.',
+                                  data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                                )
+                          // End Emergency Info
+
+        // Youth Registration Fields.
+        .row-fluid
+          .form-horizontal.well#youngAdult
+            h1 Young Adult Attendees
+            .container-fluid
               .row-fluid
-                .pull-left
-                  a.accordion-toggle(accordion="chaperone{{chaperone.number}}", accordion-group="#chaperoneAccordion") {{ chaperone.name }}
-                .pull-right
-                  a.accordion-toggle(ng-click="removeChaperone(chaperone)") 
-                    i.icon-trash
-                    | Remove {{ chaperone.name }}
-            .accordion-body.collapse(id="chaperone{{ chaperone.number }}")
-              .accordion-inner
-                .row-fluid
-                    .span6
+                .span3
+                  p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
+            hr
+            .container-fluid(id="youngAdultAccordion")
+              .accordion-group
+                .accordion-heading
+                  a.accordion-toggle(ng-click="addYoungAdult()")
+                    i.icon-plus
+                    | Add a Young Adult
+              .accordion-group(ng-repeat="youngAdult in youngAdultList")
+                .accordion-heading
+                  .row-fluid
+                    .pull-left
+                      a.accordion-toggle(accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
+                    .pull-right
+                      a.accordion-toggle(ng-click="removeYoungAdult(youngAdult)") 
+                        i.icon-trash
+                        | Remove {{ youngAdult.name }}
+                .accordion-body.collapse(id="youngAdult{{ youngAdult.number }}")
+                  .accordion-inner
+                    .row-fluid
                       // Begin Basic Info
-                      fieldset(id="chaperone{{chaperone.number}}")
-                        legend Basic Information for {{chaperone.name}}
-                        p This is information you'll need to fill out.
+                      .span6
+                        fieldset(id="youngAdult{{youngAdult.number}}")
+                          legend Basic Information
+                          p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
               
-                        // Name Field
-                        .control-group
-                          label.control-label Name*
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='chaperone.name',
-                              required,
-                              placeholder='Enter your name',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="Just your name, nothing special here."
-                            )
+                          // Name Field
+                          .control-group
+                            label.control-label Name*
+                            .controls
+                              input.focused(
+                                type='text',
+                                ng-model='youngAdult.name',
+                                required,
+                                placeholder='Enter your name',
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="Just your name, nothing special here."
+                              )
 
-                        // Gender Field
-                        .control-group
-                          label.control-label Gender*
-                          .controls
-                            select(required, ng-model="chaperone.gender")
-                              option Male
-                              option Female
-                              option Other
+                          // Gender Field
+                          .control-group
+                            label.control-label Gender*
+                            .controls
+                              select(required, ng-model="youngAdult.gender", name="youngAdult.gender")
+                                option Male
+                                option Female
+                                option Other
               
-                        // Birth Date Field
-                        .control-group
-                          label.control-label Birth Date*
-                          .controls
-                            input.focused(
-                              required,
-                              ng-model="chaperone.birthDate",
-                              name="chaperone.birthDate",
-                              placeholder='dd/mm/yyyy',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                              type='text'
-                            )
+                          // Birth Date Field
+                          .control-group
+                            label.control-label Birth Date*
+                            .controls
+                              input.focused(
+                                required,
+                                ng-model="youngAdult.birthDate",
+                                placeholder='dd/mm/yyyy',
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
+                                type='text'
+                             )
 
-                         // Phone Field
-                        .control-group
-                          label.control-label Phone #
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='chaperone.phone',
-                              maxlength='10',
-                              placeholder='Enter your phone number',
-                              required,
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
-                            )
+                           // Phone Field
+                          .control-group
+                            label.control-label Phone #
+                            .controls
+                              input.focused(
+                                type='text',
+                                ng-model='youngAdult.phone',
+                                maxlength='10',
+                                placeholder='Enter your phone number',
+                                required,
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                              )
 
-                        // Email Field
-                        .control-group
-                          label.control-label Email
-                          .controls
-                            input.focused(
-                              type='email',
-                              ng-model='chaperone.email',
-                              placeholder='Enter your Email',
-                              required
-                            )
+                          // Email Field
+                          .control-group
+                            label.control-label Email
+                            .controls
+                              input.focused(
+                                type='email',
+                                ng-model='youngAdult.email',
+                                placeholder='Enter your Email',
+                                required
+                              )
                         // End Basic Info
-                    // Begin Emergency Info   
-                    .span6     
-                      fieldset
-                        legend Emergency Information for {{chaperone.name}}
-                        p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
-
-                        // Emergency Contact Name
-                        .control-group
-                          label.control-label Emergency Contact name*
-                          .controls
-                            input.focused(
-                              type='text',
-                              required,
-                              ng-model='chaperone.emergencyInfo.name',
-                              placeholder="Enter your emergency contact's name.",
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
-                            )
-
-                        // Emergency Contact Relation      
-                        .control-group
-                          label.control-label Emergency Contact Relation
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='chaperone.emergencyInfo.relation',
-                              placeholder="Enter your Emergency Contact's relationship with you.",
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="For example, 'Mother' or 'Babysitter'"
-                            )
-                      
-                        // Emergency Contact Phone #
-                        .control-group
-                          label.control-label Emergency Contact Phone #*
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='chaperone.emergencyInfo.phone',
-                              required,
-                              placeholder="Enter your emergency contact's phone number.",
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="Generally it's a good idea to choose a cell phone number."
-                            )
-                      
-                        // Registrant Medical number
-                        .control-group
-                          label.control-label Registrant Medical number*
-                          .controls
-                            input.focused(
-                              type='number',
-                              ng-model='chaperone.emergencyInfo.medicalNum',
-                              required,
-                              placeholder="Enter your Medical number.",
-                              maxlength=10,
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              data-content="This should be your 10-digit CareCard number."
-                            )
-
-                        // Allergies
-                        .control-group
-                          label.control-label Allergies
-                          .controls
-                            input.focused(
-                              type='text',
-                              ng-model='chaperone.emergencyInfo.allergies',
-                              required,
-                              placeholder='Enter your allergies here, comma seperated.',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              ng-list=",",
-                              data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
-                            )
-
-                        // Illnesses
-                        .control-group
-                          label.control-label Illnesses
-                          .controls
-                            input.focused(
-                              type='text',
-                              name='chaperone.emergencyInfo.illnesses',
-                              ng-model='chaperone.emergencyInfo.illnesses',
-                              ui-jq='popover',
-                              ui-options="{trigger: 'focus', placement: 'bottom'}",
-                              ng-list=",",
-                              placeholder='Enter your illnesses here, comma seperated.',
-                              data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
-                            )
-                      // End Emergency Info
-
-      // Young Adult Controllers     
-      .well.form-horizontal#youngAdults
-        h1 Young Adult Attendees
-        .container-fluid
-          .row-fluid
-            .span3
-              p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
-        hr
-        .container-fluid(id="youngAdultAccordion")
-          .accordion-group
-            .accordion-heading
-              a.accordion-toggle(ng-click="addYoungAdult()")
-                i.icon-plus
-                | Add a Young Adult
-          .accordion-group(ng-repeat="youngAdult in youngAdultList")
-            .accordion-heading
-              .row-fluid
-                .pull-left
-                  a.accordion-toggle(accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
-                .pull-right
-                  a.accordion-toggle(ng-click="removeYoungAdult(youngAdult)") 
-                    i.icon-trash
-                    | Remove {{ youngAdult.name }}
-            .accordion-body.collapse(id="youngAdult{{ youngAdult.number }}")
-              .accordion-inner
-                .row-fluid
-                  // Begin Basic Info
-                  .span6
-                    fieldset(id="youngAdult{{youngAdult.number}}")
-                      legend Basic Information
-                      p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+                      // Begin Emergency Info
+                      .span6        
+                        fieldset
+                          legend Emergency Information
+                          p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
               
-                      // Name Field
-                      .control-group
-                        label.control-label Name*
-                        .controls
-                          input.focused(
-                            type='text',
-                            ng-model='youngAdult.name',
-                            required,
-                            placeholder='Enter your name',
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="Just your name, nothing special here."
-                          )
-
-                      // Gender Field
-                      .control-group
-                        label.control-label Gender*
-                        .controls
-                          select(required, ng-model="youngAdult.gender", name="youngAdult.gender")
-                            option Male
-                            option Female
-                            option Other
-              
-                      // Birth Date Field
-                      .control-group
-                        label.control-label Birth Date*
-                        .controls
-                          input.focused(
-                            required,
-                            ng-model="youngAdult.birthDate",
-                            placeholder='dd/mm/yyyy',
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                            type='text'
-                         )
-
-                       // Phone Field
-                      .control-group
-                        label.control-label Phone #
-                        .controls
-                          input.focused(
-                            type='text',
-                            ng-model='youngAdult.phone',
-                            maxlength='10',
-                            placeholder='Enter your phone number',
-                            required,
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
-                          )
-
-                      // Email Field
-                      .control-group
-                        label.control-label Email
-                        .controls
-                          input.focused(
-                            type='email',
-                            ng-model='youngAdult.email',
-                            placeholder='Enter your Email',
-                            required
-                          )
-                    // End Basic Info
-                  // Begin Emergency Info
-                  .span6        
-                    fieldset
-                      legend Emergency Information
-                      p In the event of an unfortunate happenstance, we'll use this information to help us provide the best assistance possible.
-              
-                      // Emergency Contact Name
-                      .control-group
-                        label.control-label Emergency Contact name*
-                        .controls
-                          input.focused(
-                            type='text',
-                            required,
-                            ng-model='youngAdult.emergencyInfo.name',
-                            placeholder="Enter your emergency contact's name.",
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
-                          )
+                          // Emergency Contact Name
+                          .control-group
+                            label.control-label Emergency Contact name*
+                            .controls
+                              input.focused(
+                                type='text',
+                                required,
+                                ng-model='youngAdult.emergencyInfo.name',
+                                placeholder="Enter your emergency contact's name.",
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
+                              )
                     
-                      // Emergency Contact Relation      
-                      .control-group
-                        label.control-label Emergency Contact Relation
-                        .controls
-                          input.focused(
-                            type='text',
-                            name='youngAdult.emergencyInfo.relation',
-                            ng-model='youngAdult.emergencyInfo.relation',
-                            placeholder="Enter your Emergency Contact's relationship with you.",
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="For example, 'Mother' or 'Social Worker'"
-                          )
+                          // Emergency Contact Relation      
+                          .control-group
+                            label.control-label Emergency Contact Relation
+                            .controls
+                              input.focused(
+                                type='text',
+                                name='youngAdult.emergencyInfo.relation',
+                                ng-model='youngAdult.emergencyInfo.relation',
+                                placeholder="Enter your Emergency Contact's relationship with you.",
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="For example, 'Mother' or 'Social Worker'"
+                              )
 
-                      // Emergency Contact Phone #
-                      .control-group
-                        label.control-label Emergency Contact Phone #*
-                        .controls
-                          input.focused(
-                            type='text',
-                            ng-model='youngAdult.emergencyInfo.phone',
-                            required,
-                            placeholder="Enter your emergency contact's phone number.",
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="Generally it's a good idea to choose a cell phone number."
-                          )
+                          // Emergency Contact Phone #
+                          .control-group
+                            label.control-label Emergency Contact Phone #*
+                            .controls
+                              input.focused(
+                                type='text',
+                                ng-model='youngAdult.emergencyInfo.phone',
+                                required,
+                                placeholder="Enter your emergency contact's phone number.",
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="Generally it's a good idea to choose a cell phone number."
+                              )
 
-                      // Registrant Medical number
-                      .control-group
-                        label.control-label Registrant Medical number*
-                        .controls
-                          input.focused(
-                            type='number',
-                            ng-model='youngAdult.emergencyInfo.medicalNum',
-                            required,
-                            placeholder="Enter your Medical number.",
-                            maxlength=10,
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            data-content="This should be your 10-digit CareCard number."
-                          )
+                          // Registrant Medical number
+                          .control-group
+                            label.control-label Registrant Medical number*
+                            .controls
+                              input.focused(
+                                type='number',
+                                ng-model='youngAdult.emergencyInfo.medicalNum',
+                                required,
+                                placeholder="Enter your Medical number.",
+                                maxlength=10,
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                data-content="This should be your 10-digit CareCard number."
+                              )
 
-                      // Allergies
-                      .control-group
-                        label.control-label Allergies
-                        .controls
-                          input.focused(
-                            type='text',
-                            ng-model='youngAdult.emergencyInfo.allergies',
-                            required,
-                            placeholder='Enter your allergies here, comma seperated.',
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            ng-list=",",
-                            data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
-                          )
+                          // Allergies
+                          .control-group
+                            label.control-label Allergies
+                            .controls
+                              input.focused(
+                                type='text',
+                                ng-model='youngAdult.emergencyInfo.allergies',
+                                required,
+                                placeholder='Enter your allergies here, comma seperated.',
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ng-list=",",
+                                data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                              )
 
-                      // Illnesses
-                      .control-group
-                        label.control-label Illnesses
-                        .controls
-                          input.focused(
-                            type='text',
-                            ng-model='youngAdult.emergencyInfo.illnesses',
-                            ui-jq='popover',
-                            ui-options="{trigger: 'focus', placement: 'bottom'}",
-                            placeholder='Enter your illnesses here, comma seperated.',
-                            ng-list=",",
-                            data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
-                          )
-                    // End Emergency Information
+                          // Illnesses
+                          .control-group
+                            label.control-label Illnesses
+                            .controls
+                              input.focused(
+                                type='text',
+                                ng-model='youngAdult.emergencyInfo.illnesses',
+                                ui-jq='popover',
+                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                placeholder='Enter your illnesses here, comma seperated.',
+                                ng-list=",",
+                                data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                              )
+                        // End Emergency Information
             
-      .well
-        h1 Registration Confirmation
-        p Here you can verify some of the details regarding your registration. Please take care in looking over this portion of the document.
-          .container-fluid
-            .row-fluid
-              .span3
-                h6 Group Information
-                ul.nav.nav-list
-                  li Youth: {{ youthList.length }}
-                  li Chaperones: {{ chaperoneList.length }}
-                  li Young Adults: {{ youngAdultList.length }}
-              .span3
-                ul
-              .span3
-                h6 Unofficial Invoice
-                ul.nav.nav-list
-                  li T
-        .alert.alert-warning(ui-toggle='regForm.$invalid')
-          p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
-          p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
-        .alert.alert-success(ui-toggle='!regForm.$invalid') Looks like you are good to go! Take a final look over everything and then hit submit, then you're done!
-        input.btn-large.btn-primary(
-          type='submit',
-          value='Register',
-          ng-model='submitButton',
-          ng-disabled="isClean() || submitted"
-        )
+        // Confirmation Fields
+        .row-fluid
+          .form-horizontal.well#confirmation
+            h1 Registration Confirmation
+            p Here you can verify some of the details regarding your registration. Please take care in looking over this portion of the document.
+              .container-fluid
+                .row-fluid
+                  .span3
+                    h6 Group Information
+                    ul.nav.nav-list
+                      li Youth: {{ youthList.length }}
+                      li Chaperones: {{ chaperoneList.length }}
+                      li Young Adults: {{ youngAdultList.length }}
+                  .span3
+                    ul
+                  .span3
+                    h6 Unofficial Invoice
+                    ul.nav.nav-list
+                      li Paid Tickets: 
+                      li Free Tickets: 
+            .alert.alert-warning(ui-toggle='regForm.$invalid')
+              p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
+              p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
+            .alert.alert-success(ui-toggle='!regForm.$invalid') Looks like you are good to go! Take a final look over everything and then hit submit, then you're done!
+            input.btn-large.btn-primary(
+              type='submit',
+              value='Register',
+              ng-model='submitButton',
+              ng-disabled="isClean() || submitted"
+            )
+            .alert.alert-success(ui-toggle="submitted")
+              p You're submitted! We've got your submitted! We'll send you a mail (TODO! Not yet!) in a few!

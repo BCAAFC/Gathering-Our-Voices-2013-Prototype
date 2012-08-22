@@ -11,11 +11,12 @@ html(ng-app="gov")
       script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 
     // Get the CSS.
-    != css('bootstrap/bootstrap')
+    != css('bootstrap.min')
     != css('layout')
-    != css('bootstrap/responsive')
+    != css('responsive.min')
 
   body(data-offset="50",data-spy="scroll",data-target="#subnav")
+    // Navbar. This does not need a container.
     .navbar.navbar-fixed-top
       .navbar-inner
         .offset3.container-fluid
@@ -29,7 +30,7 @@ html(ng-app="gov")
             li
               a(href='management') Management
 
-    // Leaving out for now
+    // Leaving out for now.
       .container-fluid
         .span3.offset3
         .pull-right
@@ -45,33 +46,29 @@ html(ng-app="gov")
                 img(src="/img/index/carousel4.jpg")
             a.carousel-control.left(href='javascript:void(0)', carousel-prev) &lsaquo;
             a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
+            
+    // Main Container. Nothing other then floats should be outside of this.
+    .container-fluid
+      // Logo Row.
+      // -- This is the top of the page, it containers things that the entire application will be using.
+      .row-fluid
+        .span9
+        .span3
+          img.hidden-phone(src="/img/gov_logo.png")
     
-    .offset9.span3
-      img.hidden-phone(src="/img/gov_logo.png")
-    
-    // The main content of the app.
-    div#article(ng-view)
-      .container-fluid
-        .row-fluid
-          .span5
-          .well.span2
-            p Please give us a moment while the data loads!
+      // Article Row
+      // -- This is the main content which Angular JS replaces during ng-view
+      .row-fluid#article(ng-view)
+        .container-fluid
+          .row-fluid
+            .span5
+            .well.span2
+              p Please give us a moment while the data loads!
 
-  // Load the javascript at the end of the page, it's faster apparently (twitter says)
+  // Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
   != js('jquery.min')
   // Bootstrap only
-  != js('bootstrap/bootstrap-alert')
-  != js('bootstrap/bootstrap-button')
-  != js('bootstrap/bootstrap-carousel')
-  != js('bootstrap/bootstrap-collapse')
-  != js('bootstrap/bootstrap-dropdown')
-  != js('bootstrap/bootstrap-modal')
-  != js('bootstrap/bootstrap-scrollspy')
-  != js('bootstrap/bootstrap-tab')
-  != js('bootstrap/bootstrap-tooltip')
-  != js('bootstrap/bootstrap-popover')
-  != js('bootstrap/bootstrap-transition')
-  != js('bootstrap/bootstrap-typeahead')
+  != js('bootstrap.min')
   // Angular JS specific
   != js('angular/angular-1.0.1')
   != js('angular-ui')
