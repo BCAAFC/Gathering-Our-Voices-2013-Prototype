@@ -8,43 +8,42 @@
           input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
       .well
         p
-          h5 Basic Information
-          h6 Name
+          h6 Basic Information
+          b Name: 
           | {{ currentUser.name }}
           br
-          h6 Status
+          b Status: 
           | {{ currentUser.status }}
           br
-          h6 Gender
+          b Gender: 
           | {{ currentUser.gender }}
           br
-          h6 Birth Date
+          b Birth Date: 
           | {{ currentUser.birthDate }}
           br
-          h6 Phone
+          b Phone: 
           | {{ currentUser.phone }}
           br
-          h6 Email
+          b Email: 
           | {{ currentUser.email }}
-          br
-          br
-          h5 Emergency Information
-          h6 Name
+          hr
+          h6 Emergency Information
+          b Name: 
           | {{ currentUser.emergencyInfo.name }}
           br
-          h6 Relation
+          b Relation: 
           | {{ currentUser.emergencyInfo.relation }}
           br
-          h6 Phone
+          b Phone: 
           | {{ currentUser.emergencyInfo.phone }}
           br
-          h6 Medical Number
+          b Medical Number: 
           | {{ currentUser.emergencyInfo.medicalNum }}
           br
-          h6 Allergies
+          b Allergies: 
           | {{ currentUser.emergencyInfo.allergies }}
           br
-          h6 Illnesses
+          b Illnesses: 
           | {{ currentUser.emergencyInfo.illnesses }}
     .span3
     .span8.well.accordion#listing

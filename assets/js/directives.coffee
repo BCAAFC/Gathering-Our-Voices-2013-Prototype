@@ -27,4 +27,9 @@ angular.module("gov.directives", [])
           # Get the accordion we want, open the one we want.
           select = "#" + attrs.accordion
           $(select).collapse "toggle"
+    ).directive('uiAffix', ->
+      link: (scope, element, attrs) ->
+        element.affix
+            offset:
+              top: 310
     )

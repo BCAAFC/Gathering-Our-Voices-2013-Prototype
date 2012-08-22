@@ -4,7 +4,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     // -- A nice navigation addon for our Desktop users.
     // -- Don't put anything important here. Tablets and Phones can't see it.
     .span2
-      .visible-desktop.well(style="position: fixed; top: 310px;")
+      .visible-desktop.well.regSidebar(ui-affix)
         ul.nav.nav-list
           li.nav-header Quick Scroll
           li
