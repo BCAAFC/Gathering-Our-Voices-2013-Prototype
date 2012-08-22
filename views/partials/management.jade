@@ -1,6 +1,6 @@
 .container-fluid(ng-controller='manCtl')
-  .span3(style="position: fixed; top: 50px;")
-    .container-fluid
+  .row-fluid
+    .span3(style="position: fixed; top: 50px;")
       .well
         .input-prepend
           span.add-on
@@ -46,67 +46,72 @@
           br
           h6 Illnesses
           | {{ currentUser.emergencyInfo.illnesses }}
-  .span10.offset3.well.accordion#listing
-    .container-fluid
-      .span2
-        h6 Primary Contact
-      .span2
-        h6 Affiliation
-      .span1
-        h6 Youth
-      .span1
-        h6 Chaperones
-      .span1
-        h6 Y. Adults
-      .span1
-        h6 Edit
-    .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
-      .container-fluid.accordion-heading
-        .span2(ng-click='group.expanded=!group.expanded')
-          a.accordion-toggle  {{group.primaryContact.name}}
-        .span2(management-collapse)
-          p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
-        .span1(management-collapse)
-          p.accordion-toggle {{group.youthList.length}}
-        .span1(management-collapse)
-          p.accordion-toggle {{group.chaperoneList.length}}
-        .span1(management-collapse)
-          p.accordion-toggle {{group.youngAdultList.length}}
-        .span1
-          button.accordion-toggle.btn.btn-small.btn-warning(ng-click='edituser()') Edit &raquo;
-      .accordion-body(ui-toggle='group.expanded')
-        .accordion-inner
-          .container-fluid
-            .span2
-              h6 Mailing Information
-              address(style='text-align: center')
-                p
-                  a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
-                  br
-                  i {{ group.primaryContact.extendedInfo.affiliation }}
-                  br
-                  | {{ group.primaryContact.phone }}
-                  br
-                  | {{ group.primaryContact.extendedInfo.address }}
-                  br
-                  | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
-                  br
-                  | {{ group.primaryContact.extendedInfo.postalCode }}
-            .span2
-              h6 Youth
-              ul.nav.nav-list
-                li(ng-repeat="youth in group.youthList")
-                  a(ng-click='select(youth)') {{youth.name}}
-            .span2
-              h6 Chaperones
-              ul.nav.nav-list
-                li(ng-repeat="chaperone in group.chaperoneList")
-                  a(ng-click='select(chaperone)') {{chaperone.name}}
-            .span2
-              h6 Y. Adults
-              ul.nav.nav-list
-                li(ng-repeat="youngAdult in group.youngAdultList")
-                  a(ng-click='select(youngAdult)') {{youngAdult.name}}
+    .span3
+    .span8.well.accordion#listing
+      .container-fluid
+        .row-fluid
+          .span2
+            h6 Primary Contact
+          .span2
+            h6 Affiliation
+          .span2
+            h6 Youth
+          .span2
+            h6 Chaperones
+          .span2
+            h6 Y. Adults
+          .span2
+            h6 Edit
+      .row-fluid
+        .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
+          .accordion-heading
+            .container-fluid
+              .row-fluid
+                .span2(ng-click='group.expanded=!group.expanded')
+                  a.accordion-toggle  {{group.primaryContact.name}}
+                .span2(management-collapse)
+                  p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
+                .span2(management-collapse)
+                  p.accordion-toggle {{group.youthList.length}}
+                .span2(management-collapse)
+                  p.accordion-toggle {{group.chaperoneList.length}}
+                .span2(management-collapse)
+                  p.accordion-toggle {{group.youngAdultList.length}}
+                .span2
+                  button.accordion-toggle.btn.btn-small.btn-warning(ng-click='edituser()') Edit &raquo;
+          .accordion-body(ui-toggle='group.expanded')
+            .accordion-inner
+              .container-fluid
+                .span2
+                  h6 Mailing Information
+                  address(style='text-align: center')
+                    p
+                      a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
+                      br
+                      i {{ group.primaryContact.extendedInfo.affiliation }}
+                      br
+                      | {{ group.primaryContact.phone }}
+                      br
+                      | {{ group.primaryContact.extendedInfo.address }}
+                      br
+                      | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+                      br
+                      | {{ group.primaryContact.extendedInfo.postalCode }}
+                .span2
+                  h6 Youth
+                  ul.nav.nav-list
+                    li(ng-repeat="youth in group.youthList")
+                      a(ng-click='select(youth)') {{youth.name}}
+                .span2
+                  h6 Chaperones
+                  ul.nav.nav-list
+                    li(ng-repeat="chaperone in group.chaperoneList")
+                      a(ng-click='select(chaperone)') {{chaperone.name}}
+                .span2
+                  h6 Y. Adults
+                  ul.nav.nav-list
+                    li(ng-repeat="youngAdult in group.youngAdultList")
+                      a(ng-click='select(youngAdult)') {{youngAdult.name}}
 
 .modal.hide.fade#secretModal
   .modal-header
