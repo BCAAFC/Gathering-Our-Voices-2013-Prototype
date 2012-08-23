@@ -52,6 +52,7 @@ Thankfully, it's easy to make your own!
 In `config.js`:
 
     module.exports = {
+      port: $yourPortHere,
       secret: $yourSecretHere,
       cookieSecret: $yourCookieSecretHere
     };
