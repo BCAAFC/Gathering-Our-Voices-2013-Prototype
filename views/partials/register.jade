@@ -165,7 +165,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .container-fluid(id="youthAccordion")
               .accordion-group
                 .accordion-heading
-                  a.accordion-toggle(ng-click="addYouth()")
+                  a.accordion-toggle(href="javascript:void(0);", ng-click="addYouth()")
                     i.icon-plus
                     | Add a Youth
               .accordion-group(ng-repeat="youth in youthList")
@@ -354,7 +354,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .container-fluid(id="chaperoneAccordion")
               .accordion-group
                 .accordion-heading
-                  a.accordion-toggle(ng-click="addChaperone()")
+                  a.accordion-toggle(href="javascript:void(0);", ng-click="addChaperone()")
                     i.icon-plus
                     | Add a Chaperone
               .accordion-group(ng-repeat="chaperone in chaperoneList")
@@ -544,7 +544,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .container-fluid(id="youngAdultAccordion")
               .accordion-group
                 .accordion-heading
-                  a.accordion-toggle(ng-click="addYoungAdult()")
+                  a.accordion-toggle(href="javascript:void(0);", ng-click="addYoungAdult()")
                     i.icon-plus
                     | Add a Young Adult
               .accordion-group(ng-repeat="youngAdult in youngAdultList")
