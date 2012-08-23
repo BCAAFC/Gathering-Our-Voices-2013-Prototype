@@ -1,7 +1,7 @@
 #'use strict';
 
 # Declare app level module which depends on filters, and services
-angular.module("gov", ["gov.directives", "ui", "govmath"])
+@angular.module("gov", ["gov.directives", "ui", "govmath"])
 .config(["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
   $routeProvider.when "/register",
     templateUrl: "partials/register"
