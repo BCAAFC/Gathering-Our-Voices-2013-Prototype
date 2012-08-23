@@ -45,7 +45,7 @@ authenticate = (name, password, fn) ->
 # Persistant configuration goes here.
 ###
 app.configure ->
-  app.set "port", process.env.PORT or 8080
+  app.set "port", config.port or 8080
   app.set "views", __dirname + "/views"
   app.set "view engine", "jade"
   app.use express.favicon()
@@ -69,7 +69,7 @@ app.configure "development", ->
 ###
 # Index GET.
 app.get "/", (req, res) ->
-  res.render "index"
+
 
 # This handles all the partials for Angular, don't break this!
 app.get "/partials/:name", (req, res) ->
@@ -120,4 +120,3 @@ app.post "/register", (req, res) ->
 ###
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
-
