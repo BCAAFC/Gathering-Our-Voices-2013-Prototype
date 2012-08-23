@@ -172,9 +172,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .accordion-heading
                   .row-fluid
                     .pull-left
-                      a.accordion-toggle(accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
+                      a.accordion-toggle(href="javascript:void(0);", accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
                     .pull-right
-                      a.accordion-toggle(ng-click="removeYouth(youth)") 
+                      a.accordion-toggle(href="javascript:void(0);", ng-click="removeYouth(youth)") 
                         i.icon-trash
                         | Remove {{ youth.name }}
                 .accordion-body.collapse(id="youth{{youth.number}}")
@@ -361,9 +361,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .accordion-heading
                   .row-fluid
                     .pull-left
-                      a.accordion-toggle(accordion="chaperone{{chaperone.number}}", accordion-group="#chaperoneAccordion") {{ chaperone.name }}
+                      a.accordion-toggle(href="javascript:void(0);", accordion="chaperone{{chaperone.number}}", accordion-group="#chaperoneAccordion") {{ chaperone.name }}
                     .pull-right
-                      a.accordion-toggle(ng-click="removeChaperone(chaperone)") 
+                      a.accordion-toggle(href="javascript:void(0);", ng-click="removeChaperone(chaperone)") 
                         i.icon-trash
                         | Remove {{ chaperone.name }}
                 .accordion-body.collapse(id="chaperone{{ chaperone.number }}")
@@ -551,9 +551,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .accordion-heading
                   .row-fluid
                     .pull-left
-                      a.accordion-toggle(accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
+                      a.accordion-toggle(href="javascript:void(0);", accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
                     .pull-right
-                      a.accordion-toggle(ng-click="removeYoungAdult(youngAdult)") 
+                      a.accordion-toggle(href="javascript:void(0);", ng-click="removeYoungAdult(youngAdult)") 
                         i.icon-trash
                         | Remove {{ youngAdult.name }}
                 .accordion-body.collapse(id="youngAdult{{ youngAdult.number }}")
