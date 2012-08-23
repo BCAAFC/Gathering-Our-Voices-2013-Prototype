@@ -69,7 +69,7 @@ app.configure "development", ->
 ###
 # Index GET.
 app.get "/", (req, res) ->
-
+	res.render "index"
 
 # This handles all the partials for Angular, don't break this!
 app.get "/partials/:name", (req, res) ->
