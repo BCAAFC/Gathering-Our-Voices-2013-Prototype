@@ -17,8 +17,8 @@ app = express()
 ###
 # Set up our database.
 ###
-database = "govtest"
-collections = ["attendees", "workshops"]
+database = config.database
+collections = ["attendees"]
 db = mongojs.connect(database, collections)
 
 ###

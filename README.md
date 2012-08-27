@@ -53,6 +53,7 @@ In `config.js`:
 
     module.exports = {
       port: $yourPortHere,
+      database: $yourDatabaseHere,
       secret: $yourSecretHere,
       cookieSecret: $yourCookieSecretHere
     };
