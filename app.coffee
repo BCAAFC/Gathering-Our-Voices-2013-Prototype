@@ -4,12 +4,11 @@
 express = require("express")
 http = require("http")
 assets = require("connect-assets")
-mongojs = require("mongojs")
+mongoose = require("mongoose")
 path = require("path")
 coffee = require("coffee-script")
 config = require("./config")
-form = require("express-form")
-field = form.field
+
 
 ###
 # Declare our app.
@@ -19,9 +18,50 @@ app = express()
 ###
 # Set up our database.
 ###
-database = config.database
-collections = ["attendees"]
-db = mongojs.connect(database, collections)
+database = mongoose.createConnection('localhost', config.database)
+database.on 'error', console.error.bind(console, 'connection error:')
+database.once 'open', () ->
+  console.log "Connected to Database."
+
+# Attendee Schema used for youth, chaperones, and young adults
+attendeeSchema = new mongoose.Schema
+  name: String
+  status: String
+  gender: String
+  birthDate: String
+  phone: Number
+  email: String
+  emergencyInfo:
+    name: String
+    relation: String
+    phone: Number
+    medicalNum: Number
+    allergies: [String]
+    illnesses: [String]
+  number: Number
+Attendee = database.model('Attendee', attendeeSchema)
+
+# Group Schema for all groups.
+groupSchema = new mongoose.Schema
+  primaryContact:
+    name: String
+    phone: Number
+    email: String
+    extendedInfo:
+      affiliation: String
+      address: String
+      city: String
+      province: String
+      postalCode: String
+      fax: Number
+  youthList: [attendeeSchema]
+  chaperoneList: [attendeeSchema]
+  youngAdultList: [attendeeSchema]
+  costs:         
+    paidTickets: Number
+    freeTickets: Number
+    paid: Number
+Group = database.model('Group', groupSchema)
 
 ###
 # Persistant configuration goes here.
@@ -73,23 +113,30 @@ app.get "/management", (req, res) ->
 # Management list (User must provide password)
 app.post "/attendee-list", (req, res) ->
   if req.body.secret is config.secret
-    db.attendees.find {}, (err, attendees) ->
-      res.send attendees
+    Group.find {}, (err, result) ->
+      if err
+        console.log err
+      res.send result
 
 # Registration Form Post
 app.post "/register",
-  form(
-    field("primaryContact.name").trim().required(),
-    field("primaryContact.email").trim().isEmail(),
-    field("primaryContact.phone").trim().is(/^[0-9]+$/),
-  ),
-  # Finally handle the reqest
   (req, res) ->
-    if !req.form.isValid
-      res.send
-        failure: true
-    else
-      db.attendees.save req.body
+    group = new Group
+      primaryContact: req.body.primaryContact
+      youthList: req.body.youthList
+      chaperoneList: req.body.chaperoneList
+      youngAdultList: req.body.youngAdultList
+      costs: req.costs
+    # Catch errors and send a message
+    group.save (err) ->
+      if (err)
+        console.log "Error in validation!"
+        console.log err
+        res.send
+          success: false
+      else
+        res.send
+          success: true
 
 ###
 # Finally, start the server.

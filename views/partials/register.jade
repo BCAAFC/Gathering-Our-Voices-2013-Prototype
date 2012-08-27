@@ -148,7 +148,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.faxNumber',
+                    ng-model='primaryContact.extendedInfo.fax',
                     placeholder="Enter your fax number.",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus', placement: 'bottom'}",
@@ -758,3 +758,4 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               p Your registration has been submited! Thanks!
             .alert.alert-error(ui-toggle="submitError")
               p There was a failure in our validation of your form. Please contact us if you're sure everything is alright!
+              p In the current state. <b>Nothing</b> was submitted.

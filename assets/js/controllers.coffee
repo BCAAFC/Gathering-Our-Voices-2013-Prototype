@@ -44,11 +44,12 @@
         paid: 0
     ).success (data, status, headers, config) ->
       console.log data
-      if data.failure == true
+      if data.success == false
         console.log "There was an error"
         $scope.submitError = true
       else
         $scope.submitted = true
+        $scope.submitError = false
 
   $scope.primaryContact =
     name: ""
