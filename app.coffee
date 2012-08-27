@@ -5,7 +5,6 @@ express = require("express")
 http = require("http")
 assets = require("connect-assets")
 mongojs = require("mongojs")
-pass = require("pwd")
 path = require("path")
 coffee = require("coffee-script")
 config = require("./config")
@@ -21,25 +20,6 @@ app = express()
 database = "govtest"
 collections = ["attendees", "workshops"]
 db = mongojs.connect(database, collections)
-
-# Maybe Deprecate
-authenticate = (name, password, fn) ->
-  console.log "authenticating %s:%s", name, password  unless module.parent
-  db.attendees.findOne
-    name: name
-  , (err, user) ->
-    
-    # query the db for the given username
-    return fn(new Error("cannot find user"))  unless user
-    
-    # apply the same algorithm to the POSTed password, applying
-    # the hash against the pass / salt, if there is a match we
-    # found the user
-    pass.hash password, user.salt, (err, hash) ->
-      return fn(err)  if err
-      return fn(null, user)  if hash is user.hash
-      fn new Error("invalid password")
-
 
 ###
 # Persistant configuration goes here.
@@ -87,23 +67,6 @@ app.get "/register", (req, res) ->
 # Management GET. Angular Handles the templating.
 app.get "/management", (req, res) ->
   res.render "index"
-
-# Login Form Post
-app.post "/login", (req, res) ->
-  authenticate req.body.username, req.body.password, (err, user) ->
-    console.log user
-    if user
-      # Regenerate session when signing in
-      # to prevent fixation 
-      req.session.regenerate ->
-        # Store the user's primary key 
-        # in the session store to be retrieved,
-        # or in this case the entire user object
-        req.session.user = user
-        res.redirect "back"
-    else
-      req.session.error = "Authentication failed, please check your " + " username and password." + " (use \"tj\" and \"foobar\")"
-      res.redirect "login"
 
 # Management list (User must provide password)
 app.post "/attendee-list", (req, res) ->
