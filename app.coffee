@@ -8,6 +8,8 @@ mongojs = require("mongojs")
 path = require("path")
 coffee = require("coffee-script")
 config = require("./config")
+form = require("express-form")
+field = form.field
 
 ###
 # Declare our app.
@@ -75,8 +77,19 @@ app.post "/attendee-list", (req, res) ->
       res.send attendees
 
 # Registration Form Post
-app.post "/register", (req, res) ->
-  db.attendees.save req.body
+app.post "/register",
+  form(
+    field("primaryContact.name").trim().required(),
+    field("primaryContact.email").trim().isEmail(),
+    field("primaryContact.phone").trim().is(/^[0-9]+$/),
+  ),
+  # Finally handle the reqest
+  (req, res) ->
+    if !req.form.isValid
+      res.send
+        failure: true
+    else
+      db.attendees.save req.body
 
 ###
 # Finally, start the server.

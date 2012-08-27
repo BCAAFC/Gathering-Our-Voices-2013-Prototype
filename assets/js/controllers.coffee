@@ -33,8 +33,7 @@
   $scope.chaperoneNumber = 0
   
   $scope.submit = ->
-    $scope.submitted = true
-    $http.post "/register",
+    $http.post("/register",
       primaryContact: $scope.primaryContact
       youthList: $scope.youthList
       chaperoneList: $scope.chaperoneList
@@ -43,6 +42,13 @@
         paidTickets: $scope.paidTickets()
         freeTickets: $scope.freeTickets()
         paid: 0
+    ).success (data, status, headers, config) ->
+      console.log data
+      if data.failure == true
+        console.log "There was an error"
+        $scope.submitError = true
+      else
+        $scope.submitted = true
 
   $scope.primaryContact =
     name: ""

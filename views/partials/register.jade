@@ -755,4 +755,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               ng-disabled="isClean() || submitted || !enoughChaperones()"
             )
             .alert.alert-success(ui-toggle="submitted")
-              p You're submitted! We've got your submitted! We'll send you a mail (TODO! Not yet!) in a few!
+              p Your registration has been submited! Thanks!
+            .alert.alert-error(ui-toggle="submitError")
+              p There was a failure in our validation of your form. Please contact us if you're sure everything is alright!
