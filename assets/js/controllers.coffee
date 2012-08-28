@@ -27,30 +27,18 @@
 # Register Controller. This handles the entire registration form.
 # It may be wise to find a cleaner format for this.
 ###
-@regCtl = ($scope, $http, $anchorScroll, $location) ->
+@regCtl = ($scope, $http, $routeParams, $location) ->
+  # Initialize our Lists to empty
+  # We load empty data to avoid errors with some of our functions.
+  # It gets overridden if we're loading data from a user.
+  $scope.youthList = []
+  $scope.chaperoneList = []
+  $scope.youngAdultList = []
+  # Begin counters
   $scope.youngAdultNumber = 0
   $scope.youthNumber = 0
   $scope.chaperoneNumber = 0
-  
-  $scope.submit = ->
-    $http.post("/register",
-      primaryContact: $scope.primaryContact
-      youthList: $scope.youthList
-      chaperoneList: $scope.chaperoneList
-      youngAdultList: $scope.youngAdultList
-      costs:
-        paidTickets: $scope.paidTickets()
-        freeTickets: $scope.freeTickets()
-        paid: 0
-    ).success (data, status, headers, config) ->
-      console.log data
-      if data.success == false
-        console.log "There was an error"
-        $scope.submitError = true
-      else
-        $scope.submitted = true
-        $scope.submitError = false
-
+  # Define an empty primary contact
   $scope.primaryContact =
     name: ""
     phone: ""
@@ -62,9 +50,71 @@
       province: ""
       postalCode: ""
       fax: ""
+      
+  # Make sure we're doing a new registration
+  $scope.updateButton = false
+  # Load Data if needed!
+  if $routeParams.groupId
+    $http.post("/getGroupId",
+      id: $routeParams.groupId
+    ).success (data, status, headers, config) ->
+      console.log data
+      # Set the lists up to load from data
+      $scope.youthList = data.youthList
+      $scope.chaperoneList = data.chaperoneList
+      $scope.youngAdultList = data.youngAdultList
+      # Begin counters
+      $scope.youngAdultNumber = data.internalData.youngAdultNumber
+      $scope.youthNumber = data.internalData.youthNumber
+      $scope.chaperoneNumber = data.internalData.chaperoneNumber
+      # Load up our Primary Contact
+      $scope.primaryContact = data.primaryContact
+      # Set something so we know to update, not newly register.
+      $scope.updateButton = true
+  
+  # Define the submit button
+  $scope.submit = ->
+    if $scope.updateButton
+      $http.post("/update",
+        primaryContact: $scope.primaryContact
+        youthList: $scope.youthList
+        chaperoneList: $scope.chaperoneList
+        youngAdultList: $scope.youngAdultList
+        internalData: 
+          youthNumber: $scope.youthNumber
+          youngAdultNumber: $scope.youngAdultNumber
+          chaperoneNumber: $scope.chaperoneNumber
+        oldId: $params.phoneId
+      ).success (data, status, headers, config) ->
+        if data.success == false
+          $scope.submitError = true
+          $scope.validationErrors = data.errors
+          console.log "Please send the following if asked by an IT person:"
+          console.log data
+        else
+          $scope.submitted = true
+          $scope.submitError = false
+    else
+      $http.post("/register",
+        primaryContact: $scope.primaryContact
+        youthList: $scope.youthList
+        chaperoneList: $scope.chaperoneList
+        youngAdultList: $scope.youngAdultList
+        internalData: 
+          youthNumber: $scope.youthNumber
+          youngAdultNumber: $scope.youngAdultNumber
+          chaperoneNumber: $scope.chaperoneNumber
+      ).success (data, status, headers, config) ->
+        if data.success == false
+          $scope.submitError = true
+          $scope.validationErrors = data.errors
+          console.log "Please send the following if asked by an IT person:"
+          console.log data
+        else
+          $scope.submitted = true
+          $scope.submitError = false
   
   # Youth list
-  $scope.youthList = []
   $scope.addYouth = ->
     $scope.youthNumber +=1
     $scope.youthList.push
@@ -84,7 +134,6 @@
       number: $scope.youthNumber
   
   # Chaperone list
-  $scope.chaperoneList = []
   $scope.addChaperone = ->
     $scope.chaperoneNumber += 1
     $scope.chaperoneList.push
@@ -104,7 +153,6 @@
       number: $scope.chaperoneNumber
   
   # Young Adult list
-  $scope.youngAdultList = []
   $scope.addYoungAdult = ->
     $scope.youngAdultNumber += 1
     $scope.youngAdultList.push
@@ -149,7 +197,7 @@
   $scope.enoughChaperones = () ->
     $scope.chaperoneList.length >= Math.ceil($scope.youthList.length / 5)
 
-regCtl.$inject = ["$scope", "$http", "$anchorScroll", "$location"]
+regCtl.$inject = ["$scope", "$http", "$routeParams", "$location"]
 
 ###
 # Home, does nothing yet.

@@ -3,20 +3,24 @@
 # Declare app level module which depends on filters, and services
 @angular.module("gov", ["gov.directives", "ui", "govmath"])
 .config(["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
+  $routeProvider.when "/register/:groupId",
+    templateUrl: "/partials/register"
+    controller: regCtl
+  
   $routeProvider.when "/register",
-    templateUrl: "partials/register"
+    templateUrl: "/partials/register"
     controller: regCtl
 
   $routeProvider.when "/management",
-    templateUrl: "partials/management"
+    templateUrl: "/partials/management"
     controller: manCtl
 
   $routeProvider.when "/login",
-    templateUrl: "partials/login"
+    templateUrl: "/partials/login"
     controller: loginCtl
 
   $routeProvider.when "/",
-    templateUrl: "partials/home"
+    templateUrl: "/partials/home"
     controller: homeCtl
 
   $routeProvider.otherwise redirectTo: "/"

@@ -61,6 +61,10 @@ groupSchema = new mongoose.Schema
     paidTickets: Number
     freeTickets: Number
     paid: Number
+  internalData:
+    youthNumber: Number
+    youngAdultNumber: Number
+    chaperoneNumber: Number
 Group = database.model('Group', groupSchema)
 
 ###
@@ -105,6 +109,10 @@ app.get "/login", (req, res) ->
 # Register GET. Angular Handles the templating.
 app.get "/register", (req, res) ->
   res.render "index"
+  
+# Register GET. Angular Handles the templating.
+app.get "/register/:groupId", (req, res) ->
+  res.render "index"
 
 # Management GET. Angular Handles the templating.
 app.get "/management", (req, res) ->
@@ -119,16 +127,38 @@ app.post "/attendee-list", (req, res) ->
       res.send result
 
 # Registration Form Post
-app.post "/register",
-  (req, res) ->
+app.post "/register", (req, res) ->
     group = new Group
       primaryContact: req.body.primaryContact
       youthList: req.body.youthList
       chaperoneList: req.body.chaperoneList
       youngAdultList: req.body.youngAdultList
-      costs: req.costs
+      costs: req.body.costs
+      internalData: req.body.internalData
     # Catch errors and send a message
     group.save (err) ->
+      if (err)
+        console.log "Error in validation of a form!"
+        res.send
+          success: false
+          errors: err
+      else
+        res.send
+          success: true
+          
+# Update Form Post
+app.post "/update", (req, res) ->
+    oldGroup = group.find
+      "_id": ObjectId(req.body.oldId)
+    group = new Group
+      primaryContact: req.body.primaryContact
+      youthList: req.body.youthList
+      chaperoneList: req.body.chaperoneList
+      youngAdultList: req.body.youngAdultList
+      costs: req.body.costs
+      internalData: req.body.internalData
+    # Catch errors and send a message
+    group.update oldGroup, group, (err) ->
       if (err)
         console.log "Error in validation!"
         console.log err
@@ -137,6 +167,11 @@ app.post "/register",
       else
         res.send
           success: true
+
+# Get a group ID
+app.post "/getGroupId", (req, res) ->
+  Group.findOne { "_id" : req.body.id }, (err, result) ->
+    res.send result
 
 ###
 # Finally, start the server.
