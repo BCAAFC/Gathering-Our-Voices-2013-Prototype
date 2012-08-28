@@ -9,8 +9,6 @@ path = require("path")
 coffee = require("coffee-script")
 config = require("./config")
 
-
-
 ###
 # Declare our app.
 ###
@@ -97,7 +95,7 @@ app.configure "development", ->
 ###
 # Index GET.
 app.get "/", (req, res) ->
-	res.render "index"
+  res.render "index"
 
 # This handles all the partials for Angular, don't break this!
 app.get "/partials/:name", (req, res) ->
@@ -135,7 +133,10 @@ app.post "/register", (req, res) ->
       youthList: req.body.youthList
       chaperoneList: req.body.chaperoneList
       youngAdultList: req.body.youngAdultList
-      costs: req.body.costs
+      costs:
+        paid: 0
+        freeTickets: req.body.costs.freeTickets
+        paidTickets: req.body.costs.paidTickets
       internalData: req.body.internalData
     # Catch errors and send a message
     group.save (err) ->

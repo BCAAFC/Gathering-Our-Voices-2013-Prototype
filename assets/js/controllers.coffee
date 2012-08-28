@@ -85,6 +85,9 @@
           youngAdultNumber: $scope.youngAdultNumber
           chaperoneNumber: $scope.chaperoneNumber
         oldId: $routeParams.groupId
+        costs:
+          paidTickets: $scope.paidTickets()
+          freeTickets: $scope.freeTickets()
       ).success (data, status, headers, config) ->
         if data.success == false
           $scope.submitError = true
