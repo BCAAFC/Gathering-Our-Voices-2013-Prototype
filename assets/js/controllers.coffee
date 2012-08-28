@@ -84,7 +84,7 @@
           youthNumber: $scope.youthNumber
           youngAdultNumber: $scope.youngAdultNumber
           chaperoneNumber: $scope.chaperoneNumber
-        oldId: $routeParams.phoneId
+        oldId: $routeParams.groupId
       ).success (data, status, headers, config) ->
         if data.success == false
           $scope.submitError = true

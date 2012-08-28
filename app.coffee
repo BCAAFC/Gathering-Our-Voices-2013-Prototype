@@ -10,6 +10,7 @@ coffee = require("coffee-script")
 config = require("./config")
 
 
+
 ###
 # Declare our app.
 ###
@@ -19,6 +20,7 @@ app = express()
 # Set up our database.
 ###
 database = mongoose.createConnection('localhost', config.database)
+ObjectId = require('mongoose').Types.ObjectId;
 database.on 'error', console.error.bind(console, 'connection error:')
 database.once 'open', () ->
   console.log "Connected to Database."
@@ -148,25 +150,28 @@ app.post "/register", (req, res) ->
           
 # Update Form Post
 app.post "/update", (req, res) ->
-    oldGroup = group.find
-      "_id": ObjectId(req.body.oldId)
-    group = new Group
-      primaryContact: req.body.primaryContact
-      youthList: req.body.youthList
-      chaperoneList: req.body.chaperoneList
-      youngAdultList: req.body.youngAdultList
-      costs: req.body.costs
-      internalData: req.body.internalData
-    # Catch errors and send a message
-    group.update oldGroup, group, (err) ->
-      if (err)
-        console.log "Error in validation!"
+  # Get the old group.
+  Group.findOne
+    "_id": new ObjectId(req.body.oldId)
+    (err, result) ->
+      # Once we have the old group, set it.
+      result.primaryContact= req.body.primaryContact
+      result.youthList= req.body.youthList
+      result.chaperoneList= req.body.chaperoneList
+      result.youngAdultList= req.body.youngAdultList
+      #costs: req.body.costs
+      result.internalData= req.body.internalData
+      # Catch errors and send a message
+      result.save (err) ->
         console.log err
-        res.send
-          success: false
-      else
-        res.send
-          success: true
+        if (err)
+          console.log "Error in validation!"
+          console.log err
+          res.send
+            success: false
+        else
+          res.send
+            success: true
 
 # Get a group ID
 app.post "/getGroupId", (req, res) ->
