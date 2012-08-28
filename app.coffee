@@ -160,7 +160,6 @@ app.post "/update", (req, res) ->
       result.youthList= req.body.youthList
       result.chaperoneList= req.body.chaperoneList
       result.youngAdultList= req.body.youngAdultList
-      #costs: req.body.costs
       result.internalData= req.body.internalData
       # Catch errors and send a message
       result.save (err) ->
@@ -178,6 +177,35 @@ app.post "/update", (req, res) ->
 app.post "/getGroupId", (req, res) ->
   Group.findOne { "_id" : req.body.id }, (err, result) ->
     res.send result
+
+# Remove a group
+app.post "/removeGroupById", (req, res) ->
+  if req.body.secret is config.secret
+    Group.findOne req.body.group, (err, result) ->
+      result.remove (err) ->
+        if (err)
+          console.log "Error in removal!"
+          console.log err
+          res.send
+            success: false
+        else
+          res.send
+            success: true
+
+# Remove a group
+app.post "/updatePaid", (req, res) ->
+  if req.body.secret is config.secret
+    Group.findOne req.body.group, (err, result) ->
+      result.costs = req.body.costs
+      result.save (err) ->
+        if (err)
+          console.log "Error in update!"
+          console.log err
+          res.send
+            success: false
+        else
+          res.send
+            success: true
 
 ###
 # Finally, start the server.

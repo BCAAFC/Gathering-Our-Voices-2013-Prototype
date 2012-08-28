@@ -13,6 +13,33 @@
 
   $scope.select = (attendee) ->
     $scope.currentUser = attendee
+    
+  $scope.remove = (group) ->
+    # Send the group to be removed. We trim the data to avoid booleans we sometimes use.
+    $http.post("/removeGroupById",
+      secret: $scope.secret
+      group:
+        primaryContact: group.primaryContact
+        youthList: group.youthList
+        youngAdultList: group.youngAdultList
+        chaperoneList: group.chaperoneList
+        internalData: group.internalData
+        costs: group.costs
+    ).success (data, status, headers, config) ->
+      $scope.auth()
+      
+  $scope.updatePaid = (group) ->
+    $http.post("/updatePaid",
+      secret: $scope.secret
+      group:
+        primaryContact: group.primaryContact
+        youthList: group.youthList
+        youngAdultList: group.youngAdultList
+        chaperoneList: group.chaperoneList
+        internalData: group.internalData
+      costs: group.costs
+    ).success (data, status, headers, config) ->
+      group.updateSuccess = data.success
 
 ###
 # Login Controller. Handles logins, so it's sort of a big deal.
@@ -107,6 +134,9 @@
           youthNumber: $scope.youthNumber
           youngAdultNumber: $scope.youngAdultNumber
           chaperoneNumber: $scope.chaperoneNumber
+        costs:
+          paidTickets: $scope.paidTickets()
+          freeTickets: $scope.freeTickets()
       ).success (data, status, headers, config) ->
         if data.success == false
           $scope.submitError = true

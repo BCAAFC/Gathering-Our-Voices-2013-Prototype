@@ -77,7 +77,7 @@
                 .span2(management-collapse)
                   p.accordion-toggle {{group.youngAdultList.length}}
                 .span2
-                  a.accordion-toggle.btn.btn-small.btn-warning(href="/register/{{ group._id }}") Edit &raquo;
+                  a.btn.accordion-toggle(href="/register/{{ group._id }}") Edit &raquo;
           .accordion-body(ui-toggle='group.expanded')
             .accordion-inner
               .container-fluid
@@ -115,13 +115,20 @@
                   h6 Costs
                   ul.nav.nav-list
                     b Paid: 
-                    | {{ group.costs.paid }}
+                    input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
+                    div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+                      a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
+                      div(ui-toggle="group.updateSuccess")
+                      i.icon-ok
+                      | Updated!
                     br
                     b Paid Tickets: 
                     | {{ group.costs.paidTickets }}
                     br
                     b Free Tickets: 
                     | {{ group.costs.freeTickets }}
+                  a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove &raquo;
+                  a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
 
 .modal.hide.fade#secretModal
   .modal-header
