@@ -59,10 +59,11 @@ In `config.js`:
     };
 
 ## Test it out
-Lets test our installation by executing `coffee app.coffee`
+Lets test our installation by executing `coffee server.coffee`
 
-    $> coffee app.coffee
-    Express server listening on port 8080
+    $> coffee server.coffee
+    Express server listening on port $yourPortHere
+    Connected to Database.
 
 ## Relax
 You're done! Check back later for more exciting progress! Feel free to suggest improvements by opening an issue or submitting a pull request!
