@@ -202,7 +202,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           // Begin Basic Info
                           fieldset
                             legend Basic Information
-                            p Please fill in this is information for every youth attending.
+                            p We need some basic information for each youth attending.
               
                             // Name Field
                             .control-group
@@ -238,7 +238,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-title="dd/mm/yyyy",
-                                  data-content="Please note youth are 14-17 yrs old.<br>",
+                                  data-content="Please note youth are 14-17 yrs old.",
                                   type='text'
                                 )
 
@@ -309,7 +309,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               label.control-label Emergency Contact Phone #*
                               .controls
                                 input.focused(
-                                  type='text', name='youth.emergencyInfo.phone',
+                                  type='text',
+                                  name='youth.emergencyInfo.phone',
                                   ng-model='youth.emergencyInfo.phone',
                                   required,
                                   placeholder="(123) 123-1235",
@@ -324,13 +325,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               label.control-label Registrant Medical Number*
                               .controls
                                 input.focused(
-                                  type='number',
+                                  type='text',
                                   ng-model='youth.emergencyInfo.medicalNum',
                                   required,
-                                  placeholder="Enter your Medical Number.",
-                                  maxlength=10,
+                                  placeholder="1234 1234 123 123",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="1234 123 123"
                                   data-content="This should be your 10-digit CareCard number."
                                 )
 
@@ -341,11 +342,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='youth.emergencyInfo.allergies',
-                                  placeholder='Enter your allergies here, comma seperated.',
+                                  placeholder='Lime, Coconut',
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
-                                  data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                                  data-title="Lime, Coconut"
+                                  data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma."
                                 )
 
                             // Medical Conditions
@@ -359,8 +361,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
-                                  placeholder='Enter your  here, comma seperated.',
-                                  data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them.  <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                                  placeholder='Agorophobia, Bearophobia, Conference-phobia',
+                                  data-title="Agorophobia, Bearophobia, Conference-phobia"
+                                  data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them."
                                 )
                           // End Emergency Info      
                     
@@ -369,6 +372,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           .form-horizontal.well#chaperone
             h1 Chaperone Attendees
             p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
+            strong Age Range:
+            | 21+ yrs
+            p Each chaperone can be responsible for up to <b>five</b> youth.
             hr
             .container-fluid(id="chaperoneAccordion")
               .accordion-group
@@ -392,7 +398,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           // Begin Basic Info
                           fieldset(id="chaperone{{chaperone.number}}")
                             legend Basic Information
-                            p This is information you'll need to fill out.
+                            p We need some information for each chaperone attending.
               
                             // Name Field
                             .control-group
@@ -402,10 +408,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   ng-model='chaperone.name',
                                   required,
-                                  placeholder='Enter your name',
-                                  ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'right'}",
-                                  data-content="Just your name, nothing special here."
+                                  placeholder='John/Jane Doe',
                                 )
 
                             // Gender Field
@@ -424,11 +427,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   required,
                                   ng-model="chaperone.birthDate",
-                                  name="chaperone.birthDate",
-                                  placeholder='dd/mm/yyyy',
+                                  placeholder='23/04/1990',
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
-                                  data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
+                                  data-title="dd/mm/yyyy",
+                                  data-content="Please note chaperones are 21+ yrs old.",
                                   type='text'
                                 )
 
@@ -439,12 +442,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='chaperone.phone',
-                                  maxlength='10',
-                                  placeholder='Enter your phone number',
+                                  placeholder='(123) 123-1234',
                                   required,
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
-                                  data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                                  data-title="(123) 123-1234",
+                                  data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                                 )
 
                             // Email Field
@@ -454,7 +457,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='email',
                                   ng-model='chaperone.email',
-                                  placeholder='Enter your Email',
+                                  placeholder='johndoe@mail.com',
                                   required
                                 )
                             // End Basic Info
@@ -472,9 +475,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   required,
                                   ng-model='chaperone.emergencyInfo.name',
-                                  placeholder="Enter your emergency contact's name.",
+                                  placeholder="Bobby Doe",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="Who can we contact if you get hurt?"
                                   data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
                                 )
 
@@ -485,9 +489,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='chaperone.emergencyInfo.relation',
-                                  placeholder="Enter your Emergency Contact's relationship with you.",
+                                  placeholder="Father",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="Their relationship with you?",
                                   data-content="For example, 'Mother' or 'Babysitter'"
                                 )
                       
@@ -499,9 +504,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   ng-model='chaperone.emergencyInfo.phone',
                                   required,
-                                  placeholder="Enter your emergency contact's phone number.",
+                                  placeholder="(123) 123-1235",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="(123) 123-1235",
                                   data-content="Generally it's a good idea to choose a cell phone number."
                                 )
                       
@@ -510,13 +516,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               label.control-label Registrant Medical number*
                               .controls
                                 input.focused(
-                                  type='number',
+                                  type='text',
                                   ng-model='chaperone.emergencyInfo.medicalNum',
                                   required,
-                                  placeholder="Enter your Medical number.",
-                                  maxlength=10,
+                                  placeholder="1234 1234 123 123",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="1234 123 123"
                                   data-content="This should be your 10-digit CareCard number."
                                 )
 
@@ -527,16 +533,16 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='chaperone.emergencyInfo.allergies',
-                                  placeholder='Enter your allergies here, comma seperated.',
+                                  placeholder='Lime, Coconut',
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
-                                  data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                                  data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them."
                                 )
 
                             // Illnesses
                             .control-group
-                              label.control-label Illnesses
+                              label.control-label Medical Conditions
                               .controls
                                 input.focused(
                                   type='text',
@@ -545,9 +551,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
-                                  placeholder='Enter your illnesses here, comma seperated.',
-                                  data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                                  placeholder='Agorophobia, Bearophobia, Conference-phobia',
+                                  data-title="Agorophobia, Bearophobia, Conference-phobia"
+                                  data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them."
                                 )
+
                           // End Emergency Info
 
         // Youth Registration Fields.
@@ -556,8 +564,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             h1 Young Adult Attendees
             .container-fluid
               .row-fluid
-                .span3
+                .span6
                   p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
+                  strong Age Range:
+                  | 18-24 yrs
+                  p There are no special restrictions on the number of young adults per group.
             hr
             .container-fluid(id="youngAdultAccordion")
               .accordion-group
@@ -581,7 +592,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                       .span6
                         fieldset(id="youngAdult{{youngAdult.number}}")
                           legend Basic Information
-                          p This is information you'll need to fill out for every guest (Don't worry, we'll give you space below.) Even if you're not coming, we need this from you for our records.
+                          p We need some basic information for each young adult attending.
               
                           // Name Field
                           .control-group
@@ -591,10 +602,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 type='text',
                                 ng-model='youngAdult.name',
                                 required,
-                                placeholder='Enter your name',
-                                ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-content="Just your name, nothing special here."
+                                placeholder='John/Jane Doe',
                               )
 
                           // Gender Field
@@ -613,11 +621,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 required,
                                 ng-model="youngAdult.birthDate",
-                                placeholder='dd/mm/yyyy',
-                                ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
-                                type='text'
+                                  placeholder='23/04/1990',
+                                  ui-jq='popover',
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="dd/mm/yyyy",
+                                  data-content="Please note young adults are 18-24 yrs old.",
+                                  type='text'
+
                              )
 
                            // Phone Field
@@ -627,13 +637,14 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='text',
                                 ng-model='youngAdult.phone',
-                                maxlength='10',
-                                placeholder='Enter your phone number',
-                                required,
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                                placeholder='(123) 123-1234',
+                                required,
+                                data-title="(123) 123-1234",
+                                data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                               )
+
 
                           // Email Field
                           .control-group
@@ -642,7 +653,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='email',
                                 ng-model='youngAdult.email',
-                                placeholder='Enter your Email',
+                                placeholder='johndoe@mail.com',
                                 required
                               )
                         // End Basic Info
@@ -660,11 +671,13 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 type='text',
                                 required,
                                 ng-model='youngAdult.emergencyInfo.name',
-                                placeholder="Enter your emergency contact's name.",
+                                placeholder="Bobby Doe",
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
+                                data-title="Who can we contact if you get hurt?"
+                                data-content="It is advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
                               )
+                                
                     
                           // Emergency Contact Relation      
                           .control-group
@@ -674,10 +687,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 type='text',
                                 name='youngAdult.emergencyInfo.relation',
                                 ng-model='youngAdult.emergencyInfo.relation',
-                                placeholder="Enter your Emergency Contact's relationship with you.",
+                                placeholder="Father",
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-content="For example, 'Mother' or 'Social Worker'"
+                                data-title="Their relationship with you?",
+                                data-content="For example, 'Mother' or 'Babysitter'"
                               )
 
                           // Emergency Contact Phone #
@@ -688,24 +702,26 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 type='text',
                                 ng-model='youngAdult.emergencyInfo.phone',
                                 required,
-                                placeholder="Enter your emergency contact's phone number.",
+                                placeholder="(123) 123-1235",
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
+                                data-title="(123) 123-1235",
                                 data-content="Generally it's a good idea to choose a cell phone number."
                               )
+                                
 
                           // Registrant Medical number
                           .control-group
                             label.control-label Registrant Medical number*
                             .controls
                               input.focused(
-                                type='number',
+                                type='text',
                                 ng-model='youngAdult.emergencyInfo.medicalNum',
                                 required,
-                                placeholder="Enter your Medical number.",
-                                maxlength=10,
+                                placeholder="1234 1234 123 123",
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
+                                data-title="1234 123 123"
                                 data-content="This should be your 10-digit CareCard number."
                               )
 
@@ -716,25 +732,27 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='text',
                                 ng-model='youngAdult.emergencyInfo.allergies',
-                                placeholder='Enter your allergies here, comma seperated.',
+                                placeholder='Lime, Coconut',
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
                                 ng-list=",",
-                                data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
+                                data-title="Lime, Coconut"
+                                data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma."
                               )
 
                           // Illnesses
                           .control-group
-                            label.control-label Illnesses
+                            label.control-label Medical Conditions
                             .controls
                               input.focused(
                                 type='text',
                                 ng-model='youngAdult.emergencyInfo.illnesses',
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
-                                placeholder='Enter your illnesses here, comma seperated.',
                                 ng-list=",",
-                                data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
+                                placeholder='Agorophobia, Bearophobia, Conference-phobia',
+                                data-title="Agorophobia, Bearophobia, Conference-phobia"
+                                data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them."
                               )
                         // End Emergency Information
             
