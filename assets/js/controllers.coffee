@@ -235,6 +235,6 @@ regCtl.$inject = ["$scope", "$http", "$routeParams", "$location"]
 ###
 # Home, does nothing yet.
 ###
-@homeCtl = ->
+@homeCtl = ($scope) ->
 
-homeCtl.$inject = []
+homeCtl.$inject = ["$scope"]
