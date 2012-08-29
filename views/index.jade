@@ -1,5 +1,5 @@
-!!! 5
-html(id="ng-app", class="ng-app:gov", ng-app="gov")
+!!!
+html
   head
     title Gathering Our Voices
     meta(http-equiv="Content-Type",content="text/html; charset=UTF-8")
@@ -93,3 +93,5 @@ html(id="ng-app", class="ng-app:gov", ng-app="gov")
   != js('controllers')
   != js('directives')
   != js('jquery.maskedinput.js')
+  script(type="text/javascript")
+    angular.bootstrap(document, ['gov']);
