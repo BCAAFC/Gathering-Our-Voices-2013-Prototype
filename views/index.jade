@@ -61,22 +61,24 @@ html(ng-app="gov")
         .span9
         .span3
           img.hidden-phone(src="/img/gov_logo.png")
+          
+      script(type="text/javascript")
+        var $buoop = {vs:{i:8,f:4,o:10.6,s:4,n:9}} 
+        $buoop.ol = window.onload; 
+        window.onload=function(){ 
+         try {if ($buoop.ol) $buoop.ol();}catch (e) {} 
+         var e = document.createElement("script"); 
+         e.setAttribute("type", "text/javascript"); 
+         e.setAttribute("src", "http://browser-update.org/update.js"); 
+         document.body.appendChild(e); 
+        } 
     
       // Detect IE being a peice of .... bad programming.
-      //if lt IE 9 8 7 6
+      //if lt IE 8 7 6
         .alert.alert-danger
           h4 Old Internet Explorer User!
           p It looks like you're using an extremely old (Between 4 and 12 years!) version of Internet Explorer.
           p Please note this site is largely untested in these versions of Internet Explorer. <a href="http://angularjs.org/"> We take advantage of some pretty new (and fancy!) technology. </a>
-          a(href="https://www.google.com/intl/en/chrome/browser/")
-            i.icon-heart
-            | Please! Upgrade to Chrome! You don't even need to get Administrator access! Just click here.
-      // Detect IE being a peice of .... bad programming.
-      //if lt IE 9
-        .alert.alert-danger
-          h4 Internet Explorer User!
-          p It looks like you're using Internet Explorer 9! Great job keeping up to date!
-          p Our site uses from <a href="http://angularjs.org/">pretty fancy new technology</a>. While the site should work fine for you... Chrome is super awesome! Maybe check it out?
           a(href="https://www.google.com/intl/en/chrome/browser/")
             i.icon-heart
             | Please! Upgrade to Chrome! You don't even need to get Administrator access! Just click here.
