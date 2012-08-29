@@ -1,7 +1,7 @@
 #'use strict';
 
 # Declare app level module which depends on filters, and services
-@angular.module("gov", ["gov.directives", "ui", "govmath"])
+@angular.module("gov", ["gov.directives", "ui"])
 .config(["$routeProvider", "$locationProvider", ($routeProvider, $locationProvider) ->
   $routeProvider.when "/register/:groupId",
     templateUrl: "/partials/register"
@@ -26,7 +26,3 @@
   $routeProvider.otherwise redirectTo: "/"
   $locationProvider.html5Mode true
 ])
-angular.module("govmath", []).filter "chaperone", ->
-  (num) ->
-    Math.ceil num / 5
-
