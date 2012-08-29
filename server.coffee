@@ -29,12 +29,12 @@ attendeeSchema = new mongoose.Schema
   status: String
   gender: String
   birthDate: String
-  phone: Number
+  phone: String
   email: String
   emergencyInfo:
     name: String
     relation: String
-    phone: Number
+    phone: String
     medicalNum: Number
     allergies: [String]
     illnesses: [String]
@@ -45,7 +45,7 @@ Attendee = database.model('Attendee', attendeeSchema)
 groupSchema = new mongoose.Schema
   primaryContact:
     name: String
-    phone: Number
+    phone: String
     email: String
     extendedInfo:
       affiliation: String
@@ -53,7 +53,7 @@ groupSchema = new mongoose.Schema
       city: String
       province: String
       postalCode: String
-      fax: Number
+      fax: String
   youthList: [attendeeSchema]
   chaperoneList: [attendeeSchema]
   youngAdultList: [attendeeSchema]
