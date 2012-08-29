@@ -102,16 +102,16 @@ app.get "/partials/:name", (req, res) ->
   name = req.params.name
   res.render "partials/" + name
 
-# Login GET. Angular Handles the templating.
-app.get "/login", (req, res) ->
-  res.render "index"
-
 # Register GET. Angular Handles the templating.
 app.get "/register", (req, res) ->
   res.render "index"
   
 # Register GET. Angular Handles the templating.
 app.get "/register/:groupId", (req, res) ->
+  res.render "index"
+  
+# Home GET. Angular Handles the templating.
+app.get "/home", (req, res) ->
   res.render "index"
 
 # Management GET. Angular Handles the templating.

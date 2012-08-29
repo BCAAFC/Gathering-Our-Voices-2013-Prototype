@@ -4,17 +4,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     // -- A nice navigation addon for our Desktop users.
     // -- Don't put anything important here. Tablets and Phones can't see it.
     .span2
-      .visible-desktop.well.regSidebar(ui-affix)
+      .visible-desktop.well.regSidebar(ui-affix, style="width: ")
         ul.nav.nav-list
           li.nav-header Quick Scroll
           li
-            a(href='javascript:void(0)', ui-scroll='primary') Primary Contact
+            a(href='javascript:void(0)', ui-scroll='primary') Group Contact
           li
             a(href='javascript:void(0)', ui-scroll='youth') Youth ({{ youthList.length }})
           li
-            a(href='javascript:void(0)', ui-scroll='chaperones') Chaperones ({{ chaperoneList.length }})
+            a(href='javascript:void(0)', ui-scroll='chaperone') Chaperones ({{ chaperoneList.length }})
           li
-            a(href='javascript:void(0)', ui-scroll='youngAdults') Young Adults ({{ youngAdultList.length}})
+            a(href='javascript:void(0)', ui-scroll='youngAdult') Young Adults ({{ youngAdultList.length}})
             
     // Primary Registration Fields.
     .span10
