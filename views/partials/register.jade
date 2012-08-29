@@ -20,6 +20,17 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     .span10
       .container-fluid
         .row-fluid
+          .well#info
+            h1 Before We Start...
+            p While filling out the form, please pay attention to the information-packed tooltips that you'll see. You can try one out below:
+            fieldset
+              .form-horizontal
+                .control-group
+                  label.control-label Select this box:
+                  .controls
+                    input.focused(type='text',ui-jq="popover", ui-options="{trigger: 'focus', placement: 'right'}", data-title="A tooltip!", data-content="It works!")
+            p If you're using a modern browser (Firefox, Opera, or Chrome... Internet Explorer doesn't count!) you'll see placeholders showing example information for someone coming from the Victoria Native Friendship Centre.
+        .row-fluid
           .form-horizontal.well#primary
             h1 Group Contact  
             p For each registered group there must be a designated 'Group Contact', this is the person who will act as our primary point of contact for your entire group.
@@ -38,36 +49,33 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     type='text',
                     ng-model='primaryContact.name',
                     required,
-                    ui-jq='popover',
-                    ui-options="{trigger: 'focus', placement: 'bottom'}",
-                    placeholder='Enter your name',
-                    data-content="Just your name, nothing special here."
+                    placeholder='John/Jane Doe',
                   )
 
                // Primary Phone Field
               .control-group
-                label.control-label Phone #
+                label.control-label Phone #*
                 .controls
                   input.focused(
                     type='text',
                     ng-model='primaryContact.phone',
-                    maxlength='10',
                     ui-jq='popover',
-                    ui-options="{trigger: 'focus', placement: 'bottom'}",
-                    placeholder='Enter your phone number',
+                    ui-options="{trigger: 'focus', placement: 'right'}",
+                    placeholder='(123) 123-1234',
                     required,
-                    data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
+                    data-title="(123) 123-1234",
+                    data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                   )
 
               // Primary Email Field
               .control-group
-                label.control-label Email
+                label.control-label Email*
                 .controls
                   input.focused(
                     type='email',
                     name='primaryContact.email',
                     ng-model='primaryContact.email',
-                    placeholder='Enter your Email',
+                    placeholder='john.doe@mail.com',
                     required
                   )
             // End Basic Information
@@ -84,11 +92,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   input.focused(
                     type='text',
                     ng-model='primaryContact.extendedInfo.affiliation',
-                    required,
                     ui-jq='popover',
-                    ui-options="{trigger: 'focus', placement: 'bottom'}",
-                    data-content="Your affiliation is, for example, your Friendship Centre or other organization.",
-                    placeholder='Enter your affiliation'
+                    ui-options="{trigger: 'focus', placement: 'right'}",
+                    data-title="Your Friendship Centre or organization.",
+                    data-content="If you're not representing anyone, just leave it blank!",
+                    placeholder='Victoria Native Friendship Centre'
                   )
 
               // Address Field
@@ -98,7 +106,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   input.focused(
                     type='text',
                     ng-model='primaryContact.extendedInfo.address',
-                    required, placeholder='Enter your mailing address'
+                    required,
+                    placeholder='231 Regina Avenue'
+                    ui-jq='popover',
+                    ui-options="{trigger: 'focus', placement: 'right'}",
+                    data-title="The First Line of your mailing address."
+                    data-content="For the VNFC, this would be 231 Regina Avenue, for example.",
                   )
 
               // City Field
@@ -109,7 +122,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     type='text',
                     ng-model='primaryContact.extendedInfo.city',
                     required,
-                    placeholder='Enter your city',
+                    placeholder='Victoria',
                     ui-jq="typeahead",
                     ui-options='{source: ["Abbotsford","Armstrong","Burnaby","Campbell River","Castlegar","Chilliwack","Colwood","Coquitlam","Courtenay","Cranbrook","Dawson Creek","Duncan","Enderby","Fernie","Fort St. John","Grand Forks","Greenwood","Kamloops","Kelowna","Kimberley","Kitimat","Langford","Langley","Merritt","Nanaimo","Nelson","New Westminster","North Vancouver","Parksville","Penticton","Pitt Meadows","Port Alberni","Port Coquitlam","Port Moody","Powell River","Prince George","Prince Rupert","Quesnel","Revelstoke","Richmond","Rossland","Salmon Arm","Surrey","Terrace","Trail","Vancouver","Vernon","Victoria","White Rock","Williams Lake"]}'
                   )
@@ -122,7 +135,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     type='text',
                     ng-model='primaryContact.extendedInfo.province',
                     required,
-                    placeholder='Enter your Province',
+                    placeholder='British Columbia',
                     ui-jq='typeahead',
                     ui-options='{source:["Alberta", "British Columbia", "Manitoba", "New Brunswick", "Newfoundland & Labrador", "Northwest Territories", "Nova Scotia", "Nunavut", "Ontario", "Prince Edward Island", "Quebec", "Saskatchewan", "Yukon"]}'
                   )
@@ -135,11 +148,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     type='text',
                     ng-model='primaryContact.extendedInfo.postalCode',
                     ui-jq='popover',
-                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    ui-options="{trigger: 'focus', placement: 'right'}",
                     required,
-                    placeholder='Enter your Postal Code',
+                    placeholder='V8Z 1J6',
                     maxlength=6,
-                    data-content="Please input your postal code in the format A1B2C3, no spaces."
+                    data-title="V8Z 1J6",
+                    data-content="Nothing special. Just your postal code here."
                   )
 
               // Fax Number Field
@@ -149,10 +163,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   input.focused(
                     type='text',
                     ng-model='primaryContact.extendedInfo.fax',
-                    placeholder="Enter your fax number.",
+                    placeholder="(123) 123-1234",
                     ui-jq='popover',
-                    ui-options="{trigger: 'focus', placement: 'bottom'}",
-                    data-content="(123) 123-1234"
+                    ui-options="{trigger: 'focus', placement: 'right'}",
+                    data-title="(123) 123-1234",
+                    data-content="This is not required, but if you don't give us a fax number, all documents sent to you will be via email."
                   )
             // End Group Contact Information
 
@@ -161,6 +176,9 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
           .form-horizontal.well#youth
             h1 Youth Attendees
             p You have <strong>{{ youthList.length }}</strong> youth attending.
+            strong Age Range:
+            | 14-17 yrs
+            p For every <b>five</b> youth attendees you must have at least <b>one</b> Chaperone attending.
             hr
             .container-fluid(id="youthAccordion")
               .accordion-group
@@ -194,10 +212,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   ng-model='youth.name',
                                   required,
-                                  placeholder='Enter your name',
-                                  ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
-                                  data-content="Just your name, nothing special here."
+                                  placeholder='John/Jane Doe',
                                 )
 
                             // Gender Field
@@ -219,10 +234,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   required,
                                   ng-model="youth.birthDate",
-                                  placeholder='dd/mm/yyyy',
+                                  placeholder='23/04/1990',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
-                                  data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="dd/mm/yyyy",
+                                  data-content="Please note youth are 14-17 yrs old.<br>",
                                   type='text'
                                 )
 
@@ -233,12 +249,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='youth.phone',
-                                  maxlength='10',
-                                  placeholder='Enter your phone number',
-                                  required,
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
-                                  data-content="(123) 123-1234 -> 1231231234 <br> If possible, you might want to consider using a cell number, that way we can get in touch with you during the event."
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
+                                  placeholder='(123) 123-1234',
+                                  required,
+                                  data-title="(123) 123-1234",
+                                  data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                                 )
 
                             // Email Field
@@ -248,7 +264,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='email',
                                   ng-model='youth.email',
-                                  placeholder='Enter your Email',
+                                  placeholder='johndoe@mail.com',
                                   required
                                 )
                           // End Basic Info
@@ -266,9 +282,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   required,
                                   ng-model='youth.emergencyInfo.name',
-                                  placeholder="Enter your emergency contact's name.",
+                                  placeholder="Bobby Doe",
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="Who can we contact if you get hurt?"
                                   data-content="It is advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
                                 )
 
@@ -280,9 +297,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   name='youth.emergencyInfo.relation',
                                   ng-model='youth.emergencyInfo.relation',
-                                  placeholder="Enter your Emergency Contact's relationship with you.",
+                                  placeholder="Father",
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="Their relationship with you?",
                                   data-content="For example, 'Mother' or 'Babysitter'"
                                 )
                     
@@ -294,9 +312,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text', name='youth.emergencyInfo.phone',
                                   ng-model='youth.emergencyInfo.phone',
                                   required,
-                                  placeholder="Enter your emergency contact's phone number.",
+                                  placeholder="(123) 123-1235",
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
+                                  data-title="(123) 123-1235",
                                   data-content="Generally it's a good idea to choose a cell phone number."
                                 )
 
@@ -311,7 +330,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   placeholder="Enter your Medical Number.",
                                   maxlength=10,
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="This should be your 10-digit CareCard number."
                                 )
 
@@ -324,7 +343,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ng-model='youth.emergencyInfo.allergies',
                                   placeholder='Enter your allergies here, comma seperated.',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
                                   data-content="Please enter a list of allergies, if you have multiple allergies please seperate them with a comma. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                                 )
@@ -338,7 +357,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   name='youth.emergencyInfo.illnesses',
                                   ng-model='youth.emergencyInfo.illnesses',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
                                   placeholder='Enter your  here, comma seperated.',
                                   data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them.  <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
@@ -385,7 +404,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   required,
                                   placeholder='Enter your name',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="Just your name, nothing special here."
                                 )
 
@@ -408,7 +427,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   name="chaperone.birthDate",
                                   placeholder='dd/mm/yyyy',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
                                   type='text'
                                 )
@@ -424,7 +443,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   placeholder='Enter your phone number',
                                   required,
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                                 )
 
@@ -455,7 +474,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ng-model='chaperone.emergencyInfo.name',
                                   placeholder="Enter your emergency contact's name.",
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
                                 )
 
@@ -468,7 +487,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ng-model='chaperone.emergencyInfo.relation',
                                   placeholder="Enter your Emergency Contact's relationship with you.",
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="For example, 'Mother' or 'Babysitter'"
                                 )
                       
@@ -482,7 +501,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   required,
                                   placeholder="Enter your emergency contact's phone number.",
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="Generally it's a good idea to choose a cell phone number."
                                 )
                       
@@ -497,7 +516,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   placeholder="Enter your Medical number.",
                                   maxlength=10,
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-content="This should be your 10-digit CareCard number."
                                 )
 
@@ -510,7 +529,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ng-model='chaperone.emergencyInfo.allergies',
                                   placeholder='Enter your allergies here, comma seperated.',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
                                   data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                                 )
@@ -524,7 +543,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   name='chaperone.emergencyInfo.illnesses',
                                   ng-model='chaperone.emergencyInfo.illnesses',
                                   ui-jq='popover',
-                                  ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                  ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
                                   placeholder='Enter your illnesses here, comma seperated.',
                                   data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
@@ -574,7 +593,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 required,
                                 placeholder='Enter your name',
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="Just your name, nothing special here."
                               )
 
@@ -596,7 +615,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 ng-model="youngAdult.birthDate",
                                 placeholder='dd/mm/yyyy',
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="Please format with dd/mm/yyyy, or click the triangle and use our interactive date picker.",
                                 type='text'
                              )
@@ -612,7 +631,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 placeholder='Enter your phone number',
                                 required,
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="(123) 123-1234 -> 1231231234 <br> If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                               )
 
@@ -643,7 +662,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 ng-model='youngAdult.emergencyInfo.name',
                                 placeholder="Enter your emergency contact's name.",
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="It's advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
                               )
                     
@@ -657,7 +676,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 ng-model='youngAdult.emergencyInfo.relation',
                                 placeholder="Enter your Emergency Contact's relationship with you.",
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="For example, 'Mother' or 'Social Worker'"
                               )
 
@@ -671,7 +690,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 required,
                                 placeholder="Enter your emergency contact's phone number.",
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="Generally it's a good idea to choose a cell phone number."
                               )
 
@@ -686,7 +705,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 placeholder="Enter your Medical number.",
                                 maxlength=10,
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 data-content="This should be your 10-digit CareCard number."
                               )
 
@@ -699,7 +718,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 ng-model='youngAdult.emergencyInfo.allergies',
                                 placeholder='Enter your allergies here, comma seperated.',
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 ng-list=",",
                                 data-content="Please enter a list of allergies, if you have multiple allergies please comma seperate them. <br> <strong>Example: </strong> Lime, Coconut, Lime in Coconut"
                               )
@@ -712,7 +731,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 type='text',
                                 ng-model='youngAdult.emergencyInfo.illnesses',
                                 ui-jq='popover',
-                                ui-options="{trigger: 'focus', placement: 'bottom'}",
+                                ui-options="{trigger: 'focus', placement: 'right'}",
                                 placeholder='Enter your illnesses here, comma seperated.',
                                 ng-list=",",
                                 data-content="Please enter a list of illnesses, if you have multiple illnesses you should let us know about, please comma seperate them. <br> <strong>Example: </strong> Agorophobia, Bearophobia, Conference-phobia."
