@@ -1,6 +1,6 @@
 #'use strict';
 
-angular.module("gov.directives", [])
+@angular.module("gov.directives", [])
     .directive("carouselNext", ->
       link: (scope, element, attrs) ->
         element.bind "click", (event) ->
