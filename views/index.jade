@@ -72,16 +72,6 @@ html(ng-app="gov")
          e.setAttribute("src", "http://browser-update.org/update.js"); 
          document.body.appendChild(e); 
         } 
-    
-      // Detect IE being a peice of .... bad programming.
-      //if lt IE 8 7 6
-        .alert.alert-danger
-          h4 Old Internet Explorer User!
-          p It looks like you're using an extremely old (Between 4 and 12 years!) version of Internet Explorer.
-          p Please note this site is largely untested in these versions of Internet Explorer. <a href="http://angularjs.org/"> We take advantage of some pretty new (and fancy!) technology. </a>
-          a(href="https://www.google.com/intl/en/chrome/browser/")
-            i.icon-heart
-            | Please! Upgrade to Chrome! You don't even need to get Administrator access! Just click here.
         
       // Article Row
       // -- This is the main content which Angular JS replaces during ng-view
