@@ -113,7 +113,10 @@
                       a(ng-click='select(youngAdult)') {{youngAdult.name}}
                 .span3
                   h6 Costs
-                  ul.nav.nav-list
+                  .nav.nav-list
+                    b Total: 
+                    | {{ group.costs.paidTickets * group.costs.feePerTicket }}
+                    br
                     b Paid: 
                     input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
                     div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
