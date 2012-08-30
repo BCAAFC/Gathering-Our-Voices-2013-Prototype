@@ -119,8 +119,8 @@
                     div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
                       a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
                       div(ui-toggle="group.updateSuccess")
-                      i.icon-ok
-                      | Updated!
+                        i.icon-ok
+                        | Updated!
                     br
                     b Paid Tickets: 
                     | {{ group.costs.paidTickets }}
