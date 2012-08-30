@@ -32,11 +32,7 @@
     $http.post("/updatePaid",
       secret: $scope.secret
       group:
-        primaryContact: group.primaryContact
-        youthList: group.youthList
-        youngAdultList: group.youngAdultList
-        chaperoneList: group.chaperoneList
-        internalData: group.internalData
+        id: group._id
       costs: group.costs
     ).success (data, status, headers, config) ->
       group.updateSuccess = data.success
