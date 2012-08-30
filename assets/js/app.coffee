@@ -22,6 +22,10 @@
   $routeProvider.when "/",
     templateUrl: "/partials/home"
     controller: homeCtl
+  
+  $routeProvider.when "/privacy",
+    templateUrl: "/partials/privacy"
+    controller: privCtl
 
   $routeProvider.otherwise redirectTo: "/"
   $locationProvider.html5Mode true

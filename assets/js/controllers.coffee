@@ -236,3 +236,10 @@ regCtl.$inject = ["$scope", "$http", "$routeParams", "$location"]
 @homeCtl = ($scope) ->
 
 homeCtl.$inject = ["$scope"]
+
+###
+# Privacy, does nothing yet.
+###
+@privCtl = ($scope) ->
+
+privCtl.$inject = ["$scope"]

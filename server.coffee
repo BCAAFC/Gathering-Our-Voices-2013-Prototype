@@ -130,6 +130,10 @@ app.get "/home", (req, res) ->
 # Management GET. Angular Handles the templating.
 app.get "/management", (req, res) ->
   res.render "index"
+  
+# Privacy GET. Angular Handles the templating.
+app.get "/privacy", (req, res) ->
+  res.render "index"
 
 # Management list (User must provide password)
 app.post "/attendee-list", (req, res) ->
