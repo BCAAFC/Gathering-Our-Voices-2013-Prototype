@@ -195,7 +195,7 @@ app.post "/removeGroupById", (req, res) ->
 # Remove a group
 app.post "/updatePaid", (req, res) ->
   if req.body.secret is config.secret
-    Group.findOne req.body.group, (err, result) ->
+    Group.findOne req.body.group._id, (err, result) ->
       result.costs = req.body.costs
       result.save (err) ->
         if (err)
