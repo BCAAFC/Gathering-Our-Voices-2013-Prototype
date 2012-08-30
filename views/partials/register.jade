@@ -777,6 +777,20 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                       li Paid Tickets: {{ paidTickets() }} @ $175
                       li Free Tickets: {{ freeTickets() }} @ $0
                       li Total: ${{ totalCost() }}
+                    .control-group
+                      label.control-label Payment Method
+                      .controls
+                        select(
+                          ng-model="costs.paymentMethod",
+                          ui-jq="popover",
+                          ui-options="{trigger: 'focus', placement: 'right'}",
+                          data-title="Choose your Payment Method",
+                          data-content="We encourage payment by Cheque as Credit Card transactions will cost a fee, please call Della Preston at 250-388-5522 to inquire."
+                        )
+                          option(value="Cheque") Cheque
+                          option(value="Money Order") Money Order
+                          option(value="Please Invoice") Please Invoice
+                          option(value="Credit Card") Credit Card
             .alert.alert-warning(ui-toggle='regForm.$invalid')
               p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
               p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.

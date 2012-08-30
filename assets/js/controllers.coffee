@@ -111,6 +111,7 @@
         costs:
           paidTickets: $scope.paidTickets()
           freeTickets: $scope.freeTickets()
+          paymentMethod: $scope.costs.paymentMethod
       ).success (data, status, headers, config) ->
         if data.success == false
           $scope.submitError = true
@@ -133,6 +134,7 @@
         costs:
           paidTickets: $scope.paidTickets()
           freeTickets: $scope.freeTickets()
+          paymentMethod: $scope.costs.paymentMethod
       ).success (data, status, headers, config) ->
         if data.success == false
           $scope.submitError = true

@@ -35,7 +35,7 @@ attendeeSchema = new mongoose.Schema
     name: String
     relation: String
     phone: String
-    medicalNum: Number
+    medicalNum: String
     allergies: [String]
     illnesses: [String]
   number: Number
@@ -57,15 +57,28 @@ groupSchema = new mongoose.Schema
   youthList: [attendeeSchema]
   chaperoneList: [attendeeSchema]
   youngAdultList: [attendeeSchema]
-  costs:         
+  costs:
+    feePerTicket: Number        
     paidTickets: Number
     freeTickets: Number
     paid: Number
+    paymentMethod: String
   internalData:
     youthNumber: Number
     youngAdultNumber: Number
     chaperoneNumber: Number
 Group = database.model('Group', groupSchema)
+
+###
+# Custom Functions
+###
+getTicketPrice = () ->
+  today = new Date()
+  deadline = new Date("Febuary 9, 2012 00:00:00")
+  if (today <= deadline)
+    return 175
+  else
+    return 125
 
 ###
 # Persistant configuration goes here.
@@ -128,26 +141,30 @@ app.post "/attendee-list", (req, res) ->
 
 # Registration Form Post
 app.post "/register", (req, res) ->
-    group = new Group
-      primaryContact: req.body.primaryContact
-      youthList: req.body.youthList
-      chaperoneList: req.body.chaperoneList
-      youngAdultList: req.body.youngAdultList
-      costs:
-        paid: 0
-        freeTickets: req.body.costs.freeTickets
-        paidTickets: req.body.costs.paidTickets
-      internalData: req.body.internalData
-    # Catch errors and send a message
-    group.save (err) ->
-      if (err)
-        console.log "Error in validation of a form!"
-        res.send
-          success: false
-          errors: err
-      else
-        res.send
-          success: true
+  console.log req.body.costs.paymentMethod
+  group = new Group
+    primaryContact: req.body.primaryContact
+    youthList: req.body.youthList
+    chaperoneList: req.body.chaperoneList
+    youngAdultList: req.body.youngAdultList
+    costs:
+      feePerTicket: getTicketPrice()
+      paid: 0
+      freeTickets: req.body.costs.freeTickets
+      paidTickets: req.body.costs.paidTickets
+      paymentMethod: req.body.costs.paymentMethod
+    internalData: req.body.internalData
+  # Catch errors and send a message
+  console.log group
+  group.save (err) ->
+    if (err)
+      console.log "Error in validation of a form!"
+      res.send
+        success: false
+        errors: err
+    else
+      res.send
+        success: true
           
 # Update Form Post
 app.post "/update", (req, res) ->
@@ -161,6 +178,9 @@ app.post "/update", (req, res) ->
       result.chaperoneList= req.body.chaperoneList
       result.youngAdultList= req.body.youngAdultList
       result.internalData= req.body.internalData
+      result.costs.paidTickets= req.body.costs.paidTickets
+      result.costs.freeTickets= req.body.costs.freeTickets
+      result.costs.paymentMethod = req.body.costs.paymentMethod
       # Catch errors and send a message
       result.save (err) ->
         console.log err
