@@ -22,6 +22,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .row-fluid
           .well#info
             h1 Before We Start...
+            p Welcome! Below are some helpful tips for the Registration Process.
             p While filling out the form, please pay attention to the information-packed tooltips that you'll see. You can try one out below:
             fieldset
               .form-horizontal
@@ -29,7 +30,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   label.control-label Select this box:
                   .controls
                     input.focused(type='text',ui-jq="popover", ui-options="{trigger: 'focus', placement: 'right'}", data-title="A tooltip!", data-content="It works!")
-            p If you're using a modern browser (Firefox, Opera, or Chrome... Internet Explorer doesn't count!) you'll see placeholders showing example information for someone coming from the Victoria Native Friendship Centre.
+            p This website works best with Chrome or Firefox. If you do not have either of these browsers, please give them a try. Chrome is reccomended as it's the simplest, fastest, and easiest to install.
+            .btn-group
+              a.btn.btn-info(href="https://www.google.com/intl/en/chrome/browser/") Get Chrome!
+              a.btn.btn-warning(href="http://www.mozilla.org/en-US/firefox/new/?") Get Firefox!
         .row-fluid
           .form-horizontal.well#primary
             h1 Group Contact  
