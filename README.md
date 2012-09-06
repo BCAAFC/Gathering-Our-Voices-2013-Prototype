@@ -14,7 +14,7 @@ The BCAAFC would like to thank the contributors to the following Open Source Tec
 * mongo
 
 # Setting up
-Setup is a fairly straightforward task if you've ever used our particular blend of technologies before. If you haven't, you're in for a treat hopefully!
+Setup is a fairly straightforward task if you've ever used our particular blend of technologies before. If you haven't, you're in for a treat hopefully! It's easy!
 
 ## Fulfilling Installation requirements
 You will need the following set up:
