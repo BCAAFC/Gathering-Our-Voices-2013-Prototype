@@ -37,7 +37,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
         .row-fluid
           .form-horizontal.well#primary
             h1 Primary Contact  
-            p Each Group require a primary contact for each group. They will the primary point of contact for information, payment, and announcements important for all delegates to receive.
+            p Each Group require a primary contact for each group. They will be the primary point of contact for information, payment, and announcements important for all delegates to receive.
             p It is <b>not</b> assumed that this person will be attending. If you are the group contact, and plan on attending, please add yourself to the relevant group below.
           
               // Begin Basic Info
@@ -155,7 +155,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ui-options="{trigger: 'focus', placement: 'right'}",
                     required,
                     placeholder='V8Z 1J6',
-                    maxlength=6,
                     data-title="V8Z 1J6",
                     data-content=""
                   )
@@ -290,7 +289,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-title="Who can we contact if you get hurt?"
-                                  data-content="It is advisable to choose someone who will be able to advise us on medical conditions, doctors, or other vital information."
+                                  data-content="Please list someone we can contact in the event the registrant is hurt. This person will be able to advise us on medical conditions, doctors or vital information."
                                 )
 
                             // Emergency Contact Relation      
@@ -351,7 +350,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
                                   data-title="Lime, Coconut"
-                                  data-content="Does the registrant have any medical conditions we should know about? If yes please list. E.g. seizures, asthma."
+                                  data-content="Please enter a list of all allergies. If you have multiple allergies please comma separate them."
                                 )
 
                             // Medical Conditions
@@ -365,8 +364,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   ng-list=",",
-                                  placeholder='Agorophobia, Bearophobia, Conference-phobia',
-                                  data-title="Agorophobia, Bearophobia, Conference-phobia"
+                                  placeholder='Asthma, Seizures',
+                                  data-title="Asthma, Seizures"
                                   data-content="Please enter a list of medical conditions, if you have multiple conditions to report, please use a comma to seperate them."
                                 )
                           // End Emergency Info      
