@@ -795,7 +795,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           option(value="Please Invoice") Please Invoice
                           option(value="Credit Card") Credit Card
             .alert.alert-warning(ui-toggle='regForm.$invalid')
-              p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
+              p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty? <i> If you removed an attendee at some point, this check is currently broken, you can safely ignore it.</i>
               p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
             .alert.alert-error(ui-toggle='!enoughChaperones()')
               p You need 1 chaperone for every 5 youth, you currently are not fulfilling that requirement... So unfortunately we can't let you register yet! Could you please get more chaperones?
