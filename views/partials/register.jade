@@ -214,7 +214,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='youth.name',
-                                  required,
                                   placeholder='John/Jane Doe',
                                 )
 
@@ -223,7 +222,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               label.control-label Gender*
                               .controls
                                 select(
-                                  required,
                                   ng-model="youth.gender",
                                 )
                                   option Male
@@ -235,13 +233,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               label.control-label Birth Date*
                               .controls
                                 input.focused(
-                                  required,
                                   ng-model="youth.birthDate",
                                   placeholder='23/04/1990',
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-title="dd/mm/yyyy",
-                                  data-content="Youth <b>must</b> be fourteen (14) to attend this event. Any delegate seventeen (17) and under <b>must</b> be accompanied by a chaperone.<br> <b>Born before:</b> March 19, 1999 <br> <b>Born After:</b> Marh 18, 1996",
+                                  data-content="Youth <b>must</b> be fourteen (14) to attend this event. Any delegate seventeen (17) and under <b>must</b> be accompanied by a chaperone.<br> <b>Born before:</b> March 19, 1999 <br> <b>Born After:</b> March 18, 1996",
                                   type='text'
                                 )
 
@@ -255,7 +252,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   placeholder='(123) 123-1234',
-                                  required,
                                   data-title="(123) 123-1234",
                                   data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                                 )
@@ -267,8 +263,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='email',
                                   ng-model='youth.email',
-                                  placeholder='johndoe@mail.com',
-                                  required
+                                  placeholder='johndoe@mail.com'
                                 )
                           // End Basic Info
                         // Begin Emergency Info        
@@ -283,7 +278,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               .controls
                                 input.focused(
                                   type='text',
-                                  required,
                                   ng-model='youth.emergencyInfo.name',
                                   placeholder="Bobby Doe",
                                   ui-jq='popover',
@@ -315,7 +309,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   name='youth.emergencyInfo.phone',
                                   ng-model='youth.emergencyInfo.phone',
-                                  required,
                                   placeholder="(123) 123-1235",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
@@ -330,7 +323,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='youth.emergencyInfo.medicalNum',
-                                  required,
                                   placeholder="1234 1234 123 123",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
@@ -410,7 +402,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='chaperone.name',
-                                  required,
                                   placeholder='John/Jane Doe',
                                 )
 
@@ -418,7 +409,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                             .control-group
                               label.control-label Gender*
                               .controls
-                                select(required, ng-model="chaperone.gender")
+                                select(ng-model="chaperone.gender")
                                   option Male
                                   option Female
                                   option Other
@@ -428,7 +419,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               label.control-label Birth Date*
                               .controls
                                 input.focused(
-                                  required,
                                   ng-model="chaperone.birthDate",
                                   placeholder='23/04/1990',
                                   ui-jq='popover',
@@ -446,7 +436,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                   type='text',
                                   ng-model='chaperone.phone',
                                   placeholder='(123) 123-1234',
-                                  required,
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
                                   data-title="(123) 123-1234",
@@ -460,8 +449,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='email',
                                   ng-model='chaperone.email',
-                                  placeholder='johndoe@mail.com',
-                                  required
+                                  placeholder='johndoe@mail.com'
                                 )
                             // End Basic Info
                         // Begin Emergency Info   
@@ -476,7 +464,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               .controls
                                 input.focused(
                                   type='text',
-                                  required,
                                   ng-model='chaperone.emergencyInfo.name',
                                   placeholder="Bobby Doe",
                                   ui-jq='popover',
@@ -506,7 +493,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='chaperone.emergencyInfo.phone',
-                                  required,
                                   placeholder="(123) 123-1235",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
@@ -521,7 +507,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 input.focused(
                                   type='text',
                                   ng-model='chaperone.emergencyInfo.medicalNum',
-                                  required,
                                   placeholder="1234 1234 123 123",
                                   ui-jq='popover',
                                   ui-options="{trigger: 'focus', placement: 'right'}",
@@ -604,7 +589,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='text',
                                 ng-model='youngAdult.name',
-                                required,
                                 placeholder='John/Jane Doe',
                               )
 
@@ -612,7 +596,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           .control-group
                             label.control-label Gender*
                             .controls
-                              select(required, ng-model="youngAdult.gender", name="youngAdult.gender")
+                              select(ng-model="youngAdult.gender", name="youngAdult.gender")
                                 option Male
                                 option Female
                                 option Other
@@ -622,7 +606,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                             label.control-label Birth Date*
                             .controls
                               input.focused(
-                                required,
                                 ng-model="youngAdult.birthDate",
                                   placeholder='23/04/1990',
                                   ui-jq='popover',
@@ -643,7 +626,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
                                 placeholder='(123) 123-1234',
-                                required,
                                 data-title="(123) 123-1234",
                                 data-content="If you're coming to the conference you might want to consider using your cell number, that way we can get in touch with you during the event."
                               )
@@ -656,8 +638,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='email',
                                 ng-model='youngAdult.email',
-                                placeholder='johndoe@mail.com',
-                                required
+                                placeholder='johndoe@mail.com'
                               )
                         // End Basic Info
                       // Begin Emergency Info
@@ -672,7 +653,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                             .controls
                               input.focused(
                                 type='text',
-                                required,
                                 ng-model='youngAdult.emergencyInfo.name',
                                 placeholder="Bobby Doe",
                                 ui-jq='popover',
@@ -704,7 +684,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='text',
                                 ng-model='youngAdult.emergencyInfo.phone',
-                                required,
                                 placeholder="(123) 123-1235",
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
@@ -720,7 +699,6 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                               input.focused(
                                 type='text',
                                 ng-model='youngAdult.emergencyInfo.medicalNum',
-                                required,
                                 placeholder="1234 1234 123 123",
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
