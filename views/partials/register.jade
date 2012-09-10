@@ -34,10 +34,11 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             .btn-group
               a.btn.btn-info(href="https://www.google.com/intl/en/chrome/browser/") Get Chrome!
               a.btn.btn-warning(href="http://www.mozilla.org/en-US/firefox/new/?") Get Firefox!
+            p Lastly, if you have any issues with the form, please call 1-800-990-2432 and ask to speak with Della Preston.
         .row-fluid
           .form-horizontal.well#primary
             h1 Primary Contact  
-            p Each Group require a primary contact for each group. They will be the primary point of contact for information, payment, and announcements important for all delegates to receive.
+            p Each Group requires a primary contact. They will be the primary point of contact for information, payment, and announcements important for all delegates to receive.
             p It is <b>not</b> assumed that this person will be attending. If you are the group contact, and plan on attending, please add yourself to the relevant group below.
           
               // Begin Basic Info
@@ -87,7 +88,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             // Begin Extended Information        
             fieldset
               legend Extended Information
-              p Since you, the group contact, will be possibly recieving mail from us please fill this out. You won't need to fill this out for others in your group.
+              p As the Primary Contact we may be required to send you information by mail or e-mail regarding your group registration.
 
               // Affiliation Field
               .control-group
@@ -98,7 +99,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     ng-model='primaryContact.extendedInfo.affiliation',
                     ui-jq='popover',
                     ui-options="{trigger: 'focus', placement: 'right'}",
-                    data-title="Your Friendship Centre or organization.",
+                    data-title="",
                     data-content="Please list the name of the group/band/school/Friendship Centre etc. that you are registering.",
                     placeholder='Victoria Native Friendship Centre'
                   )
