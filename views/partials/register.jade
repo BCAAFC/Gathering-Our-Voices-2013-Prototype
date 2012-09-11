@@ -97,6 +97,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   input.focused(
                     type='text',
                     ng-model='primaryContact.extendedInfo.affiliation',
+                    required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus', placement: 'right'}",
                     data-title="",
