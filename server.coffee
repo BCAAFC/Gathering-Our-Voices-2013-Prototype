@@ -110,6 +110,10 @@ app.configure "development", ->
 app.get "/", (req, res) ->
   res.render "index"
 
+# UNCOMMENT THIS TO MAKE AN ERROR PAGE APPEAR EVERYWHERE
+#app.get "/:anything", (req,res) ->
+#  res.render "down"
+
 # This handles all the partials for Angular, don't break this!
 app.get "/partials/:name", (req, res) ->
   name = req.params.name

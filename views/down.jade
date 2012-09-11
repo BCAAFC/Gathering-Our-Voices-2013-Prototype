@@ -1,0 +1,27 @@
+!!!
+html
+  head
+    title Gathering Our Voices
+    meta(http-equiv="Content-Type",content="text/html; charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="description", content="Gathering Our Voices is an annual conference in BC for Aboriginal Youth. This years confernce theme will focus on Health and will be held from March 19-22, 2013 in Penticton, BC.")
+    meta(name="author", content="Andrew Hobden")
+    // HTML5 shim, because IE's are horrible.
+    //if lt IE 9
+      script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+
+    // Get the CSS.
+    != css('bootstrap.min')
+    != css('layout')
+    != css('responsive.min')
+
+  body
+    .container-fluid
+      .row-fluid
+        .span4.offset4.well
+          p Our online registration is currently <b>down</b>, please visit <a href="http://www.bcaafc.com/newsandevents/gathering-our-voices"> the BCAAFC's Gathering Our Voices sub-site</a> for a downloadable form. Thank you.
+
+  // Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
+  != js('jquery.min')
+  // Bootstrap only
+  != js('bootstrap.min')
