@@ -145,7 +145,6 @@ app.post "/attendee-list", (req, res) ->
 
 # Registration Form Post
 app.post "/register", (req, res) ->
-  console.log req.body.costs.paymentMethod
   group = new Group
     primaryContact: req.body.primaryContact
     youthList: req.body.youthList
@@ -159,14 +158,14 @@ app.post "/register", (req, res) ->
       paymentMethod: req.body.costs.paymentMethod
     internalData: req.body.internalData
   # Catch errors and send a message
-  console.log group
   group.save (err) ->
     if (err)
-      console.log "Error in validation of a form!"
+      console.log "Error in validation of a registration"
       res.send
         success: false
         errors: err
     else
+      console.log "A new group has been registered."
       res.send
         success: true
           
