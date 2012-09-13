@@ -1,90 +1,90 @@
 !!!
 html
-  head
-    title Gathering Our Voices
-    meta(http-equiv="Content-Type",content="text/html; charset=UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(name="description", content="Gathering Our Voices is an annual conference in BC for Aboriginal Youth. This years confernce theme will focus on Health and will be held from March 19-22, 2013 in Penticton, BC.")
-    meta(name="author", content="Andrew Hobden")
-    // HTML5 shim, because IE's are horrible.
-    //if lt IE 9
-      script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
+	head
+		title Gathering Our Voices
+		meta(http-equiv="Content-Type",content="text/html; charset=UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="description", content="Gathering Our Voices is an annual conference in BC for Aboriginal Youth. This years confernce theme will focus on Health and will be held from March 19-22, 2013 in Penticton, BC.")
+		meta(name="author", content="Andrew Hobden")
+		// HTML5 shim, because IE's are horrible.
+		//if lt IE 9
+			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 
-    // Get the CSS.
-    != css('bootstrap.min')
-    != css('layout')
-    != css('responsive.min')
+		// Get the CSS.
+		!= css('bootstrap.min')
+		!= css('layout')
+		!= css('responsive.min')
 
-  body
-    // Navbar. This does not need a container.
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container-fluid
-          .pull-right
-            a.brand Gathering Our Voices
-          ul.nav
-            li
-              a(href='/home')
-                i.icon-home
-                | Home
-            li
-              a(href='/register')
-                i.icon-edit
-                | Register
-            li
-              a(href="/privacy")
-                i.icon-eye-open
-                | Privacy Policy
-            li
-              a(href='/management')
-                i.icon-tasks
-                | Management
+	body
+		// Navbar. This does not need a container.
+		.navbar.navbar-fixed-top
+			.navbar-inner
+				.container-fluid
+					.pull-right
+						a.brand Gathering Our Voices
+					ul.nav
+						li
+							a(href='/home')
+								i.icon-home
+								| Home
+						li
+							a(href='/register')
+								i.icon-edit
+								| Register
+						li
+							a(href="/privacy")
+								i.icon-eye-open
+								| Privacy Policy
+						li
+							a(href='/management')
+								i.icon-tasks
+								| Management
 
-    // Leaving out for now.
-      .container-fluid
-        .span3.offset3
-        .pull-right
-          .visible-desktop.carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
-            .carousel-inner
-              .active.item
-                img(src="/img/index/carousel1.jpg")
-              .item
-                img(src="/img/index/carousel2.jpg")
-              .item
-                img(src="/img/index/carousel3.jpg")
-              .item
-                img(src="/img/index/carousel4.jpg")
-            a.carousel-control.left(href='javascript:void(0)', carousel-prev) &lsaquo;
-            a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
-            
-    // Main Container. Nothing other then floats should be outside of this.
-    .container-fluid
-      // Logo Row.
-      // -- This is the top of the page, it containers things that the entire application will be using.
-      .row-fluid
-        .span9
-        .span3
-          img.hidden-phone(src="/img/gov_logo.png")
-        
-      // Article Row
-      // -- This is the main content which Angular JS replaces during ng-view
-      .row-fluid#article(ng-view)
-        .container-fluid
-          .row-fluid
-            .span5
-            .well.span2
-              p Please give us a moment while the data loads!
+		// Leaving out for now.
+			.container-fluid
+				.span3.offset3
+				.pull-right
+					.visible-desktop.carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
+						.carousel-inner
+							.active.item
+								img(src="/img/index/carousel1.jpg")
+							.item
+								img(src="/img/index/carousel2.jpg")
+							.item
+								img(src="/img/index/carousel3.jpg")
+							.item
+								img(src="/img/index/carousel4.jpg")
+						a.carousel-control.left(href='javascript:void(0)', carousel-prev) &lsaquo;
+						a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
+						
+		// Main Container. Nothing other then floats should be outside of this.
+		.container-fluid
+			// Logo Row.
+			// -- This is the top of the page, it containers things that the entire application will be using.
+			.row-fluid
+				.span9
+				.span3
+					img.hidden-phone(src="/img/gov_logo.png")
+				
+			// Article Row
+			// -- This is the main content which Angular JS replaces during ng-view
+			.row-fluid#article(ng-view)
+				.container-fluid
+					.row-fluid
+						.span5
+						.well.span2
+							p Please give us a moment while the data loads!
 
-  // Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
-  != js('jquery.min')
-  // Bootstrap only
-  != js('bootstrap.min')
-  // Angular JS specific
-  != js('angular/angular-1.0.1')
-  != js('angular-ui')
-  != js('app')
-  != js('controllers')
-  != js('directives')
-  != js('jquery.maskedinput.js')
-  script(type="text/javascript")
-    angular.bootstrap(document, ['gov']);
+	// Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
+	!= js('jquery.min')
+	// Bootstrap only
+	!= js('bootstrap.min')
+	// Angular JS specific
+	!= js('angular/angular-1.0.1')
+	!= js('angular-ui')
+	!= js('app')
+	!= js('controllers')
+	!= js('directives')
+	!= js('jquery.maskedinput.js')
+	script(type="text/javascript")
+		angular.bootstrap(document, ['gov']);

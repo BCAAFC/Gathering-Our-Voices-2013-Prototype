@@ -1,157 +1,157 @@
 .container-fluid(ng-controller='manCtl')
-  .row-fluid
-    .span3(style="position: fixed; top: 50px;")
-      .well
-        .input-prepend
-          span.add-on
-            i.icon-search
-          input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
-      .well
-        p
-          h6 Basic Information
-          b Name: 
-          | {{ currentUser.name }}
-          br
-          b Status: 
-          | {{ currentUser.status }}
-          br
-          b Gender: 
-          | {{ currentUser.gender }}
-          br
-          b Birth Date: 
-          | {{ currentUser.birthDate }}
-          br
-          b Phone: 
-          | {{ currentUser.phone }}
-          br
-          b Email: 
-          | {{ currentUser.email }}
-          hr
-          h6 Emergency Information
-          b Name: 
-          | {{ currentUser.emergencyInfo.name }}
-          br
-          b Relation: 
-          | {{ currentUser.emergencyInfo.relation }}
-          br
-          b Phone: 
-          | {{ currentUser.emergencyInfo.phone }}
-          br
-          b Medical Number: 
-          | {{ currentUser.emergencyInfo.medicalNum }}
-          br
-          b Allergies: 
-          | {{ currentUser.emergencyInfo.allergies }}
-          br
-          b Illnesses: 
-          | {{ currentUser.emergencyInfo.illnesses }}
-    .span3
-    .span8.well.accordion#listing
-      .container-fluid
-        .row-fluid
-          .span2
-            h6 Primary Contact
-          .span2
-            h6 Affiliation
-          .span2
-            h6 Youth
-          .span2
-            h6 Chaperones
-          .span2
-            h6 Y. Adults
-          .span2
-            h6 Edit
-      .row-fluid
-        .accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
-          .accordion-heading
-            .container-fluid
-              .row-fluid
-                .span2(ng-click='group.expanded=!group.expanded')
-                  a.accordion-toggle  {{group.primaryContact.name}}
-                .span2(management-collapse)
-                  p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
-                .span2(management-collapse)
-                  p.accordion-toggle {{group.youthList.length}}
-                .span2(management-collapse)
-                  p.accordion-toggle {{group.chaperoneList.length}}
-                .span2(management-collapse)
-                  p.accordion-toggle {{group.youngAdultList.length}}
-                .span2
-                  a.btn.accordion-toggle(href="/register/{{ group._id }}") Edit &raquo;
-          .accordion-body(ui-toggle='group.expanded')
-            .accordion-inner
-              .container-fluid
-                .span2
-                  h6 Mailing Information
-                  address(style='text-align: center')
-                    p
-                      a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
-                      br
-                      i {{ group.primaryContact.extendedInfo.affiliation }}
-                      br
-                      | {{ group.primaryContact.phone }}
-                      br
-                      | {{ group.primaryContact.extendedInfo.address }}
-                      br
-                      | {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
-                      br
-                      | {{ group.primaryContact.extendedInfo.postalCode }}
-                .span2
-                  h6 Youth
-                  ul.nav.nav-list
-                    li(ng-repeat="youth in group.youthList")
-                      a(ng-click='select(youth)') {{youth.name}}
-                .span2
-                  h6 Chaperones
-                  ul.nav.nav-list
-                    li(ng-repeat="chaperone in group.chaperoneList")
-                      a(ng-click='select(chaperone)') {{chaperone.name}}
-                .span2
-                  h6 Y. Adults
-                  ul.nav.nav-list
-                    li(ng-repeat="youngAdult in group.youngAdultList")
-                      a(ng-click='select(youngAdult)') {{youngAdult.name}}
-                .span3
-                  h6 Costs
-                  .nav.nav-list
-                    b Total: 
-                    | {{ group.costs.paidTickets * group.costs.feePerTicket }}
-                    br
-                    b Paid: 
-                    input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
-                    div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
-                      a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
-                      div(ui-toggle="group.updateSuccess")
-                        i.icon-ok
-                        | Updated!
-                    br
-                    b Paid Tickets: 
-                    | {{ group.costs.paidTickets }}
-                    br
-                    b Free Tickets: 
-                    | {{ group.costs.freeTickets }}
-                    br
-                    b Ticket Price: 
-                    | {{ group.costs.feePerTicket }}
-                    br
-                    b Payment Method:
-                    | {{ group.costs.paymentMethod }}
-                  a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
-                  a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
+	.row-fluid
+		.span3(style="position: fixed; top: 50px;")
+			.well
+				.input-prepend
+					span.add-on
+						i.icon-search
+					input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
+			.well
+				p
+					h6 Basic Information
+					b Name: 
+					| {{ currentUser.name }}
+					br
+					b Status: 
+					| {{ currentUser.status }}
+					br
+					b Gender: 
+					| {{ currentUser.gender }}
+					br
+					b Birth Date: 
+					| {{ currentUser.birthDate }}
+					br
+					b Phone: 
+					| {{ currentUser.phone }}
+					br
+					b Email: 
+					| {{ currentUser.email }}
+					hr
+					h6 Emergency Information
+					b Name: 
+					| {{ currentUser.emergencyInfo.name }}
+					br
+					b Relation: 
+					| {{ currentUser.emergencyInfo.relation }}
+					br
+					b Phone: 
+					| {{ currentUser.emergencyInfo.phone }}
+					br
+					b Medical Number: 
+					| {{ currentUser.emergencyInfo.medicalNum }}
+					br
+					b Allergies: 
+					| {{ currentUser.emergencyInfo.allergies }}
+					br
+					b Illnesses: 
+					| {{ currentUser.emergencyInfo.illnesses }}
+		.span3
+		.span8.well.accordion#listing
+			.container-fluid
+				.row-fluid
+					.span2
+						h6 Primary Contact
+					.span2
+						h6 Affiliation
+					.span2
+						h6 Youth
+					.span2
+						h6 Chaperones
+					.span2
+						h6 Y. Adults
+					.span2
+						h6 Edit
+			.row-fluid
+				.accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
+					.accordion-heading
+						.container-fluid
+							.row-fluid
+								.span2(ng-click='group.expanded=!group.expanded')
+									a.accordion-toggle	{{group.primaryContact.name}}
+								.span2(management-collapse)
+									p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
+								.span2(management-collapse)
+									p.accordion-toggle {{group.youthList.length}}
+								.span2(management-collapse)
+									p.accordion-toggle {{group.chaperoneList.length}}
+								.span2(management-collapse)
+									p.accordion-toggle {{group.youngAdultList.length}}
+								.span2
+									a.btn.accordion-toggle(href="/register/{{ group._id }}") Edit &raquo;
+					.accordion-body(ui-toggle='group.expanded')
+						.accordion-inner
+							.container-fluid
+								.span2
+									h6 Mailing Information
+									address(style='text-align: center')
+										p
+											a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
+											br
+											i {{ group.primaryContact.extendedInfo.affiliation }}
+											br
+											| {{ group.primaryContact.phone }}
+											br
+											| {{ group.primaryContact.extendedInfo.address }}
+											br
+											| {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+											br
+											| {{ group.primaryContact.extendedInfo.postalCode }}
+								.span2
+									h6 Youth
+									ul.nav.nav-list
+										li(ng-repeat="youth in group.youthList")
+											a(ng-click='select(youth)') {{youth.name}}
+								.span2
+									h6 Chaperones
+									ul.nav.nav-list
+										li(ng-repeat="chaperone in group.chaperoneList")
+											a(ng-click='select(chaperone)') {{chaperone.name}}
+								.span2
+									h6 Y. Adults
+									ul.nav.nav-list
+										li(ng-repeat="youngAdult in group.youngAdultList")
+											a(ng-click='select(youngAdult)') {{youngAdult.name}}
+								.span3
+									h6 Costs
+									.nav.nav-list
+										b Total: 
+										| {{ group.costs.paidTickets * group.costs.feePerTicket }}
+										br
+										b Paid: 
+										input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
+										div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+											a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
+											div(ui-toggle="group.updateSuccess")
+												i.icon-ok
+												| Updated!
+										br
+										b Paid Tickets: 
+										| {{ group.costs.paidTickets }}
+										br
+										b Free Tickets: 
+										| {{ group.costs.freeTickets }}
+										br
+										b Ticket Price: 
+										| {{ group.costs.feePerTicket }}
+										br
+										b Payment Method:
+										| {{ group.costs.paymentMethod }}
+									a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
+									a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
 
 .modal.hide.fade#secretModal
-  .modal-header
-    button.close(type="button", data-dismiss='modal') x
-    h3 Escalated Privilages Needed!
-  .modal-body
-    p Unfortunately, us allowing you to see all of the attendees (and their respective information!) would be a huge security concern!
-    br
-    i So, please enter the secret key: 
-    input.focused(type='password', ng-model='secret', name='secret', placeholder='Secret Key goes here')
-    p Oh, and by the way, Internet Explorer does not work past this point. Please use a browser more adherant to web standards, like Chrome, or Firefox.
-  .modal-footer
-    a.btn(data-dismiss='modal', href='/home') Cancel
-    a.btn.btn-primary(ng-click='auth()', data-dismiss='modal') Authenticate
-  
-  script(type='text/javascript')
-    $('#secretModal').modal({backdrop: 'static'});
+	.modal-header
+		button.close(type="button", data-dismiss='modal') x
+		h3 Escalated Privilages Needed!
+	.modal-body
+		p Unfortunately, us allowing you to see all of the attendees (and their respective information!) would be a huge security concern!
+		br
+		i So, please enter the secret key: 
+		input.focused(type='password', ng-model='secret', name='secret', placeholder='Secret Key goes here')
+		p Oh, and by the way, Internet Explorer does not work past this point. Please use a browser more adherant to web standards, like Chrome, or Firefox.
+	.modal-footer
+		a.btn(data-dismiss='modal', href='/home') Cancel
+		a.btn.btn-primary(ng-click='auth()', data-dismiss='modal') Authenticate
+	
+	script(type='text/javascript')
+		$('#secretModal').modal({backdrop: 'static'});
