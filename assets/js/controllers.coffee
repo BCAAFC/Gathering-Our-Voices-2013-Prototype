@@ -57,10 +57,6 @@
   $scope.youthList = []
   $scope.chaperoneList = []
   $scope.youngAdultList = []
-  # Begin counters
-  $scope.youngAdultNumber = 0
-  $scope.youthNumber = 0
-  $scope.chaperoneNumber = 0
   # Define an empty primary contact
   $scope.primaryContact =
     name: ""
@@ -86,10 +82,6 @@
       $scope.youthList = data.youthList
       $scope.chaperoneList = data.chaperoneList
       $scope.youngAdultList = data.youngAdultList
-      # Begin counters
-      $scope.youngAdultNumber = data.internalData.youngAdultNumber
-      $scope.youthNumber = data.internalData.youthNumber
-      $scope.chaperoneNumber = data.internalData.chaperoneNumber
       # Load up our Primary Contact
       $scope.primaryContact = data.primaryContact
       # Set something so we know to update, not newly register.
@@ -103,10 +95,7 @@
         youthList: $scope.youthList
         chaperoneList: $scope.chaperoneList
         youngAdultList: $scope.youngAdultList
-        internalData: 
-          youthNumber: $scope.youthNumber
-          youngAdultNumber: $scope.youngAdultNumber
-          chaperoneNumber: $scope.chaperoneNumber
+        internalData: ""
         oldId: $routeParams.groupId
         costs:
           paidTickets: $scope.paidTickets()
@@ -127,10 +116,7 @@
         youthList: $scope.youthList
         chaperoneList: $scope.chaperoneList
         youngAdultList: $scope.youngAdultList
-        internalData: 
-          youthNumber: $scope.youthNumber
-          youngAdultNumber: $scope.youngAdultNumber
-          chaperoneNumber: $scope.chaperoneNumber
+        internalData: ""
         costs:
           paidTickets: $scope.paidTickets()
           freeTickets: $scope.freeTickets()
@@ -147,9 +133,8 @@
   
   # Youth list
   $scope.addYouth = ->
-    $scope.youthNumber +=1
     $scope.youthList.push
-      name: "Youth " + $scope.youthNumber
+      name: "New Youth"
       status: "Youth (14-17 yrs)"
       gender: ""
       birthDate: ""
@@ -162,13 +147,11 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-      number: $scope.youthNumber
   
   # Chaperone list
   $scope.addChaperone = ->
-    $scope.chaperoneNumber += 1
     $scope.chaperoneList.push
-      name: "Chaperone " + $scope.chaperoneNumber
+      name: "New Chaperone"
       status: "Chaperone (21+ yrs)"
       gender: ""
       birthDate: ""
@@ -181,13 +164,11 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-      number: $scope.chaperoneNumber
   
   # Young Adult list
   $scope.addYoungAdult = ->
-    $scope.youngAdultNumber += 1
     $scope.youngAdultList.push
-      name: "Young Adult " + ($scope.youngAdultNumber)
+      name: "New Young Adult"
       status: "Young Adult (18-24 yrs)"
       gender: ""
       birthDate: ""
@@ -200,7 +181,6 @@
         medicalNum: ""
         allergies: ""
         illnesses: ""
-      number: $scope.youngAdultNumber
   
   $scope.removeYouth = (youth) ->
     removal = $scope.youthList.indexOf(youth)

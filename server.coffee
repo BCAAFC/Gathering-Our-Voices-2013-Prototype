@@ -38,7 +38,6 @@ attendeeSchema = new mongoose.Schema
     medicalNum: String
     allergies: [String]
     illnesses: [String]
-  number: Number
 Attendee = database.model('Attendee', attendeeSchema)
 
 # Group Schema for all groups.
@@ -63,10 +62,7 @@ groupSchema = new mongoose.Schema
     freeTickets: Number
     paid: Number
     paymentMethod: String
-  internalData:
-    youthNumber: Number
-    youngAdultNumber: Number
-    chaperoneNumber: Number
+  internalData: String
 Group = database.model('Group', groupSchema)
 
 ###
