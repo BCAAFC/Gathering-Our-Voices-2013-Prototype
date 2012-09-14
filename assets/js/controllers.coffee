@@ -36,6 +36,15 @@
 			costs: group.costs
 		).success (data, status, headers, config) ->
 			group.updateSuccess = data.success
+			
+	$scope.updateNote = (group) ->
+		$http.post("/updateNote",
+			secret: $scope.secret
+			group:
+				id: group._id
+			note: group.note
+		).success (data, status, headers, config) ->
+			group.updateSuccess = data.success
 
 ###
 # Login Controller. Handles logins, so it's sort of a big deal.
@@ -62,17 +71,19 @@
 		name: ""
 		phone: ""
 		email: ""
-		extendedInfo:
-			affiliation: ""
-			address: ""
-			city: ""
-			province: ""
-			postalCode: ""
-			fax: ""
+	$scope.groupInfo =
+		affiliation: ""
+		address: ""
+		city: ""
+		province: ""
+		postalCode: ""
+		fax: ""
+	$scope.costs =
+		paymentMethod: ""
 			
-	# Make sure we're doing a new registration
+	# By default, we're doing a new registration
 	$scope.updateButton = false
-	# Load Data if needed!
+	# Detect if this is an update
 	if $routeParams.groupId
 		$http.post("/getGroupId",
 			id: $routeParams.groupId
@@ -84,6 +95,7 @@
 			$scope.youngAdultList = data.youngAdultList
 			# Load up our Primary Contact
 			$scope.primaryContact = data.primaryContact
+			$scope.costs.paymentMethod = data.costs.paymentMethod
 			# Set something so we know to update, not newly register.
 			$scope.updateButton = true
 	
@@ -92,6 +104,7 @@
 		if $scope.updateButton
 			$http.post("/update",
 				primaryContact: $scope.primaryContact
+				groupInfo: $scope.groupInfo
 				youthList: $scope.youthList
 				chaperoneList: $scope.chaperoneList
 				youngAdultList: $scope.youngAdultList

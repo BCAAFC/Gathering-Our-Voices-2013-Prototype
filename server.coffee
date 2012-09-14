@@ -26,7 +26,7 @@ database.once 'open', () ->
 # Attendee Schema used for youth, chaperones, and young adults
 attendeeSchema = new mongoose.Schema
 	name: String
-	status: String
+	type: String
 	gender: String
 	birthDate: String
 	phone: String
@@ -46,23 +46,30 @@ groupSchema = new mongoose.Schema
 		name: String
 		phone: String
 		email: String
-		extendedInfo:
-			affiliation: String
-			address: String
-			city: String
-			province: String
-			postalCode: String
-			fax: String
+	groupInfo:
+		affiliation: String
+		address: String
+		city: String
+		province: String
+		postalCode: String
+		fax: String
 	youthList: [attendeeSchema]
 	chaperoneList: [attendeeSchema]
 	youngAdultList: [attendeeSchema]
 	costs:
-		feePerTicket: Number				
 		paidTickets: Number
 		freeTickets: Number
-		paid: Number
 		paymentMethod: String
-	internalData: String
+	internalData:
+		regDate: String
+		status: String
+		confirmation: String
+		workshop: String
+		youthInCare: String
+		paymentStatus: String
+		paid: Number
+		feePerTicket: Number
+		notes: String
 Group = database.model('Group', groupSchema)
 
 ###
@@ -106,7 +113,7 @@ app.configure "development", ->
 app.get "/", (req, res) ->
 	res.render "index"
 
-# UNCOMMENT THIS TO MAKE AN ERROR PAGE APPEAR EVERYWHERE, then comment out the above.
+# UNCOMMENT THIS TO MAKE AN ERROR PAGE APPEAR EVERYWHERE, then comment out the above and restart server.
 #app.get "/:anything", (req,res) ->
 #	 res.render "down"
 
@@ -147,16 +154,20 @@ app.post "/attendee-list", (req, res) ->
 app.post "/register", (req, res) ->
 	group = new Group
 		primaryContact: req.body.primaryContact
+		groupInfo: req.body.groupInfo
 		youthList: req.body.youthList
 		chaperoneList: req.body.chaperoneList
 		youngAdultList: req.body.youngAdultList
-		costs:
-			feePerTicket: getTicketPrice()
+		costs: req.body.costs
+		internalData:
+			status: "New group - Unchecked"
+			confirmation: "Unchecked"
+			workshop: "WS reg not sent"
+			youthInCare: "No, have no asked"
+			paymentStatus: "Need to contact"
 			paid: 0
-			freeTickets: req.body.costs.freeTickets
-			paidTickets: req.body.costs.paidTickets
-			paymentMethod: req.body.costs.paymentMethod
-		internalData: req.body.internalData
+			feePerTicket: getTicketPrice()
+			notes: ""
 	# Catch errors and send a message
 	group.save (err) ->
 		if (err)
@@ -177,13 +188,14 @@ app.post "/update", (req, res) ->
 		(err, result) ->
 			# Once we have the old group, set it.
 			result.primaryContact= req.body.primaryContact
-			result.youthList= req.body.youthList
-			result.chaperoneList= req.body.chaperoneList
-			result.youngAdultList= req.body.youngAdultList
-			result.internalData= req.body.internalData
-			result.costs.paidTickets= req.body.costs.paidTickets
-			result.costs.freeTickets= req.body.costs.freeTickets
-			result.costs.paymentMethod = req.body.costs.paymentMethod
+			result.groupInfo = req.body.groupInfo
+			result.youthList = req.body.youthList
+			result.chaperoneList = req.body.chaperoneList
+			result.youngAdultList = req.body.youngAdultList
+			result.costs = req.body.costs
+			result.internalData =
+				status: "Edited - Unchecked"
+			
 			# Catch errors and send a message
 			result.save (err) ->
 				console.log err
@@ -215,7 +227,7 @@ app.post "/removeGroupById", (req, res) ->
 					res.send
 						success: true
 
-# Remove a group
+# Update Group Payment
 app.post "/updatePaid", (req, res) ->
 	if req.body.secret is config.secret
 		Group.findOne { "_id": req.body.group.id }, (err, result) ->

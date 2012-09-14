@@ -81,63 +81,66 @@
 					.accordion-body(ui-toggle='group.expanded')
 						.accordion-inner
 							.container-fluid
-								.span2
-									h6 Mailing Information
-									address(style='text-align: center')
-										p
-											a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
+								.row-fluid
+									.span2
+										h6 Mailing Information
+										address(style='text-align: center')
+											p
+												a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
+												br
+												i {{ group.primaryContact.extendedInfo.affiliation }}
+												br
+												| {{ group.primaryContact.phone }}
+												br
+												| {{ group.primaryContact.extendedInfo.address }}
+												br
+												| {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+												br
+												| {{ group.primaryContact.extendedInfo.postalCode }}
+									.span2
+										h6 Youth
+										ul.nav.nav-list
+											li(ng-repeat="youth in group.youthList")
+												a(ng-click='select(youth)') {{youth.name}}
+									.span2
+										h6 Chaperones
+										ul.nav.nav-list
+											li(ng-repeat="chaperone in group.chaperoneList")
+												a(ng-click='select(chaperone)') {{chaperone.name}}
+									.span2
+										h6 Y. Adults
+										ul.nav.nav-list
+											li(ng-repeat="youngAdult in group.youngAdultList")
+												a(ng-click='select(youngAdult)') {{youngAdult.name}}
+									.span3
+										h6 Costs
+										.nav.nav-list
+											b Total: 
+											| {{ group.costs.paidTickets * group.costs.feePerTicket }}
 											br
-											i {{ group.primaryContact.extendedInfo.affiliation }}
+											b Paid: 
+											input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
+											div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+												a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
+												div(ui-toggle="group.updateSuccess")
+													i.icon-ok
+													| Updated!
 											br
-											| {{ group.primaryContact.phone }}
+											b Paid Tickets: 
+											| {{ group.costs.paidTickets }}
 											br
-											| {{ group.primaryContact.extendedInfo.address }}
+											b Free Tickets: 
+											| {{ group.costs.freeTickets }}
 											br
-											| {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+											b Ticket Price: 
+											| {{ group.costs.feePerTicket }}
 											br
-											| {{ group.primaryContact.extendedInfo.postalCode }}
-								.span2
-									h6 Youth
-									ul.nav.nav-list
-										li(ng-repeat="youth in group.youthList")
-											a(ng-click='select(youth)') {{youth.name}}
-								.span2
-									h6 Chaperones
-									ul.nav.nav-list
-										li(ng-repeat="chaperone in group.chaperoneList")
-											a(ng-click='select(chaperone)') {{chaperone.name}}
-								.span2
-									h6 Y. Adults
-									ul.nav.nav-list
-										li(ng-repeat="youngAdult in group.youngAdultList")
-											a(ng-click='select(youngAdult)') {{youngAdult.name}}
-								.span3
-									h6 Costs
-									.nav.nav-list
-										b Total: 
-										| {{ group.costs.paidTickets * group.costs.feePerTicket }}
-										br
-										b Paid: 
-										input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
-										div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
-											a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
-											div(ui-toggle="group.updateSuccess")
-												i.icon-ok
-												| Updated!
-										br
-										b Paid Tickets: 
-										| {{ group.costs.paidTickets }}
-										br
-										b Free Tickets: 
-										| {{ group.costs.freeTickets }}
-										br
-										b Ticket Price: 
-										| {{ group.costs.feePerTicket }}
-										br
-										b Payment Method:
-										| {{ group.costs.paymentMethod }}
-									a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
-									a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
+											b Payment Method:
+											| {{ group.costs.paymentMethod }}
+										a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
+										a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
+								.row-fluid
+									p Stuff here
 
 .modal.hide.fade#secretModal
 	.modal-header
