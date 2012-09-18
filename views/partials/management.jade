@@ -50,9 +50,9 @@
 			.container-fluid
 				.row-fluid
 					.span2
-						h6 Primary Contact
+						h6 Group
 					.span2
-						h6 Affiliation
+						h6 Primary Contact
 					.span2
 						h6 Youth
 					.span2
@@ -67,9 +67,9 @@
 						.container-fluid
 							.row-fluid
 								.span2(ng-click='group.expanded=!group.expanded')
-									a.accordion-toggle	{{group.primaryContact.name}}
+									a.accordion-toggle	{{group.groupInfo.affiliation}}
 								.span2(management-collapse)
-									p.accordion-toggle {{group.primaryContact.extendedInfo.affiliation}}
+									p.accordion-toggle {{group.primaryContact.name}}
 								.span2(management-collapse)
 									p.accordion-toggle {{group.youthList.length}}
 								.span2(management-collapse)
@@ -88,15 +88,15 @@
 											p
 												a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
 												br
-												i {{ group.primaryContact.extendedInfo.affiliation }}
+												i {{ group.groupInfoaffiliation }}
 												br
 												| {{ group.primaryContact.phone }}
 												br
-												| {{ group.primaryContact.extendedInfo.address }}
+												| {{ group.groupInfo.address }}
 												br
-												| {{ group.primaryContact.extendedInfo.city }}, {{ group.primaryContact.extendedInfo.province }}
+												| {{ group.groupInfo.city }}, {{ group.groupInfo.province }}
 												br
-												| {{ group.primaryContact.extendedInfo.postalCode }}
+												| {{ group.groupInfo.postalCode }}
 									.span2
 										h6 Youth
 										ul.nav.nav-list
@@ -115,16 +115,6 @@
 									.span3
 										h6 Costs
 										.nav.nav-list
-											b Total: 
-											| {{ group.costs.paidTickets * group.costs.feePerTicket }}
-											br
-											b Paid: 
-											input.focused(type="text", ng-model="group.costs.paid", style="width: 40px;")
-											div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
-												a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updatePaid(group)") Update &raquo;
-												div(ui-toggle="group.updateSuccess")
-													i.icon-ok
-													| Updated!
 											br
 											b Paid Tickets: 
 											| {{ group.costs.paidTickets }}
@@ -133,14 +123,66 @@
 											| {{ group.costs.freeTickets }}
 											br
 											b Ticket Price: 
-											| {{ group.costs.feePerTicket }}
+											| {{ group.internalData.feePerTicket }}
 											br
 											b Payment Method:
 											| {{ group.costs.paymentMethod }}
 										a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
 										a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
 								.row-fluid
-									p Stuff here
+									.form-horizontal(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+										h6 Internal Information
+										.span4
+											.control-group
+												label.control-label Reg. Date
+												.controls
+													p {{ group.internalData.regDate }}
+											.control-group
+												label.control-label Status
+												.controls
+													select(ng-model="group.internalData.status")
+														option(value="New group - Unchecked") New group - Unchecked
+														option(value="Edited - Unchecked") Edited - Unchecked
+														option(value="New group - Reviewed") New group - Reviewed
+														option(value="Group waiting for info") Group waiting for info
+														option(value="Group - Complete") Group - Complete
+										.span4
+											.control-group
+												label.control-label Youth in Care
+												.controls
+													select(ng-model="group.internalData.youthInCare")
+														option(value="Have not asked") Have not asked
+														option(value="Have asked") Have asked
+														option(value="Youth coming to YIC Dinner") Youth coming to YIC Dinner
+														option(value="No youth coming to YIC") No youth coming to YIC
+											.control-group
+												label.control-label Workshop Reg
+												.controls
+													select(ng-model="group.internalData.youthInCare")
+														option(value="WS Registration not sent") WS Registration not sent
+														option(value="WS Registration sent") WS Registration sent
+										.span4
+											.control-group
+												label.control-label Payment Status
+												.controls
+													select(ng-model="group.internalData.paymentStatus")
+														option(value="Need to contact") Need to contact
+														option(value="Waiting") Waiting
+														option(value="Payment in the mail") Payment in the mail
+														option(value="Invoice Sent") Invoice sent
+														option(value="Payment received") Payment received
+											.control-group
+												label.control-label Total 
+												.controls
+													p {{ group.costs.paidTickets * group.internalData.feePerTicket }}
+											.control-group
+												label.control-label Paid
+												.controls
+													input.focused(type="text", ng-model="group.internalData.paid", style="width: 40px;")
+											a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updateInternals(group)") Update &raquo;
+										div(ui-toggle="group.updateSuccess")
+											i.icon-ok
+											| Updated!
 
 .modal.hide.fade#secretModal
 	.modal-header

@@ -96,7 +96,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.affiliation',
+                    ng-model='groupInfo.affiliation',
                     required,
                     ui-jq='popover',
                     ui-options="{trigger: 'focus', placement: 'right'}",
@@ -111,7 +111,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.address',
+                    ng-model='groupInfo.address',
                     required,
                     placeholder='231 Regina Avenue'
                     ui-jq='popover',
@@ -126,7 +126,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input#city.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.city',
+                    ng-model='groupInfo.city',
                     required,
                     placeholder='Victoria',
                     ui-jq="typeahead",
@@ -139,7 +139,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input#province.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.province',
+                    ng-model='groupInfo.province',
                     required,
                     placeholder='British Columbia',
                     ui-jq='typeahead',
@@ -152,7 +152,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.postalCode',
+                    ng-model='groupInfo.postalCode',
                     ui-jq='popover',
                     ui-options="{trigger: 'focus', placement: 'right'}",
                     required,
@@ -167,7 +167,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .controls
                   input.focused(
                     type='text',
-                    ng-model='primaryContact.extendedInfo.fax',
+                    ng-model='groupInfo.fax',
                     placeholder="(123) 123-1234",
                     ui-jq='popover',
                     ui-options="{trigger: 'focus', placement: 'right'}",

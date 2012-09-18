@@ -160,6 +160,7 @@ app.post "/register", (req, res) ->
 		youngAdultList: req.body.youngAdultList
 		costs: req.body.costs
 		internalData:
+			regDate: new Date()
 			status: "New group - Unchecked"
 			confirmation: "Unchecked"
 			workshop: "WS reg not sent"
@@ -228,10 +229,10 @@ app.post "/removeGroupById", (req, res) ->
 						success: true
 
 # Update Group Payment
-app.post "/updatePaid", (req, res) ->
+app.post "/updateInternals", (req, res) ->
 	if req.body.secret is config.secret
-		Group.findOne { "_id": req.body.group.id }, (err, result) ->
-			result.costs = req.body.costs
+		Group.findOne { "_id": req.body.id }, (err, result) ->
+			result.internalData = req.body.internalData
 			result.save (err) ->
 				if (err)
 					console.log "Error in update!"

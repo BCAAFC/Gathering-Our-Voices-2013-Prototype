@@ -28,21 +28,11 @@
 		).success (data, status, headers, config) ->
 			$scope.auth()
 			
-	$scope.updatePaid = (group) ->
-		$http.post("/updatePaid",
+	$scope.updateInternals = (group) ->
+		$http.post("/updateInternals",
 			secret: $scope.secret
-			group:
-				id: group._id
-			costs: group.costs
-		).success (data, status, headers, config) ->
-			group.updateSuccess = data.success
-			
-	$scope.updateNote = (group) ->
-		$http.post("/updateNote",
-			secret: $scope.secret
-			group:
-				id: group._id
-			note: group.note
+			id: group._id
+			internalData: group.internalData
 		).success (data, status, headers, config) ->
 			group.updateSuccess = data.success
 
@@ -126,6 +116,7 @@
 		else
 			$http.post("/register",
 				primaryContact: $scope.primaryContact
+				groupInfo: $scope.groupInfo
 				youthList: $scope.youthList
 				chaperoneList: $scope.chaperoneList
 				youngAdultList: $scope.youngAdultList
