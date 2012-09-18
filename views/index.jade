@@ -11,9 +11,10 @@ html
 			script(src='http://html5shim.googlecode.com/svn/trunk/html5.js')
 
 		// Get the CSS.
-		!= css('bootstrap.min')
+		link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="/css/select2.css")
 		!= css('layout')
-		!= css('responsive.min')
+		link(rel="stylesheet", type="text/css", href="/css/responsive.min.css")
 
 	body
 		// Navbar. This does not need a container.
@@ -72,15 +73,16 @@ html
 							p Please give us a moment while the data loads!
 
 	// Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
-	!= js('jquery.min')
+	script(type="text/javascript", src="/js/jquery.min.js")
 	// Bootstrap only
-	!= js('bootstrap.min')
+	script(type="text/javascript", src="/js/bootstrap.min.js")
 	// Angular JS specific
-	!= js('angular/angular-1.0.1')
-	!= js('angular-ui')
+	script(type="text/javascript", src="/js/angular/angular-1.0.1.js")
+	script(type="text/javascript", src="/js/angular-ui.js")
 	!= js('app')
 	!= js('controllers')
 	!= js('directives')
-	!= js('jquery.maskedinput.js')
+	script(type="text/javascript", src="/js/select2.min.js")
+	script(type="text/javascript", src="/js/jquery.maskedinput.js")
 	script(type="text/javascript")
 		angular.bootstrap(document, ['gov']);
