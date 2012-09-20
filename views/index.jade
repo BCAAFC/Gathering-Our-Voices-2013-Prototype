@@ -36,23 +36,6 @@ html
 							a(href="/privacy")
 								i.icon-eye-open
 								| Privacy Policy
-
-		// Leaving out for now.
-			.container-fluid
-				.span3.offset3
-				.pull-right
-					.visible-desktop.carousel.slide.pull-right#intro-carousel(jq-ui='carousel')
-						.carousel-inner
-							.active.item
-								img(src="/img/index/carousel1.jpg")
-							.item
-								img(src="/img/index/carousel2.jpg")
-							.item
-								img(src="/img/index/carousel3.jpg")
-							.item
-								img(src="/img/index/carousel4.jpg")
-						a.carousel-control.left(href='javascript:void(0)', carousel-prev) &lsaquo;
-						a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
 						
 		// Main Container. Nothing other then floats should be outside of this.
 		.container
@@ -64,7 +47,7 @@ html
 				
 		// Article Row
 		// -- This is the main content which Angular JS replaces during ng-view
-		div#article(ng-view)
+		#article(ng-view)
 			.container-fluid
 				.row-fluid
 					.span5
