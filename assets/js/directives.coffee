@@ -32,4 +32,9 @@
 			element.affix
 				offset:
 					top: 310
+	).directive('popover', ->
+			link: (scope, element, attrs) ->
+				event.preventDefault()
+				member = attrs
+				console.log attrs.popover
 	)

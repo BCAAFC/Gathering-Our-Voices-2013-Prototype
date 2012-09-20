@@ -14,19 +14,17 @@
 	$scope.select = (attendee) ->
 		$scope.currentUser = attendee
 		
+	$scope.selectGroup = (group) ->
+		$scope.selectedGroup = group
+		
 	$scope.remove = (group) ->
 		# Send the group to be removed. We trim the data to avoid booleans we sometimes use.
 		$http.post("/removeGroupById",
 			secret: $scope.secret
-			group:
-				primaryContact: group.primaryContact
-				youthList: group.youthList
-				youngAdultList: group.youngAdultList
-				chaperoneList: group.chaperoneList
-				internalData: group.internalData
-				costs: group.costs
+			id: group._id
 		).success (data, status, headers, config) ->
 			$scope.auth()
+			$scope.selectedGroup = ""
 			
 	$scope.updateInternals = (group) ->
 		$http.post("/updateInternals",

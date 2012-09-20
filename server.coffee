@@ -217,7 +217,10 @@ app.post "/getGroupId", (req, res) ->
 # Remove a group
 app.post "/removeGroupById", (req, res) ->
 	if req.body.secret is config.secret
-		Group.findOne req.body.group, (err, result) ->
+		Group.findOne { "_id": req.body.id }, (err, result) ->
+			if (err)
+				console.log "Couldn't find a group!"
+			else
 			result.remove (err) ->
 				if (err)
 					console.log "Error in removal!"

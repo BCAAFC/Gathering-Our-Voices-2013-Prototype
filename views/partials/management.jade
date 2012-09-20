@@ -8,185 +8,138 @@
 							i.icon-search
 						input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
 				.well
-					p
-						h6 Basic Information
-						b Name: 
-						| {{ currentUser.name }}
-						br
-						b Status: 
-						| {{ currentUser.status }}
-						br
-						b Gender: 
-						| {{ currentUser.gender }}
-						br
-						b Birth Date: 
-						| {{ currentUser.birthDate }}
-						br
-						b Phone: 
-						| {{ currentUser.phone }}
-						br
-						b Email: 
-						| {{ currentUser.email }}
-						hr
-						h6 Emergency Information
-						b Name: 
-						| {{ currentUser.emergencyInfo.name }}
-						br
-						b Relation: 
-						| {{ currentUser.emergencyInfo.relation }}
-						br
-						b Phone: 
-						| {{ currentUser.emergencyInfo.phone }}
-						br
-						b Medical Number: 
-						| {{ currentUser.emergencyInfo.medicalNum }}
-						br
-						b Allergies: 
-						| {{ currentUser.emergencyInfo.allergies }}
-						br
-						b Illnesses: 
-						| {{ currentUser.emergencyInfo.illnesses }}
-		.span8.well.accordion#listing
+					h3 Groups Attending
+					p Newest at top.
+					ul.nav.nav-list.groupList
+						li(ng-repeat="group in attendees | filter:searchQuery | orderBy:'-internalData.regDate'")
+							a(ng-click="selectGroup(group)") {{ group.groupInfo.affiliation }}
+		.span9
 			.container-fluid
-				.row-fluid
-					.span2
-						h6 Group
-					.span2
-						h6 Primary Contact
-					.span2
-						h6 Youth
-					.span2
-						h6 Chaperones
-					.span2
-						h6 Y. Adults
-					.span2
-						h6 Edit
-			.row-fluid
-				.accordion-group(ng-repeat="group in attendees | filter:searchQuery | orderBy:'primaryContact.name'")
-					.accordion-heading
-						.container-fluid
-							.row-fluid
-								.span2(ng-click='group.expanded=!group.expanded')
-									a.accordion-toggle	{{group.groupInfo.affiliation}}
-								.span2(management-collapse)
-									p.accordion-toggle {{group.primaryContact.name}}
-								.span2(management-collapse)
-									p.accordion-toggle {{group.youthList.length}}
-								.span2(management-collapse)
-									p.accordion-toggle {{group.chaperoneList.length}}
-								.span2(management-collapse)
-									p.accordion-toggle {{group.youngAdultList.length}}
-								.span2
-									a.btn.accordion-toggle(href="/register/{{ group._id }}") Edit &raquo;
-					.accordion-body(ui-toggle='group.expanded')
-						.accordion-inner
-							.container-fluid
-								.row-fluid
-									.span2
-										h6 Mailing Information
-										address(style='text-align: center')
-											p
-												a(ng-click='select(group.primaryContact)') {{ group.primaryContact.name }}
-												br
-												i {{ group.groupInfoaffiliation }}
-												br
-												| {{ group.primaryContact.phone }}
-												br
-												| {{ group.groupInfo.address }}
-												br
-												| {{ group.groupInfo.city }}, {{ group.groupInfo.province }}
-												br
-												| {{ group.groupInfo.postalCode }}
-									.span2
-										h6 Youth
-										ul.nav.nav-list.scrollable
-											li(ng-repeat="youth in group.youthList")
-												a(ng-click='select(youth)') {{youth.name}}
-									.span2
-										h6 Chaperones
-										ul.nav.nav-list.scrollable
-											li(ng-repeat="chaperone in group.chaperoneList")
-												a(ng-click='select(chaperone)') {{chaperone.name}}
-									.span2
-										h6 Y. Adults
-										ul.nav.nav-list.scrollable
-											li(ng-repeat="youngAdult in group.youngAdultList")
-												a(ng-click='select(youngAdult)') {{youngAdult.name}}
-									.span3
-										h6 Costs
-										.nav.nav-list
-											br
-											b Paid Tickets: 
-											| {{ group.costs.paidTickets }}
-											br
-											b Free Tickets: 
-											| {{ group.costs.freeTickets }}
-											br
-											b Ticket Price: 
-											| {{ group.internalData.feePerTicket }}
-											br
-											b Payment Method:
-											| {{ group.costs.paymentMethod }}
-										a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
-										a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
-								.row-fluid
-									.form-horizontal
-										h6 Internal Information
-										.span6
-											.control-group
-												label.control-label Reg. Date
-												.controls
-													p {{ group.internalData.regDate }}
-											.control-group
-												label.control-label Status
-												.controls
-													select(ng-model="group.internalData.status", ui-select2)
-														option(value="New group - Unchecked") New group - Unchecked
-														option(value="Edited - Unchecked") Edited - Unchecked
-														option(value="New group - Reviewed") New group - Reviewed
-														option(value="Group waiting for info") Group waiting for info
-														option(value="Group - Complete") Group - Complete
-											.control-group
-												label.control-label Youth in Care
-												.controls
-													select(ng-model="group.internalData.youthInCare", ui-select2)
-														option(value="Have not asked") Have not asked
-														option(value="Have asked") Have asked
-														option(value="Youth coming to YIC Dinner") Youth coming to YIC Dinner
-														option(value="No youth coming to YIC") No youth coming to YIC
-											.control-group
-												label.control-label Workshop Reg
-												.controls
-													select(ng-model="group.internalData.youthInCare", ui-select2)
-														option(value="WS Registration not sent") WS Registration not sent
-														option(value="WS Registration sent") WS Registration sent
-											.control-group
-												label.control-label Payment Status
-												.controls
-													select(ng-model="group.internalData.paymentStatus", ui-select2)
-														option(value="Need to contact") Need to contact
-														option(value="Waiting") Waiting
-														option(value="Payment in the mail") Payment in the mail
-														option(value="Invoice Sent") Invoice sent
-														option(value="Payment received") Payment received
-											.control-group
-												label.control-label Total 
-												.controls
-													p {{ group.costs.paidTickets * group.internalData.feePerTicket }}
-											.control-group
-												label.control-label Paid
-												.controls
-													input.focused(type="text", ng-model="group.internalData.paid", style="width: 40px;")
-										.span4
-											.control-group
-												label.control-label Notes
-												textarea.focused(ng-model="group.internalData.notes", rows="6", cols="30")
-								.row-fluid
-									div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
-										a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updateInternals(group)") Update &raquo;
-										div(ui-toggle="group.updateSuccess")
-											i.icon-ok
-											| Updated!
+				.well
+					.row-fluid
+						h1 Group Information
+					.row-fluid
+						.span3
+								p Listing <b> {{ selectedGroup.youthList.length }} </b> Youth
+								ul.nav.nav-list.groupList
+									li(ng-repeat="member in selectedGroup.youthList")
+										a(ui-jq="popover", ui-options="{ trigger: 'hover'}", data-title="Attendee Info",
+											data-content="<p><b>Name:</b> {{ member.name }}</p><p><b>Gender:</b> {{ member.gender }}</p><p><b>Birthdate:</b> {{ member.birthDate }}</p><p><b>Phone:</b> {{ member.phone }}</p><p><b>Email:</b> {{ member.email }}</p><p><b>Med. Conditions</b> {{ member.emergencyInfo.illnesses }}</p><p><b>Allergies:</b> {{ member.emergencyInfo.allergies }}</p><p><b>Med. #:</b> {{ member.emergencyInfo.medicalNum }}<h5>Emerg. Contact</h5><p><b>Name:</b> {{ member.emergencyInfo.name }}</p><p><b>Relation:</b> {{ member.emergencyInfo.relation }}</p><p><b>Phone:</b> {{ member.emergencyInfo.phone }}</p>"
+										) {{ member.name }}
+										
+						.span3
+								p Listing <b> {{ selectedGroup.chaperoneList.length }} </b> Chaperones
+								ul.nav.nav-list.groupList
+									li(ng-repeat="member in selectedGroup.chaperoneList")
+										a(ui-jq="popover", ui-options="{ trigger: 'hover'}", data-title="Attendee Info",
+											data-content="<p><b>Name:</b> {{ member.name }}</p><p><b>Gender:</b> {{ member.gender }}</p><p><b>Birthdate:</b> {{ member.birthDate }}</p><p><b>Phone:</b> {{ member.phone }}</p><p><b>Email:</b> {{ member.email }}</p><p><b>Med. Conditions</b> {{ member.emergencyInfo.illnesses }}</p><p><b>Allergies:</b> {{ member.emergencyInfo.allergies }}</p><p><b>Med. #:</b> {{ member.emergencyInfo.medicalNum }}<h5>Emerg. Contact</h5><p><b>Name:</b> {{ member.emergencyInfo.name }}</p><p><b>Relation:</b> {{ member.emergencyInfo.relation }}</p><p><b>Phone:</b> {{ member.emergencyInfo.phone }}</p>"
+										) {{ member.name }}
+										
+						.span3
+								p Listing <b> {{ selectedGroup.youngAdultList.length }} </b> Young Adults
+								ul.nav.nav-list.groupList
+									li(ng-repeat="member in selectedGroup.youngAdultList")
+										a(ui-jq="popover", ui-options="{ trigger: 'hover'}", data-title="Attendee Info",
+											data-content="<p><b>Name:</b> {{ member.name }}</p><p><b>Gender:</b> {{ member.gender }}</p><p><b>Birthdate:</b> {{ member.birthDate }}</p><p><b>Phone:</b> {{ member.phone }}</p><p><b>Email:</b> {{ member.email }}</p><p><b>Med. Conditions</b> {{ member.emergencyInfo.illnesses }}</p><p><b>Allergies:</b> {{ member.emergencyInfo.allergies }}</p><p><b>Med. #:</b> {{ member.emergencyInfo.medicalNum }}<h5>Emerg. Contact</h5><p><b>Name:</b> {{ member.emergencyInfo.name }}</p><p><b>Relation:</b> {{ member.emergencyInfo.relation }}</p><p><b>Phone:</b> {{ member.emergencyInfo.phone }}</p>"
+										) {{ member.name }}
+					.row-fluid
+						.span2
+							h6 Mailing Information
+							address(style='text-align: center')
+								p
+									a(ng-click='select(group.primaryContact)') {{ selectedGroup.primaryContact.name }}
+									br
+									i {{ selectedGroup.groupInfoaffiliation }}
+									br
+									| {{ selectedGroup.primaryContact.phone }}
+									br
+									| {{ selectedGroup.groupInfo.address }}
+									br
+									| {{ selectedGroup.groupInfo.city }}, {{ selectedGroup.groupInfo.province }}
+									br
+									| {{ selectedGroup.groupInfo.postalCode }}
+						.span3
+							h6 Costs
+							.nav.nav-list
+								br
+								b Paid Tickets: 
+								| {{ selectedGroup.costs.paidTickets }}
+								br
+								b Free Tickets: 
+								| {{ selectedGroup.costs.freeTickets }}
+								br
+								b Ticket Price: 
+								| {{ selectedGroup.internalData.feePerTicket }}
+								br
+								b Payment Method:
+								| {{ selectedGroup.costs.paymentMethod }}
+					.row-fluid(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+						.form-horizontal
+							h6 Internal Information
+							.span6
+								.control-group
+									label.control-label Reg. Date
+									.controls
+										| {{ selectedGroup.internalData.regDate }}
+								.control-group
+									label.control-label Status
+									.controls
+										select(ng-model="selectedGroup.internalData.status", ui-select2)
+											option(value="New group - Unchecked") New group - Unchecked
+											option(value="Edited - Unchecked") Edited - Unchecked
+											option(value="New group - Reviewed") New group - Reviewed
+											option(value="Group waiting for info") Group waiting for info
+											option(value="Group - Complete") Group - Complete
+								.control-group
+									label.control-label Youth in Care
+									.controls
+										select(ng-model="selectedGroup.internalData.youthInCare", ui-select2)
+											option(value="Have not asked") Have not asked
+											option(value="Have asked") Have asked
+											option(value="Youth coming to YIC Dinner") Youth coming to YIC Dinner
+											option(value="No youth coming to YIC") No youth coming to YIC
+								.control-group
+									label.control-label Workshop Reg
+									.controls
+										select(ng-model="selectedGroup.internalData.youthInCare", ui-select2)
+											option(value="WS Registration not sent") WS Registration not sent
+											option(value="WS Registration sent") WS Registration sent
+								.control-group
+									label.control-label Payment Status
+									.controls
+										select(ng-model="selectedGroup.internalData.paymentStatus", ui-select2)
+											option(value="Need to contact") Need to contact
+											option(value="Waiting") Waiting
+											option(value="Payment in the mail") Payment in the mail
+											option(value="Invoice Sent") Invoice sent
+											option(value="Payment received") Payment received
+								.control-group
+									label.control-label Total 
+									.controls
+										p {{ selectedGroup.costs.paidTickets * selectedGroup.internalData.feePerTicket }}
+								.control-group
+									label.control-label Paid
+									.controls
+										input.focused(type="text", ng-model="selectedGroup.internalData.paid", style="width: 40px;")
+							.span4
+								.control-group
+									label.control-label Notes
+									textarea.focused(ng-model="selectedGroup.internalData.notes", rows="6", cols="30")
+					.row-fluid
+						div(ng-class="{statusSuccess: selectedGroup.updateSuccess, status: selectedGroup.updateSuccess}")
+							
+
+					.row-fluid
+						.span3
+							.btn-group
+								a.btn.btn-large.btn-success(href="javascript:void(0)", ng-click="updateInternals(selectedGroup)") Update &raquo;
+								a.btn.btn-info.btn-large(href="/register/{{ selectedGroup._id }}") Edit &raquo;
+								a.btn.btn-warning.btn-large(href="javascript:void(0)", ng-click="selectedGroup.confirmRemove = !selectedGroup.confirmRemove") Remove Entire Group &raquo;
+						.span4
+							a.btn.btn-large.btn-danger(href="javascript:void(0)", ng-click="remove(selectedGroup)", ui-toggle="selectedGroup.confirmRemove") Confirm &raquo;
+							div(ui-toggle="selectedGroup.updateSuccess")
+								i.icon-ok
+								| Updated!
 
 .modal.hide.fade#secretModal
 	.modal-header
