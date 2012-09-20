@@ -1,51 +1,51 @@
 .container-fluid(ng-controller='manCtl')
 	.row-fluid
-		.span3(style="position: fixed; top: 50px;")
-			.well
-				.input-prepend
-					span.add-on
-						i.icon-search
-					input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
-			.well
-				p
-					h6 Basic Information
-					b Name: 
-					| {{ currentUser.name }}
-					br
-					b Status: 
-					| {{ currentUser.status }}
-					br
-					b Gender: 
-					| {{ currentUser.gender }}
-					br
-					b Birth Date: 
-					| {{ currentUser.birthDate }}
-					br
-					b Phone: 
-					| {{ currentUser.phone }}
-					br
-					b Email: 
-					| {{ currentUser.email }}
-					hr
-					h6 Emergency Information
-					b Name: 
-					| {{ currentUser.emergencyInfo.name }}
-					br
-					b Relation: 
-					| {{ currentUser.emergencyInfo.relation }}
-					br
-					b Phone: 
-					| {{ currentUser.emergencyInfo.phone }}
-					br
-					b Medical Number: 
-					| {{ currentUser.emergencyInfo.medicalNum }}
-					br
-					b Allergies: 
-					| {{ currentUser.emergencyInfo.allergies }}
-					br
-					b Illnesses: 
-					| {{ currentUser.emergencyInfo.illnesses }}
 		.span3
+			.managementBar(ui-affix)
+				.well
+					.input-prepend
+						span.add-on
+							i.icon-search
+						input.search-query(type='text', ng-model='searchQuery', placeholder='Enter a Search Query', style="width: 150px;")
+				.well
+					p
+						h6 Basic Information
+						b Name: 
+						| {{ currentUser.name }}
+						br
+						b Status: 
+						| {{ currentUser.status }}
+						br
+						b Gender: 
+						| {{ currentUser.gender }}
+						br
+						b Birth Date: 
+						| {{ currentUser.birthDate }}
+						br
+						b Phone: 
+						| {{ currentUser.phone }}
+						br
+						b Email: 
+						| {{ currentUser.email }}
+						hr
+						h6 Emergency Information
+						b Name: 
+						| {{ currentUser.emergencyInfo.name }}
+						br
+						b Relation: 
+						| {{ currentUser.emergencyInfo.relation }}
+						br
+						b Phone: 
+						| {{ currentUser.emergencyInfo.phone }}
+						br
+						b Medical Number: 
+						| {{ currentUser.emergencyInfo.medicalNum }}
+						br
+						b Allergies: 
+						| {{ currentUser.emergencyInfo.allergies }}
+						br
+						b Illnesses: 
+						| {{ currentUser.emergencyInfo.illnesses }}
 		.span8.well.accordion#listing
 			.container-fluid
 				.row-fluid
