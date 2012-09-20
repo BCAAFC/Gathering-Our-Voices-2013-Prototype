@@ -55,22 +55,21 @@ html
 						a.carousel-control.right(href='javascript:void(0)', carousel-next) &rsaquo;
 						
 		// Main Container. Nothing other then floats should be outside of this.
-		.container-fluid
+		.container
 			// Logo Row.
 			// -- This is the top of the page, it containers things that the entire application will be using.
-			.row-fluid
-				.span9
-				.span3
+			.row
+				.span3.offset9
 					img.hidden-phone(src="/img/gov_logo.png")
 				
-			// Article Row
-			// -- This is the main content which Angular JS replaces during ng-view
-			.row-fluid#article(ng-view)
-				.container-fluid
-					.row-fluid
-						.span5
-						.well.span2
-							p Please give us a moment while the data loads!
+		// Article Row
+		// -- This is the main content which Angular JS replaces during ng-view
+		div#article(ng-view)
+			.container-fluid
+				.row-fluid
+					.span5
+					.well.span2
+						p Please give us a moment while the data loads!
 
 	// Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
 	script(type="text/javascript", src="/js/jquery.min.js")

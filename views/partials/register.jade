@@ -4,7 +4,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     // -- A nice navigation addon for our Desktop users.
     // -- Don't put anything important here. Tablets and Phones can't see it.
     .span2
-      .visible-desktop.well.regSidebar(ui-affix)
+      .visible-desktop.well
         ul.nav.nav-list
           li.nav-header Quick Scroll
           li
@@ -18,8 +18,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             
     // Primary Registration Fields.
     .span10
-      .container-fluid
-        .row-fluid
+      .container
+        .row
           .well#info
             h1 Before We Start...
             p Welcome! Below are some helpful tips for the Registration Process.
@@ -35,7 +35,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
               a.btn.btn-info(href="https://www.google.com/intl/en/chrome/browser/") Get Chrome!
               a.btn.btn-warning(href="http://www.mozilla.org/en-US/firefox/new/?") Get Firefox!
             p Lastly, if you have any issues with the form, please call 1-800-990-2432 and ask to speak with Della Preston.
-        .row-fluid
+        .row
           .form-horizontal.well#primary
             h1 Primary Contact  
             p Each Group requires a primary contact. They will be the primary point of contact for information, payment, and announcements important for all delegates to receive.
@@ -177,7 +177,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             // End Group Contact Information
 
         // Youth Registration Fields.
-        .row-fluid
+        .row
           .form-horizontal.well#youth
             h1 Youth Attendees
             p You have <strong>{{ youthList.length }}</strong> youth attending.
@@ -185,7 +185,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             | 14-17 yrs
             p For every <b>five</b> youth attendees you must have at least <b>one</b> Chaperone attending.
             hr
-            .container-fluid(id="youthAccordion")
+            .container(id="youthAccordion")
               .accordion-group
                 .accordion-heading
                   a.accordion-toggle(href="javascript:void(0);", ng-click="addYouth()")
@@ -193,7 +193,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     | Add a Youth
               .accordion-group(ng-repeat="youth in youthList")
                 .accordion-heading
-                  .row-fluid
+                  .container
                     .pull-left
                       a.accordion-toggle(href="javascript:void(0);", accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
                     .pull-right
@@ -202,7 +202,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         | Remove {{ youth.name }}
                 .accordion-body.collapse(id="youth{{youth.number}}")
                   .accordion-inner
-                    .row-fluid
+                    .row
                         .span6
                           // Begin Basic Info
                           fieldset
@@ -365,7 +365,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           // End Emergency Info      
                     
         // Chaperone Registration Fields.
-        .row-fluid
+        .row
           .form-horizontal.well#chaperone
             h1 Chaperone Attendees
             p You have <strong>{{ chaperoneList.length }}</strong> chaperones attending.
@@ -373,7 +373,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             | 21+ yrs
             p Each chaperone can be responsible for up to <b>five</b> youth.
             hr
-            .container-fluid(id="chaperoneAccordion")
+            .container(id="chaperoneAccordion")
               .accordion-group
                 .accordion-heading
                   a.accordion-toggle(href="javascript:void(0);", ng-click="addChaperone()")
@@ -381,7 +381,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     | Add a Chaperone
               .accordion-group(ng-repeat="chaperone in chaperoneList")
                 .accordion-heading
-                  .row-fluid
+                  .container
                     .pull-left
                       a.accordion-toggle(href="javascript:void(0);", accordion, accordion-group="#chaperoneAccordion") {{ chaperone.name }}
                     .pull-right
@@ -390,7 +390,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         | Remove {{ chaperone.name }}
                 .accordion-body.collapse(id="chaperone{{ chaperone.number }}")
                   .accordion-inner
-                    .row-fluid
+                    .row
                         .span6
                           // Begin Basic Info
                           fieldset(id="chaperone{{chaperone.number}}")
@@ -549,18 +549,15 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           // End Emergency Info
 
         // Youth Registration Fields.
-        .row-fluid
+        .row
           .form-horizontal.well#youngAdult
             h1 Young Adult Attendees
-            .container-fluid
-              .row-fluid
-                .span6
-                  p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
-                  strong Age Range:
-                  | 18-24 yrs
-                  p There are no special restrictions on the number of young adults per group.
+            p You have <strong>{{ youngAdultList.length }}</strong> young adults attending.
+            strong Age Range:
+            | 18-24 yrs
+            p There are no special restrictions on the number of young adults per group.
             hr
-            .container-fluid(id="youngAdultAccordion")
+            .container(id="youngAdultAccordion")
               .accordion-group
                 .accordion-heading
                   a.accordion-toggle(href="javascript:void(0);", ng-click="addYoungAdult()")
@@ -568,7 +565,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     | Add a Young Adult
               .accordion-group(ng-repeat="youngAdult in youngAdultList")
                 .accordion-heading
-                  .row-fluid
+                  .container
                     .pull-left
                       a.accordion-toggle(href="javascript:void(0);", accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
                     .pull-right
@@ -577,7 +574,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         | Remove {{ youngAdult.name }}
                 .accordion-body.collapse(id="youngAdult{{ youngAdult.number }}")
                   .accordion-inner
-                    .row-fluid
+                    .row
                       // Begin Basic Info
                       .span6
                         fieldset(id="youngAdult{{youngAdult.number}}")
@@ -740,56 +737,55 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         // End Emergency Information
             
         // Confirmation Fields
-        .row-fluid
-          .form-horizontal.well#confirmation
-            h1 Registration Confirmation
-            p Here you can verify some of the details regarding your registration. Please take care in looking over this portion of the document.
-              .container-fluid
-                .row-fluid
-                  .span3
-                    h6 Group Information
-                    ul.nav.nav-list
-                      li Youth: {{ youthList.length }}
-                      li Chaperones: {{ chaperoneList.length }}
-                      li Young Adults: {{ youngAdultList.length }}
-                  .span3
-                    ul
-                  .span3
-                    h6 Unofficial Invoice
-                    ul.nav.nav-list
-                      li Paid Tickets: {{ paidTickets() }} @ $175
-                      li Free Tickets: {{ freeTickets() }} @ $0
-                      li Total: ${{ totalCost() }}
-                    .control-group
-                      label.control-label Payment Method
-                      .controls
-                        select(
-                          ng-model="costs.paymentMethod",
-                          ui-jq="popover",
-                          ui-options="{trigger: 'focus', placement: 'bottom'}",
-                          data-title="Choose your Payment Method",
-                          data-content="We encourage payment by Cheque as Credit Card transactions will cost a fee, please call Della Preston at 250-388-5522 to inquire."
-                        )
-                          option(value="Cheque") Cheque
-                          option(value="Money Order") Money Order
-                          option(value="Please Invoice") Please Invoice
-                          option(value="Credit Card") Credit Card
-            .alert.alert-warning(ui-toggle='regForm.$invalid')
-              p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty? <i> If you removed an attendee at some point, this check is currently broken, you can safely ignore it.</i>
-              p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
-            .alert.alert-error(ui-toggle='!enoughChaperones()')
-              p You need 1 chaperone for every 5 youth, you currently are not fulfilling that requirement... So unfortunately we can't let you register yet! Could you please get more chaperones?
-            .alert.alert-success(ui-toggle='!regForm.$invalid && enoughChaperones()') Looks like you are good to go. Take a final look over everything and then click Register!
-            input.btn-large.btn-primary(
-              type='submit',
-              value='Register',
-              ng-model='submitButton',
-              ng-disabled="isClean() || submitted || !enoughChaperones()"
-            )
-            .alert.alert-success(ui-toggle="submitted")
-              p Thank you for submitting your registration!  The Gathering Our Voices team will review your registration and send you an email response which can include the following:  request for missing information, payment arrangements or confirmation if registration is complete.
+        .row.well
+          .container
+              h1 Registration Confirmation
+              p Here you can verify some of the details regarding your registration. Please take care in looking over this portion of the document.
+              .form-horizontal#confirmation
+                .span3
+                  h6 Group Information
+                  ul.nav.nav-list
+                    li Youth: {{ youthList.length }}
+                    li Chaperones: {{ chaperoneList.length }}
+                    li Young Adults: {{ youngAdultList.length }}
+                .span3
+                  h6 Unofficial Invoice
+                  ul.nav.nav-list
+                    li Paid Tickets: {{ paidTickets() }} @ $175
+                    li Free Tickets: {{ freeTickets() }} @ $0
+                    li Total: ${{ totalCost() }}
+              .control-group
+                label.control-label Payment Method
+                .controls
+                  select(
+                    ng-model="costs.paymentMethod",
+                    required,
+                    ui-jq="popover",
+                    ui-options="{trigger: 'focus', placement: 'bottom'}",
+                    data-title="Choose your Payment Method",
+                    data-content="We encourage payment by Cheque as Credit Card transactions will cost a fee, please call Della Preston at 250-388-5522 to inquire."
+                  )
+                    option(value="Cheque") Cheque
+                    option(value="Money Order") Money Order
+                    option(value="Please Invoice") Please Invoice
+                    option(value="Credit Card") Credit Card
+                .alert.alert-warning(ui-toggle='regForm.$invalid')
+                  p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
+                  p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
+                .alert.alert-error(ui-toggle='!enoughChaperones()')
+                  p You need 1 chaperone for every 5 youth, you currently are not fulfilling that requirement... So unfortunately we can't let you register yet! Could you please get more chaperones?
+                .alert.alert-success(ui-toggle='!regForm.$invalid && enoughChaperones()') Looks like you are good to go. Take a final look over everything and then click Register!
+          input.btn.btn-large.btn-primary(
+            type='submit',
+            value='Register',
+            ng-model='submitButton',
+            ng-disabled="isClean() || submitted || !enoughChaperones()",
+            style="width: 100%;"
+          )
+          .alert.alert-success(ui-toggle="submitted")
+            p Thank you for submitting your registration!  The Gathering Our Voices team will review your registration and send you an email response which can include the following:  request for missing information, payment arrangements or confirmation if registration is complete.
  
-              p <b>Please note:</b> Workshop Registration will begin early February 2013.  Once you receive confirmation your registration is complete, an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.
-            .alert.alert-error(ui-toggle="submitError")
-              p There was a failure in our validation of your form. Please contact us if you're sure everything is alright!
-              p In the current state. <b>Nothing</b> was submitted.
+            p <b>Please note:</b> Workshop Registration will begin early February 2013.  Once you receive confirmation your registration is complete, an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.
+          .alert.alert-error(ui-toggle="submitError")
+            p There was a failure in our validation of your form. Please contact us if you're sure everything is alright!
+            p In the current state. <b>Nothing</b> was submitted.
