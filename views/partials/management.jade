@@ -99,17 +99,17 @@
 												| {{ group.groupInfo.postalCode }}
 									.span2
 										h6 Youth
-										ul.nav.nav-list
+										ul.nav.nav-list.scrollable
 											li(ng-repeat="youth in group.youthList")
 												a(ng-click='select(youth)') {{youth.name}}
 									.span2
 										h6 Chaperones
-										ul.nav.nav-list
+										ul.nav.nav-list.scrollable
 											li(ng-repeat="chaperone in group.chaperoneList")
 												a(ng-click='select(chaperone)') {{chaperone.name}}
 									.span2
 										h6 Y. Adults
-										ul.nav.nav-list
+										ul.nav.nav-list.scrollable
 											li(ng-repeat="youngAdult in group.youngAdultList")
 												a(ng-click='select(youngAdult)') {{youngAdult.name}}
 									.span3
@@ -130,53 +130,60 @@
 										a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="group.confirmRemove = !group.confirmRemove") Remove Entire Group &raquo;
 										a.btn.btn-small.btn-danger.accordion-toggle(href="javascript:void(0)", ng-click="remove(group)", ui-toggle="group.confirmRemove") Confirm &raquo;
 								.row-fluid
-									.form-horizontal(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+									.form-horizontal
 										h6 Internal Information
-										.control-group
-											label.control-label Reg. Date
-											.controls
-												p {{ group.internalData.regDate }}
-										.control-group
-											label.control-label Status
-											.controls
-												select(ng-model="group.internalData.status", ui-select2)
-													option(value="New group - Unchecked") New group - Unchecked
-													option(value="Edited - Unchecked") Edited - Unchecked
-													option(value="New group - Reviewed") New group - Reviewed
-													option(value="Group waiting for info") Group waiting for info
-													option(value="Group - Complete") Group - Complete
-										.control-group
-											label.control-label Youth in Care
-											.controls
-												select(ng-model="group.internalData.youthInCare", ui-select2)
-													option(value="Have not asked") Have not asked
-													option(value="Have asked") Have asked
-													option(value="Youth coming to YIC Dinner") Youth coming to YIC Dinner
-													option(value="No youth coming to YIC") No youth coming to YIC
-										.control-group
-											label.control-label Workshop Reg
-											.controls
-												select(ng-model="group.internalData.youthInCare", ui-select2)
-													option(value="WS Registration not sent") WS Registration not sent
-													option(value="WS Registration sent") WS Registration sent
-										.control-group
-											label.control-label Payment Status
-											.controls
-												select(ng-model="group.internalData.paymentStatus", ui-select2)
-													option(value="Need to contact") Need to contact
-													option(value="Waiting") Waiting
-													option(value="Payment in the mail") Payment in the mail
-													option(value="Invoice Sent") Invoice sent
-													option(value="Payment received") Payment received
-										.control-group
-											label.control-label Total 
-											.controls
-												p {{ group.costs.paidTickets * group.internalData.feePerTicket }}
-										.control-group
-											label.control-label Paid
-											.controls
-												input.focused(type="text", ng-model="group.internalData.paid", style="width: 40px;")
-											a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updateInternals(group)") Update &raquo;
+										.span6
+											.control-group
+												label.control-label Reg. Date
+												.controls
+													p {{ group.internalData.regDate }}
+											.control-group
+												label.control-label Status
+												.controls
+													select(ng-model="group.internalData.status", ui-select2)
+														option(value="New group - Unchecked") New group - Unchecked
+														option(value="Edited - Unchecked") Edited - Unchecked
+														option(value="New group - Reviewed") New group - Reviewed
+														option(value="Group waiting for info") Group waiting for info
+														option(value="Group - Complete") Group - Complete
+											.control-group
+												label.control-label Youth in Care
+												.controls
+													select(ng-model="group.internalData.youthInCare", ui-select2)
+														option(value="Have not asked") Have not asked
+														option(value="Have asked") Have asked
+														option(value="Youth coming to YIC Dinner") Youth coming to YIC Dinner
+														option(value="No youth coming to YIC") No youth coming to YIC
+											.control-group
+												label.control-label Workshop Reg
+												.controls
+													select(ng-model="group.internalData.youthInCare", ui-select2)
+														option(value="WS Registration not sent") WS Registration not sent
+														option(value="WS Registration sent") WS Registration sent
+											.control-group
+												label.control-label Payment Status
+												.controls
+													select(ng-model="group.internalData.paymentStatus", ui-select2)
+														option(value="Need to contact") Need to contact
+														option(value="Waiting") Waiting
+														option(value="Payment in the mail") Payment in the mail
+														option(value="Invoice Sent") Invoice sent
+														option(value="Payment received") Payment received
+											.control-group
+												label.control-label Total 
+												.controls
+													p {{ group.costs.paidTickets * group.internalData.feePerTicket }}
+											.control-group
+												label.control-label Paid
+												.controls
+													input.focused(type="text", ng-model="group.internalData.paid", style="width: 40px;")
+										.span4
+											.control-group
+												label.control-label Notes
+												textarea.focused(ng-model="group.internalData.notes", rows="6", cols="30")
+								.row-fluid
+									div(ng-class="{statusSuccess: group.updateSuccess, status: group.updateSuccess}")
+										a.btn.btn-small.accordion-toggle(href="javascript:void(0)", ng-click="updateInternals(group)") Update &raquo;
 										div(ui-toggle="group.updateSuccess")
 											i.icon-ok
 											| Updated!

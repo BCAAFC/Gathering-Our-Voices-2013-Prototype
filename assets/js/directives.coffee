@@ -24,9 +24,9 @@
 				# Get the accordion group we want, hide the ones we don't want.
 				group = attrs.accordionGroup
 				$(group).find(".in").collapse "hide"
+				select = element.parents().eq(3).find(".accordion-body")
 				# Get the accordion we want, open the one we want.
-				select = "#" + attrs.accordion
-				$(select).collapse "toggle"
+				select.collapse "toggle"
 	).directive('uiAffix', ->
 		link: (scope, element, attrs) ->
 			element.affix

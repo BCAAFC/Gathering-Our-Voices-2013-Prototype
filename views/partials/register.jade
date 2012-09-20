@@ -383,7 +383,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                 .accordion-heading
                   .row-fluid
                     .pull-left
-                      a.accordion-toggle(href="javascript:void(0);", accordion="chaperone{{chaperone.number}}", accordion-group="#chaperoneAccordion") {{ chaperone.name }}
+                      a.accordion-toggle(href="javascript:void(0);", accordion, accordion-group="#chaperoneAccordion") {{ chaperone.name }}
                     .pull-right
                       a.accordion-toggle(href="javascript:void(0);", ng-click="removeChaperone(chaperone)") 
                         i.icon-trash
