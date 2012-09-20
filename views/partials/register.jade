@@ -4,8 +4,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
     // -- A nice navigation addon for our Desktop users.
     // -- Don't put anything important here. Tablets and Phones can't see it.
     .span2
-      .visible-desktop.well
-        ul.nav.nav-list
+      .visible-desktop
+        ul.nav.nav-list.well.quickscroll(ui-affix)
           li.nav-header Quick Scroll
           li
             a(href='javascript:void(0)', ui-scroll='primary') Group Contact
@@ -15,6 +15,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             a(href='javascript:void(0)', ui-scroll='chaperone') Chaperones ({{ chaperoneList.length }})
           li
             a(href='javascript:void(0)', ui-scroll='youngAdult') Young Adults ({{ youngAdultList.length}})
+          li
+            a(href='javascript:void(0)', ui-scroll='confirmation') Confirm
             
     // Primary Registration Fields.
     .span10
@@ -41,8 +43,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             p Each Group requires a primary contact. They will be the primary point of contact for information, payment, and announcements important for all delegates to receive.
             p It is <b>not</b> assumed that this person will be attending. If you are the group contact, and plan on attending, please add yourself to the relevant group below.
           
-              // Begin Basic Info
-              fieldset
+            // Begin Basic Info
+            fieldset
               legend Basic Information
               p Please enter your information as the primary contact for your group.
 
@@ -202,7 +204,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         | Remove {{ youth.name }}
                 .accordion-body.collapse(id="youth{{youth.number}}")
                   .accordion-inner
-                    .row
+                    .container
                         .span6
                           // Begin Basic Info
                           fieldset
@@ -390,7 +392,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         | Remove {{ chaperone.name }}
                 .accordion-body.collapse(id="chaperone{{ chaperone.number }}")
                   .accordion-inner
-                    .row
+                    .container
                         .span6
                           // Begin Basic Info
                           fieldset(id="chaperone{{chaperone.number}}")
@@ -574,7 +576,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                         | Remove {{ youngAdult.name }}
                 .accordion-body.collapse(id="youngAdult{{ youngAdult.number }}")
                   .accordion-inner
-                    .row
+                    .container
                       // Begin Basic Info
                       .span6
                         fieldset(id="youngAdult{{youngAdult.number}}")
