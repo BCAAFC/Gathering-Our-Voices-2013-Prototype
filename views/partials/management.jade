@@ -132,10 +132,10 @@
 					.row-fluid
 						.span3
 							.btn-group
-								a.btn.btn-large.btn-success(href="javascript:void(0)", ng-click="updateInternals(selectedGroup)") Update &raquo;
-								a.btn.btn-info.btn-large(href="/register/{{ selectedGroup._id }}") Edit &raquo;
-								a.btn.btn-warning.btn-large(href="javascript:void(0)", ng-click="selectedGroup.confirmRemove = !selectedGroup.confirmRemove") Remove Entire Group &raquo;
-						.span4
+								a.btn.btn-large.btn-success(href="javascript:void(0)", ng-click="updateInternals(selectedGroup)") Update
+								a.btn.btn-info.btn-large(href="/register/{{ selectedGroup._id }}") Edit
+								a.btn.btn-warning.btn-large(href="javascript:void(0)", ng-click="selectedGroup.confirmRemove = !selectedGroup.confirmRemove") Remove Entire Group
+						.span4.offset4
 							a.btn.btn-large.btn-danger(href="javascript:void(0)", ng-click="remove(selectedGroup)", ui-toggle="selectedGroup.confirmRemove") Confirm &raquo;
 							div(ui-toggle="selectedGroup.updateSuccess")
 								i.icon-ok
