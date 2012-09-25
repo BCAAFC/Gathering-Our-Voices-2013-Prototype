@@ -83,6 +83,7 @@
 			$scope.youngAdultList = data.youngAdultList
 			# Load up our Primary Contact
 			$scope.primaryContact = data.primaryContact
+			$scope.groupInfo = data.groupInfo
 			$scope.costs.paymentMethod = data.costs.paymentMethod
 			# Set something so we know to update, not newly register.
 			$scope.updateButton = true
