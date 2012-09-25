@@ -197,7 +197,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   .container
                     .span3
                       a.accordion-toggle(href="javascript:void(0);", accordion="youth{{youth.number}}", accordion-group="#youthAccordion") {{ youth.name }}
-                    .span3.offset6
+                    .span4.offset4
                       a.accordion-toggle(href="javascript:void(0);", ng-click="removeYouth(youth)") 
                         i.icon-trash
                         | Remove {{ youth.name }}
@@ -384,7 +384,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   .container
                     .span3
                       a.accordion-toggle(href="javascript:void(0);", accordion, accordion-group="#chaperoneAccordion") {{ chaperone.name }}
-                    .span3.offset6
+                    .span4.offset4
                       a.accordion-toggle(href="javascript:void(0);", ng-click="removeChaperone(chaperone)") 
                         i.icon-trash
                         | Remove {{ chaperone.name }}
@@ -567,7 +567,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                   .container
                     .span3
                       a.accordion-toggle(href="javascript:void(0);", accordion="youngAdult{{youngAdult.number}}", accordion-group="#youngAdultAccordion") {{ youngAdult.name }}
-                    .span3.offset6
+                    .span4.offset3
                       a.accordion-toggle(href="javascript:void(0);", ng-click="removeYoungAdult(youngAdult)") 
                         i.icon-trash
                         | Remove {{ youngAdult.name }}
@@ -767,12 +767,12 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     option(value="Money Order") Money Order
                     option(value="Please Invoice") Please Invoice
                     option(value="Credit Card") Credit Card
-                .alert.alert-warning(ui-toggle='regForm.$invalid')
-                  p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
-                  p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
-                .alert.alert-error(ui-toggle='!enoughChaperones()')
-                  p You need 1 chaperone for every 5 youth, you currently are not fulfilling that requirement... So unfortunately we can't let you register yet! Could you please get more chaperones?
-                .alert.alert-success(ui-toggle='!regForm.$invalid && enoughChaperones()') Looks like you are good to go. Take a final look over everything and then click Register!
+          .alert.alert-warning(ui-toggle='regForm.$invalid')
+            p Looks like you don't have all the required fields <b>(Denoted by a star, "*")</b>, could you please go back and make sure none of these are empty?
+            p If you're absolutely certain that you have everything filled out, you can still hit register, but you may want to call us (250-388-5522) and confirm your registration.
+          .alert.alert-error(ui-toggle='!enoughChaperones()')
+            p You need 1 chaperone for every 5 youth, you currently are not fulfilling that requirement... So unfortunately we can't let you register yet! Could you please get more chaperones?
+          .alert.alert-success(ui-toggle='!regForm.$invalid && enoughChaperones()') Looks like you are good to go. Take a final look over everything and then click Register!
           input.btn.btn-large.btn-primary(
             type='submit',
             value='Register',
