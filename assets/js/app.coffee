@@ -16,7 +16,7 @@
 		controller: manCtl
 		
 	$routeProvider.when "/groupTable",
-		templateUrl: "/partials/groupTable",
+		templateUrl: "/partials/tables/groupTable",
 		controller: groupTableCtl
 
 	$routeProvider.when "/login",

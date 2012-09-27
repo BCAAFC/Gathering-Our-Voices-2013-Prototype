@@ -122,6 +122,10 @@ app.get "/partials/:name", (req, res) ->
 	name = req.params.name
 	res.render "partials/" + name
 
+app.get "/partials/tables/:name", (req, res) ->
+	name = req.params.name
+	res.render "partials/tables/" + name
+
 # Register GET. Angular Handles the templating.
 app.get "/register", (req, res) ->
 	res.render "index"
