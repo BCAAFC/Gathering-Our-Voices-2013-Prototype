@@ -49,9 +49,11 @@
 								p
 									a(ng-click='select(group.primaryContact)') {{ selectedGroup.primaryContact.name }}
 									br
-									i {{ selectedGroup.groupInfoaffiliation }}
+									i {{ selectedGroup.groupInfo.affiliation }}
 									br
 									| {{ selectedGroup.primaryContact.phone }}
+									br
+									| | {{ selectedGroup.primaryContact.email }}
 									br
 									| {{ selectedGroup.groupInfo.address }}
 									br
