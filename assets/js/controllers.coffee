@@ -155,7 +155,7 @@
 	$scope.addYouth = ->
 		$scope.youthList.push
 			name: "New Youth"
-			status: "Youth (14-17 yrs)"
+			type: "Youth (14-17 yrs)"
 			gender: ""
 			birthDate: ""
 			phone: ""
@@ -172,7 +172,7 @@
 	$scope.addChaperone = ->
 		$scope.chaperoneList.push
 			name: "New Chaperone"
-			status: "Chaperone (21+ yrs)"
+			type: "Chaperone (21+ yrs)"
 			gender: ""
 			birthDate: ""
 			phone: ""
@@ -189,7 +189,7 @@
 	$scope.addYoungAdult = ->
 		$scope.youngAdultList.push
 			name: "New Young Adult"
-			status: "Young Adult (18-24 yrs)"
+			type: "Young Adult (18-24 yrs)"
 			gender: ""
 			birthDate: ""
 			phone: ""

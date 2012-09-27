@@ -755,7 +755,7 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                     li Free Tickets: {{ freeTickets() }} @ $0
                     li Total: ${{ totalCost() }}
               .control-group
-                label.control-label Payment Method
+                h6.control-label Payment Method
                 .controls
                   select(
                     ng-model="costs.paymentMethod",
