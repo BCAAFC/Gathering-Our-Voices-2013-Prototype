@@ -13,6 +13,12 @@
 					ul.nav.nav-list.groupList
 						li(ng-repeat="group in attendees | filter:searchQuery | orderBy:'-internalData.regDate'")
 							a(ng-click="selectGroup(group)") {{ group.groupInfo.affiliation }}
+				.well
+					h3 Totals
+					ul.nav.nav-list
+						li Total Youth: {{ totalYouth() }}
+						li Total Chaperones: {{ totalChaperones() }}
+						li Total Young Adults: {{ totalYoungAdults() }}
 		.span9
 			.container-fluid
 				.well
@@ -53,7 +59,7 @@
 									br
 									| {{ selectedGroup.primaryContact.phone }}
 									br
-									| | {{ selectedGroup.primaryContact.email }}
+									| {{ selectedGroup.primaryContact.email }}
 									br
 									| {{ selectedGroup.groupInfo.address }}
 									br

@@ -33,6 +33,24 @@
 			internalData: group.internalData
 		).success (data, status, headers, config) ->
 			group.updateSuccess = data.success
+			
+	$scope.totalYouth = () ->
+		total = 0
+		for group in $scope.attendees
+			total += group.youthList.length
+		return total
+	
+	$scope.totalChaperones = () ->
+		total = 0
+		for group in $scope.attendees
+			total += group.chaperoneList.length
+		return total
+	
+	$scope.totalYoungAdults = () ->
+		total = 0
+		for group in $scope.attendees
+			total += group.youngAdultList.length
+		return total
 
 ###
 # Login Controller. Handles logins, so it's sort of a big deal.

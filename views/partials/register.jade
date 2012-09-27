@@ -17,6 +17,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             a(href='javascript:void(0)', ui-scroll='youngAdult') Young Adults ({{ youngAdultList.length}})
           li
             a(href='javascript:void(0)', ui-scroll='confirmation') Confirm
+          hr
+          li Total Registered: {{ youthList.length + chaperoneList.length + youngAdultList.length}}
             
     // Primary Registration Fields.
     .span10
@@ -236,10 +238,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           .controls
                             input.focused(
                               ng-model="youth.birthDate",
-                              placeholder='23/04/1990',
+                              placeholder='Apr 4, 1990',
                               ui-jq='popover',
                               ui-options="{trigger: 'focus', placement: 'right'}",
-                              data-title="dd/mm/yyyy",
+                              data-title="Month Day, Year",
                               data-content="Youth <b>must</b> be fourteen (14) to attend this event. Any delegate seventeen (17) and under <b>must</b> be accompanied by a chaperone.<br> <b>Born before:</b> March 19, 1999 <br> <b>Born After:</b> March 18, 1996",
                               type='text'
                             )
@@ -421,10 +423,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                             .controls
                               input.focused(
                                 ng-model="chaperone.birthDate",
-                                placeholder='23/04/1990',
+                                placeholder='Apr 4, 1990',
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-title="dd/mm/yyyy",
+                                data-title="Month Day, Year",
                                 data-content="Please note chaperones <b>must be</b> 21+ yrs old.<br> <b>Born on/before:</b> March 19, 1992 <br> If you are a Chaperone aged 21-24 years and want to register for workshops please contact us.",
                                 type='text'
                               )
@@ -604,10 +606,10 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
                           .controls
                             input.focused(
                               ng-model="youngAdult.birthDate",
-                                placeholder='23/04/1990',
+                                placeholder='Apr 4, 1990',
                                 ui-jq='popover',
                                 ui-options="{trigger: 'focus', placement: 'right'}",
-                                data-title="dd/mm/yyyy",
+                                data-title="Month Day, Year",
                                 data-content="Please note young adults are 18-24 yrs old.<br>  <b>Born After:</b> March 18, 1988 <br> <b> Born before: </b> March 19, 1995",
                                 type='text'
 
@@ -785,8 +787,8 @@ form.container-fluid(ng-controller='regCtl', ng-submit='submit()', autocomplete=
             style="width: 100%;"
           )
           .alert.alert-block.alert-success(ui-toggle="submitted")
-            h4 Success!
-            p Thank you for submitting your registration!  The Gathering Our Voices team will review your registration and send you an email response which can include the following:  request for missing information, payment arrangements or confirmation if registration is complete.
+            h4 Thank you for submitting your registration!
+            p The Gathering Our Voices team will review your registration and send you an email response which can include the following:  request for missing information, payment arrangements or confirmation if registration is complete.
  
             p <b>Please note:</b> Workshop Registration will begin early February 2013.  Once you receive confirmation your registration is complete, an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.
           .alert.alert-block.alert-error(ui-toggle="submitError")
