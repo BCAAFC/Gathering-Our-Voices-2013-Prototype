@@ -14,6 +14,10 @@
 	$routeProvider.when "/management",
 		templateUrl: "/partials/management"
 		controller: manCtl
+		
+	$routeProvider.when "/table/:query",
+		templateUrl: "/partials/table",
+		controller: tableCtl
 
 	$routeProvider.when "/login",
 		templateUrl: "/partials/login"

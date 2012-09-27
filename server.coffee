@@ -138,6 +138,7 @@ app.get "/home", (req, res) ->
 app.get "/management", (req, res) ->
 	res.render "index"
 	
+	
 # Privacy GET. Angular Handles the templating.
 app.get "/privacy", (req, res) ->
 	res.render "index"

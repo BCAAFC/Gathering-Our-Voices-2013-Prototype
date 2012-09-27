@@ -232,6 +232,13 @@
 regCtl.$inject = ["$scope", "$http", "$routeParams", "$location"]
 
 ###
+# Table controller
+###
+@tableCtl = ($scope, $http, $routeParams) ->
+	
+tableCtl.$inject = ["$scope", "$http", "$routeParams"]
+
+###
 # Home, does nothing yet.
 ###
 @homeCtl = ($scope) ->
