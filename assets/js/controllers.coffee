@@ -4,12 +4,29 @@
 ###
 # Managment Controller. This handles the database viewer.
 ###
-@manCtl = ($scope, $http) ->
+@manCtl = ($scope, $http, secret) ->
+	$scope.secret = secret.get()
 	$scope.auth = ->
+		secret.set($scope.secret)
 		$http.post("/attendee-list",
 			secret: $scope.secret
 		).success (data, status, headers, config) ->
 			$scope.attendees = data
+			$scope.totalYouth = () ->
+				total = 0
+				for group in $scope.attendees
+					total += group.youthList.length
+				return total
+			$scope.totalChaperones = () ->
+				total = 0
+				for group in $scope.attendees
+					total += group.chaperoneList.length
+				return total
+			$scope.totalYoungAdults = () ->
+				total = 0
+				for group in $scope.attendees
+					total += group.youngAdultList.length
+				return total
 
 	$scope.select = (attendee) ->
 		$scope.currentUser = attendee
@@ -33,24 +50,6 @@
 			internalData: group.internalData
 		).success (data, status, headers, config) ->
 			group.updateSuccess = data.success
-			
-	$scope.totalYouth = () ->
-		total = 0
-		for group in $scope.attendees
-			total += group.youthList.length
-		return total
-	
-	$scope.totalChaperones = () ->
-		total = 0
-		for group in $scope.attendees
-			total += group.chaperoneList.length
-		return total
-	
-	$scope.totalYoungAdults = () ->
-		total = 0
-		for group in $scope.attendees
-			total += group.youngAdultList.length
-		return total
 
 ###
 # Login Controller. Handles logins, so it's sort of a big deal.
