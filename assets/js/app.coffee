@@ -18,6 +18,10 @@
 	$routeProvider.when "/groupTable",
 		templateUrl: "/partials/tables/groupTable",
 		controller: groupTableCtl
+		
+	$routeProvider.when "/attendeeTable",
+		templateUrl: "/partials/tables/attendeeTable",
+		controller: groupTableCtl
 
 	$routeProvider.when "/login",
 		templateUrl: "/partials/login"

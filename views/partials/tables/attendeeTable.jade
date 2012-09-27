@@ -1,0 +1,75 @@
+.well(ng-controller='groupTableCtl')
+	h1 Group Table
+	p Lists all of the groups attending along with group specific information.
+	p The purpose of this page is to allow users to search or import into a spreadsheet application. <b>Currently, Google Docs works flawlessly, and you can save to excel from there. MS Excel exhibits strange pasting behaivor and does not always work.</b>ta
+	table.table.table-condensed.table-hover(style="background-color: white")
+		thead
+			tr
+				th Affiliation
+				th Contact Name
+				th Contact Phone
+				th Contact Email
+				th Name
+				th Type
+				th Gender
+				th Birth Date
+				th Phone
+				th Email
+				th Emerg. Name
+				th Emerg. Relation
+				th Emerg. Phone
+				th Emerg. Med Num
+				th Emerg. Allergies
+				th Emerg. Illnesses
+		tbody(ng-repeat="group in attendees")
+			tr(ng-repeat="attendee in group.youngAdultList")
+				td {{ group.groupInfo.affiliation }}
+				td {{ group.primaryContact.name }}
+				td {{ group.primaryContact.phone }}
+				td {{ group.primaryContact.email }}
+				td {{ attendee.name }}
+				td {{ attendee.type }}
+				td {{ attendee.gender }}
+				td {{ attendee.birthDate }}
+				td {{ attendee.phone }}
+				td {{ attendee.email }}
+				td {{ attendee.emergencyInfo.name }}
+				td {{ attendee.emergencyInfo.relation }}
+				td {{ attendee.emergencyInfo.phone }}
+				td {{ attendee.emergencyInfo.medicalNum }}
+				td {{ attendee.emergencyInfo.allergies }}
+				td {{ attendee.emergencyInfo.illnesses }}
+			tr(ng-repeat="attendee in group.youthList")
+				td {{ group.groupInfo.affiliation }}
+				td {{ group.primaryContact.name }}
+				td {{ group.primaryContact.phone }}
+				td {{ group.primaryContact.email }}
+				td {{ attendee.name }}
+				td {{ attendee.type }}
+				td {{ attendee.gender }}
+				td {{ attendee.birthDate }}
+				td {{ attendee.phone }}
+				td {{ attendee.email }}
+				td {{ attendee.emergencyInfo.name }}
+				td {{ attendee.emergencyInfo.relation }}
+				td {{ attendee.emergencyInfo.phone }}
+				td {{ attendee.emergencyInfo.medicalNum }}
+				td {{ attendee.emergencyInfo.allergies }}
+				td {{ attendee.emergencyInfo.illnesses }}
+			tr(ng-repeat="attendee in group.chaperoneList")
+				td {{ group.groupInfo.affiliation }}
+				td {{ group.primaryContact.name }}
+				td {{ group.primaryContact.phone }}
+				td {{ group.primaryContact.email }}
+				td {{ attendee.name }}
+				td {{ attendee.type }}
+				td {{ attendee.gender }}
+				td {{ attendee.birthDate }}
+				td {{ attendee.phone }}
+				td {{ attendee.email }}
+				td {{ attendee.emergencyInfo.name }}
+				td {{ attendee.emergencyInfo.relation }}
+				td {{ attendee.emergencyInfo.phone }}
+				td {{ attendee.emergencyInfo.medicalNum }}
+				td {{ attendee.emergencyInfo.allergies }}
+				td {{ attendee.emergencyInfo.illnesses }}

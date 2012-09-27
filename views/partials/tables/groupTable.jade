@@ -28,6 +28,7 @@
 				th Reg. Workshops
 				th Youth In Care
 				th Notes
+		tbody
 			tr(ng-repeat="group in attendees")
 				td {{ group.groupInfo.affiliation }}
 				td {{ group.groupInfo.address }}
@@ -52,3 +53,5 @@
 				td {{ group.internalData.workshop }}
 				td {{ group.internalData.youthInCare }}
 				td {{ group.internalData.notes }}
+
+
