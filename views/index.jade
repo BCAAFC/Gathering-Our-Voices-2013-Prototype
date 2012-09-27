@@ -44,8 +44,13 @@ html
 			// Logo Row.
 			// -- This is the top of the page, it containers things that the entire application will be using.
 			.row
-				.span3.offset9
-					img.hidden-phone(src="/img/gov_logo.png")
+				.span10.offset2
+					.row
+						.span4
+							img.hidden-phone(src="/img/gov_logo.png")
+						.span4
+							img.hidden-phone(src="/img/bcaafclogo.png")
+							p(style="color: white") BC Assn. Of Aboriginal Friendship Centres
 				
 		// Article Row
 		// -- This is the main content which Angular JS replaces during ng-view
