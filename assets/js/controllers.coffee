@@ -233,9 +233,13 @@ regCtl.$inject = ["$scope", "$http", "$routeParams", "$location"]
 ###
 # Table controller
 ###
-@tableCtl = ($scope, $http, $routeParams) ->
-	
-tableCtl.$inject = ["$scope", "$http", "$routeParams"]
+@groupTableCtl = ($scope, $http, $routeParams, secret) ->
+	$scope.secret = secret.get()
+	$http.post("/attendee-list",
+		secret: $scope.secret
+	).success (data, status, headers, config) ->
+		$scope.attendees = data
+groupTableCtl.$inject = ["$scope", "$http", "$routeParams", "secret"]
 
 ###
 # Home, does nothing yet.

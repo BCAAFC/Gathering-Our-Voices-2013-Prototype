@@ -8,6 +8,7 @@ lib-cov
 *.gz
 *.swp
 .app.js.swo
+.DS_Store
 
 pids
 logs
