@@ -102,12 +102,18 @@ sendMail = (group) ->
 		to: group.primaryContact.email
 		subject: "Gathering Our Voices - Registration Confirmation"
 		text: "Hi! This is the text version."
-		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}!</h1>
+		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}</h1>
 		<h3>Thank you for submitting your registration!</h3>
-		<p>The Gathering Our Voices team will review your registration and send you an email response which can include the following:</p> <ul><li>Request for missing information</li><li>payment arrangements</li><li>Confirmation of official registration.</li></ul>
+		<p>The Gathering Our Voices team will review your registration and send you an email response which can include the following:</p> <ul><li>Request for missing information</li><li>payment arrangements</li><li>Confirmation of official registration</li></ul>
 		<h3>Workshop Registration</h3><p>Workshop Registration will begin early February 2013. Once you receive confirmation your registration is complete an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.</p>
 		<h3>Questions or Concerns</h3>
-		<p><b>If you have any questions, comments, or concerns</b> please visit us at <a href='gatheringourvoices.bcaafc.com'>our website</a>, send an email to <a href='mailto:dpreston@bcaafc.com'>dpreston@bcaafc.com</a> or call us at  1-800-990-2432.</p>"
+		<p>If you have any questions or concerns please contact</p>
+		<p>Della Preston, Conference Coordinator</p>
+		<p>Email: <a href='mailto:dpreston@bcaafc.com'>dpreston@bcaafc.com</a></p>
+		<p>Phone: 1-800-990-2432.</p>
+		<p>Web Registration: <a href='http://gatheringourvoices.bcaafc.com'>gatheringourvoices.bcaafc.com</a></p>
+		<p>Web Information: <a href='http://www.bcaafc.com/newsandevents/gathering-our-voices'>http://www.bcaafc.com/newsandevents/gathering-our-voices</a></p>"
+		
 	smtpTransport.sendMail message, (error) ->
 		if error
 			console.log "Error occured"
