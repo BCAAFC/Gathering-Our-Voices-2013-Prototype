@@ -8,6 +8,7 @@ mongoose = require("mongoose")
 path = require("path")
 coffee = require("coffee-script")
 config = require("./config")
+nodemailer = require("nodemailer")
 
 ###
 # Declare our app.
@@ -73,6 +74,18 @@ groupSchema = new mongoose.Schema
 Group = database.model('Group', groupSchema)
 
 ###
+# Mailer Configuration
+###
+smtpTransport = nodemailer.createTransport("SMTP",
+		host: 'smtp.gmail.com',
+		port: 465,
+		ssl: true,
+		use_authentication: true,
+		user: config.mailName,
+		pass: config.mailPass
+)
+
+###
 # Custom Functions
 ###
 getTicketPrice = () ->
@@ -82,6 +95,26 @@ getTicketPrice = () ->
 		return 175
 	else
 		return 125
+		
+sendMail = (group) ->
+	message =
+		from: "gatheringourvoices.noreply@gmail.com"
+		to: group.primaryContact.email
+		subject: "Gathering Our Voices - Registration Confirmation"
+		text: "Hi! This is the text version."
+		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}!</h1><h3>Thank you for submitting your registration!</h3>
+		<p>The Gathering Our Voices team will review your registration and send you an email response which can include the following: request for missing information, payment arrangements or confirmation if registration is complete.</p><p><b>Please note:</b> Workshop Registration will begin early February 2013. Once you receive confirmation your registration is complete, an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.</p>
+		<p><b>If you have any questions:</b> Visit us at <a href='gatheringourvoices.bcaafc.com'>our website</a> or call us at 250-388-5522.</p>
+		
+		<br><br>
+		<p>Below is our Raw Data about your group, we're including it for two reasons. First, if our servers melt and collapse we can (theoretically) recover the data with your help. Second, we think it's important for technology to be de-mistified, and understanding what your data looks like is a good step in that direction</p><br><pre> #{group}</pre>"
+	smtpTransport.sendMail message, (error) ->
+		if error
+			console.log "Error occured"
+			console.log error.message
+			return
+		console.log "Message sent successfully!"
+
 
 ###
 # Persistant configuration goes here.
@@ -185,6 +218,7 @@ app.post "/register", (req, res) ->
 			console.log "A new group has been registered."
 			res.send
 				success: true
+			sendMail(group)
 					
 # Update Form Post
 app.post "/update", (req, res) ->
