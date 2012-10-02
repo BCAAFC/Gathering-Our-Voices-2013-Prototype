@@ -102,12 +102,15 @@ sendMail = (group) ->
 		to: group.primaryContact.email
 		subject: "Gathering Our Voices - Registration Confirmation"
 		text: "Hi! This is the text version."
-		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}!</h1><h3>Thank you for submitting your registration!</h3>
-		<p>The Gathering Our Voices team will review your registration and send you an email response which can include the following: request for missing information, payment arrangements or confirmation if registration is complete.</p><p><b>Please note:</b> Workshop Registration will begin early February 2013. Once you receive confirmation your registration is complete, an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.</p>
-		<p><b>If you have any questions:</b> Visit us at <a href='gatheringourvoices.bcaafc.com'>our website</a> or call us at 250-388-5522.</p>
+		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}!</h1>
+		<h3>Thank you for submitting your registration!</h3>
+		<p>The Gathering Our Voices team will review your registration and send you an email response which can include the following:</p> <ul><li>request for missing information</li><li>payment arrangements</li><li>confirmation of official registration.</li><h3>Workshop Registration</h3><p>Workshop Registration will begin early February 2013. Once you receive confirmation your registration is complete an e-mail will be sent notifying you of the list of workshops and next steps in workshop registration.</p>
+		<h3>Questions or Concerns</h3>
+		<p><b>If you have any questions, comments, or concerns</b> please visit us at <a href='gatheringourvoices.bcaafc.com'>our website</a>, send an email to <a href='mailto:dpreston@bcaafc.com'>dpreston@bcaafc.com</a> or call us at  1-800-990-2432.</p>
 		
-		<br><br>
-		<p>Below is our Raw Data about your group, we're including it for two reasons. First, if our servers melt and collapse we can (theoretically) recover the data with your help. Second, we think it's important for technology to be de-mistified, and understanding what your data looks like is a good step in that direction</p><br><pre> #{group}</pre>"
+		<br><br><br><br><br><br><br><br>
+		<h5>Your Registration Data</h5>
+		<p>Below is our raw data about your group, we're including it for two reasons. Firstly, we are including with this as a secondary measure should any unforeseen problems arise with our server. Secondly, we think it's important to be open about what information we're storing about you.</p><br><pre> #{group}</pre>"
 	smtpTransport.sendMail message, (error) ->
 		if error
 			console.log "Error occured"
