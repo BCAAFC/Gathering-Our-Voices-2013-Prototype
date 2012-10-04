@@ -35,6 +35,7 @@
 		$scope.selectedGroup = group
 		
 	$scope.remove = (group) ->
+		$scope.secret = secret.get()
 		# Send the group to be removed. We trim the data to avoid booleans we sometimes use.
 		$http.post("/removeGroupById",
 			secret: $scope.secret
