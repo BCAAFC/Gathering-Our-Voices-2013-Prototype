@@ -224,7 +224,7 @@
 		$scope.numberOfAttendees() - $scope.freeTickets()
 		
 	$scope.totalCost = () ->
-		$scope.paidTickets() * 175
+		$scope.paidTickets() * 125
 
 	$scope.enoughChaperones = () ->
 		$scope.chaperoneList.length >= Math.ceil($scope.youthList.length / 5)
