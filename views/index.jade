@@ -22,22 +22,27 @@ html
 		// Navbar. This does not need a container.
 		.navbar.navbar-fixed-top
 			.navbar-inner
+				a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
 				.container-fluid
 					.pull-right
 						a.brand Gathering Our Voices
-					ul.nav
-						li
-							a(href='/home')
-								i.icon-home
-								| Home
-						li
-							a(href='/register')
-								i.icon-edit
-								| Register
-						li
-							a(href="/privacy")
-								i.icon-eye-open
-								| Privacy Policy
+					.nav-collapse
+						ul.nav
+							li
+								a(href='/home')
+									i.icon-home
+									| Home
+							li
+								a(href='/register')
+									i.icon-edit
+									| Register
+							li
+								a(href="/privacy")
+									i.icon-eye-open
+									| Privacy Policy
 						
 		// Main Container. Nothing other then floats should be outside of this.
 		.container
@@ -47,8 +52,10 @@ html
 				.span10.offset2
 					.row
 						.span7.well
-							img.hidden-phone(src="/img/gov_logo.png")
-							img.hidden-phone(src="/img/bcaafclogo.png")
+							.span4(style="text-align: center;")
+								img(src="/img/gov_logo.png")
+							.span2
+								img.hidden-phone(src="/img/bcaafclogo.png")
 				
 		// Article Row
 		// -- This is the main content which Angular JS replaces during ng-view
