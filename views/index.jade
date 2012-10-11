@@ -68,11 +68,17 @@ html
 						p Please give us a moment while the data loads!
 
 	// Load the javascript at the end of the page, it's faster apparently (As said in the Bootstrap official templates.)
-	script(type="text/javascript", src="/js/jquery.min.js")
+	// Use a CDN if we can
+	script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js")
+	script
+		window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')
+	
 	// Bootstrap only
 	script(type="text/javascript", src="/js/bootstrap.min.js")
 	// Angular JS specific
-	script(type="text/javascript", src="/js/angular/angular-1.0.1.min.js")
+	script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js")
+	script
+		window.angular || document.write('<script src="/js/angular/angular-1.0.1.min.js"><\/script>')
 	script(type="text/javascript", src="/js/angular-ui.js")
 	!= js('app')
 	!= js('controllers')
