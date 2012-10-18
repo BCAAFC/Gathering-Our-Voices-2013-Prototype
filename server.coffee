@@ -99,9 +99,8 @@ getTicketPrice = () ->
 sendMail = (group) ->
 	message =
 		from: "gatheringourvoices.noreply@gmail.com"
-		to: group.primaryContact.email
+		to: group.primaryContact.email + ", dpreston@bcaafc.com"
 		subject: "Gathering Our Voices - Registration Confirmation"
-		text: "Hi! This is the text version."
 		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}</h1>
 		<h3>Thank you for submitting your registration!</h3>
 		<p>The Gathering Our Voices team will review your registration and send you an email response which can include the following:</p> <ul><li>Request for missing information</li><li>payment arrangements</li><li>Confirmation of official registration</li></ul>
