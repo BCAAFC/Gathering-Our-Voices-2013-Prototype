@@ -46,7 +46,7 @@
 			
 	$scope.updateInternals = (group) ->
 		$http.post("/updateInternals",
-			secret: $scope.secret
+			secret: secret.get()
 			id: group._id
 			internalData: group.internalData
 		).success (data, status, headers, config) ->
