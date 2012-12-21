@@ -99,7 +99,8 @@ getTicketPrice = () ->
 sendMail = (group) ->
 	message =
 		from: "gatheringourvoices.noreply@gmail.com"
-		to: group.primaryContact.email + ", dpreston@bcaafc.com"
+		to: "#{group.primaryContact.email}"
+		cc: "dpreston@bcaafc.com"
 		subject: "Gathering Our Voices - Registration Confirmation"
 		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}</h1>
 		<h3>Thank you for submitting your registration!</h3>
