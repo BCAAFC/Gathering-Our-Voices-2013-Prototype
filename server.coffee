@@ -9,6 +9,7 @@ path = require("path")
 coffee = require("coffee-script")
 config = require("./config")
 nodemailer = require("nodemailer")
+fs = require("fs")
 
 ###
 # Declare our app.
@@ -100,7 +101,7 @@ sendMail = (group) ->
 	message =
 		from: "gatheringourvoices.noreply@gmail.com"
 		to: "#{group.primaryContact.email}"
-		cc: "dpreston@bcaafc.com"
+		cc: "dpreston@bcaafc.com, interntech@bcaafc.com"
 		subject: "Gathering Our Voices - Registration Confirmation"
 		html: "<h1>Hello #{group.primaryContact.name} of the #{group.groupInfo.affiliation}</h1>
 		<h3>Thank you for submitting your registration!</h3>
@@ -196,35 +197,41 @@ app.post "/attendee-list", (req, res) ->
 
 # Registration Form Post
 app.post "/register", (req, res) ->
-	group = new Group
-		primaryContact: req.body.primaryContact
-		groupInfo: req.body.groupInfo
-		youthList: req.body.youthList
-		chaperoneList: req.body.chaperoneList
-		youngAdultList: req.body.youngAdultList
-		costs: req.body.costs
-		internalData:
-			regDate: new Date()
-			status: "New group - Unchecked"
-			confirmation: "Unchecked"
-			workshop: "WS reg not sent"
-			youthInCare: "No, have no asked"
-			paymentStatus: "Need to contact"
-			paid: 0
-			feePerTicket: getTicketPrice()
-			notes: ""
-	# Catch errors and send a message
-	group.save (err) ->
-		if (err)
-			console.log "Error in validation of a registration"
-			res.send
-				success: false
-				errors: err
-		else
-			console.log "A new group has been registered."
-			res.send
-				success: true
-			sendMail(group)
+	if !req.body.primaryContact?
+		res.send 'There was a problem with your registration, if you are having trouble please contact us at 250-388-5522. The problem was that no data was sent.'
+		console.log "There was a failure to register"
+	else
+		fs.appendFile 'grouplog.txt', JSON.stringify(req.body, null, 2), (err) ->
+			console.log "Written to log"
+		group = new Group
+			primaryContact: req.body.primaryContact
+			groupInfo: req.body.groupInfo
+			youthList: req.body.youthList
+			chaperoneList: req.body.chaperoneList
+			youngAdultList: req.body.youngAdultList
+			costs: req.body.costs
+			internalData:
+				regDate: new Date()
+				status: "New group - Unchecked"
+				confirmation: "Unchecked"
+				workshop: "WS reg not sent"
+				youthInCare: "No, have no asked"
+				paymentStatus: "Need to contact"
+				paid: 0
+				feePerTicket: getTicketPrice()
+				notes: ""
+		# Catch errors and send a message
+		group.save (err) ->
+			if (err)
+				console.log "Error in validation of a registration"
+				res.send
+					success: false
+					errors: err
+			else
+				console.log "A new group has been registered."
+				res.send
+					success: true
+				sendMail(group)
 					
 # Update Form Post
 app.post "/update", (req, res) ->
