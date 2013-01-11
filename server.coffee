@@ -201,8 +201,6 @@ app.post "/register", (req, res) ->
 		res.send 'There was a problem with your registration, if you are having trouble please contact us at 250-388-5522. The problem was that no data was sent.'
 		console.log "There was a failure to register"
 	else
-		fs.appendFile 'grouplog.txt', JSON.stringify(req.body, null, 2), (err) ->
-			console.log "Written to log"
 		group = new Group
 			primaryContact: req.body.primaryContact
 			groupInfo: req.body.groupInfo
